@@ -1,0 +1,59 @@
+\select@language {bahasa}
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {1.1}{\ignorespaces Example of 2D trajectories with time component, from \cite {Vlachos:2002}}}{3}{figure.1.1}
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {2.1}{\ignorespaces Numbering of points and segments}}{5}{figure.2.1}
+\contentsline {figure}{\numberline {2.2}{\ignorespaces Possible median trajectory (in black) with backward direction (pointed by the blue arrow)}}{6}{figure.2.2}
+\contentsline {figure}{\numberline {2.3}{\ignorespaces Red arcs indicate the angular change at each vertex}}{6}{figure.2.3}
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {3.1}{\ignorespaces Example of 2D trajectories with time component, from \cite {Vlachos:2002}}}{9}{figure.3.1}
+\contentsline {figure}{\numberline {3.2}{\ignorespaces Example of the median (left) and the mean (right) trajectory \cite {Lionov:2009}}}{10}{figure.3.2}
+\contentsline {figure}{\numberline {3.3}{\ignorespaces Robustness of the median trajectory}}{11}{figure.3.3}
+\contentsline {figure}{\numberline {3.4}{\ignorespaces The set of 30 trajectories, starting at the blue point \& ending at the green point}}{12}{figure.3.4}
+\contentsline {figure}{\numberline {3.5}{\ignorespaces A set of 30 trajectories with its possible median trajectory}}{12}{figure.3.5}
+\contentsline {figure}{\numberline {3.6}{\ignorespaces Illustration of the simple idea using switching}}{14}{figure.3.6}
+\contentsline {figure}{\numberline {3.7}{\ignorespaces The median trajectory make a shortcut path \cite {Lionov:2009}}}{14}{figure.3.7}
+\contentsline {figure}{\numberline {3.8}{\ignorespaces The median trajectory does not stay in the middle \cite {Lionov:2009}}}{15}{figure.3.8}
+\contentsline {figure}{\numberline {3.9}{\ignorespaces The median trajectory follows incorrect direction \cite {Lionov:2009}}}{15}{figure.3.9}
+\contentsline {figure}{\numberline {3.10}{\ignorespaces Illustration of the algorithm using homotopy concept}}{16}{figure.3.10}
+\contentsline {figure}{\numberline {3.11}{\ignorespaces Trajectories and crosses}}{16}{figure.3.11}
+\contentsline {figure}{\numberline {3.12}{\ignorespaces The blue and black trajectory are homotopically equivalent \cite {Lionov:2009}}}{17}{figure.3.12}
+\contentsline {figure}{\numberline {3.13}{\ignorespaces Modified switching method \cite {Lionov:2009}}}{17}{figure.3.13}
+\contentsline {figure}{\numberline {3.14}{\ignorespaces Example cases where algorithm using homotopy will fail}}{18}{figure.3.14}
+\contentsline {figure}{\numberline {3.15}{\ignorespaces The median trajectory does not pass through part of trajectories in the upper left area}}{18}{figure.3.15}
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {4.1}{\ignorespaces Example of 2D trajectories with time component, from \cite {Vlachos:2002}}}{23}{figure.4.1}
+\contentsline {figure}{\numberline {4.2}{\ignorespaces Example of the median (left) and the mean (right) trajectory \cite {Lionov:2009}}}{24}{figure.4.2}
+\contentsline {figure}{\numberline {4.3}{\ignorespaces Robustness of the median trajectory}}{25}{figure.4.3}
+\contentsline {figure}{\numberline {4.4}{\ignorespaces The set of 30 trajectories, starting at the blue point \& ending at the green point}}{26}{figure.4.4}
+\contentsline {figure}{\numberline {4.5}{\ignorespaces A set of 30 trajectories with its possible median trajectory}}{26}{figure.4.5}
+\contentsline {figure}{\numberline {4.6}{\ignorespaces Illustration of the simple idea using switching}}{28}{figure.4.6}
+\contentsline {figure}{\numberline {4.7}{\ignorespaces The median trajectory make a shortcut path \cite {Lionov:2009}}}{28}{figure.4.7}
+\contentsline {figure}{\numberline {4.8}{\ignorespaces The median trajectory does not stay in the middle \cite {Lionov:2009}}}{29}{figure.4.8}
+\contentsline {figure}{\numberline {4.9}{\ignorespaces The median trajectory follows incorrect direction \cite {Lionov:2009}}}{29}{figure.4.9}
+\contentsline {figure}{\numberline {4.10}{\ignorespaces Illustration of the algorithm using homotopy concept}}{30}{figure.4.10}
+\contentsline {figure}{\numberline {4.11}{\ignorespaces Trajectories and crosses}}{30}{figure.4.11}
+\contentsline {figure}{\numberline {4.12}{\ignorespaces The blue and black trajectory are homotopically equivalent \cite {Lionov:2009}}}{31}{figure.4.12}
+\contentsline {figure}{\numberline {4.13}{\ignorespaces Modified switching method \cite {Lionov:2009}}}{31}{figure.4.13}
+\contentsline {figure}{\numberline {4.14}{\ignorespaces Example cases where algorithm using homotopy will fail}}{32}{figure.4.14}
+\contentsline {figure}{\numberline {4.15}{\ignorespaces The median trajectory does not pass through part of trajectories in the upper left area}}{32}{figure.4.15}
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {5.1}{\ignorespaces Example of 2D trajectories with time component, from \cite {Vlachos:2002}}}{37}{figure.5.1}
+\contentsline {figure}{\numberline {5.2}{\ignorespaces Example of the median (left) and the mean (right) trajectory \cite {Lionov:2009}}}{38}{figure.5.2}
+\contentsline {figure}{\numberline {5.3}{\ignorespaces Robustness of the median trajectory}}{39}{figure.5.3}
+\contentsline {figure}{\numberline {5.4}{\ignorespaces The set of 30 trajectories, starting at the blue point \& ending at the green point}}{40}{figure.5.4}
+\contentsline {figure}{\numberline {5.5}{\ignorespaces A set of 30 trajectories with its possible median trajectory}}{40}{figure.5.5}
+\contentsline {figure}{\numberline {5.6}{\ignorespaces Illustration of the simple idea using switching}}{42}{figure.5.6}
+\contentsline {figure}{\numberline {5.7}{\ignorespaces The median trajectory make a shortcut path \cite {Lionov:2009}}}{42}{figure.5.7}
+\contentsline {figure}{\numberline {5.8}{\ignorespaces The median trajectory does not stay in the middle \cite {Lionov:2009}}}{43}{figure.5.8}
+\contentsline {figure}{\numberline {5.9}{\ignorespaces The median trajectory follows incorrect direction \cite {Lionov:2009}}}{43}{figure.5.9}
+\contentsline {figure}{\numberline {5.10}{\ignorespaces Illustration of the algorithm using homotopy concept}}{44}{figure.5.10}
+\contentsline {figure}{\numberline {5.11}{\ignorespaces Trajectories and crosses}}{44}{figure.5.11}
+\contentsline {figure}{\numberline {5.12}{\ignorespaces The blue and black trajectory are homotopically equivalent \cite {Lionov:2009}}}{45}{figure.5.12}
+\contentsline {figure}{\numberline {5.13}{\ignorespaces Modified switching method \cite {Lionov:2009}}}{45}{figure.5.13}
+\contentsline {figure}{\numberline {5.14}{\ignorespaces Example cases where algorithm using homotopy will fail}}{46}{figure.5.14}
+\contentsline {figure}{\numberline {5.15}{\ignorespaces The median trajectory does not pass through part of trajectories in the upper left area}}{46}{figure.5.15}
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {A.1}{\ignorespaces Interface of the program}}{55}{figure.A.1}
+\addvspace {10\p@ }
+\addvspace {10\p@ }
