@@ -5,4 +5,20 @@ T.~H. Cormen, C.~E. Leiserson, R.~L. Rivest, and C.~Stein, {\em Introduction to
   Algorithms, Second Edition}.
 \newblock MIT Press and McGraw–Hill, 2001.
 
+\bibitem{wiki:001}
+O.~Wiki, ``About --- openstreetmap wiki{,},'' 2014.
+\newblock [Online; accessed 19-Januari-2015].
+
+\bibitem{wiki:002}
+O.~Wiki, ``Export --- openstreetmap wiki{,},'' 2014.
+\newblock [Online; accessed 19-Januari-2015].
+
+\bibitem{Benoit:2000}
+B.~Marchal, {\em XML by Example}.
+\newblock John Pierce, 2000.
+
+\bibitem{Flanagan:2011}
+D.~Flanagan, {\em JavaScript: The Definitive Guide, Sixth Edition}.
+\newblock O'Reilly Media, Inc, 2011.
+
 \end{thebibliography}

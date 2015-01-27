@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.3-1.40.12 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2015.1.12)  12 JAN 2015 23:46
+This is pdfTeX, Version 3.1415926-2.3-1.40.12 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2015.1.12)  27 JAN 2015 19:28
 entering extended mode
 **main.tex
 (C:\Users\Andre\workspace\Skripsi\main.tex
@@ -583,11 +583,19 @@ LaTeX Font Info:    Redeclaring font encoding OMS on input line 568.
 \mathdisplay@stack=\toks28
 LaTeX Info: Redefining \[ on input line 2666.
 LaTeX Info: Redefining \] on input line 2667.
-))
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\base\fontenc.sty"
+Package: fontenc 2005/09/27 v1.99g Standard LaTeX package
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\base\t1enc.def"
+File: t1enc.def 2005/09/27 v1.99g Standard LaTeX file
+LaTeX Font Info:    Redeclaring font encoding T1 on input line 43.
+)))
 \@input{dosen.aux}
 (C:\Users\Andre\workspace\Skripsi\dosen.tex)
 (C:\Users\Andre\workspace\Skripsi\main.aux
-(C:\Users\Andre\workspace\Skripsi\Bab/bab1.aux))
+(C:\Users\Andre\workspace\Skripsi\Bab/bab1.aux)
+(C:\Users\Andre\workspace\Skripsi\Bab/bab2.aux))
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 305.
 LaTeX Font Info:    ... okay on input line 305.
 LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 305.
@@ -710,14 +718,14 @@ LaTeX Font Info:    Try loading font information for T1+cmss on input line 1.
 ("C:\Program Files\MiKTeX 2.9\tex\latex\base\t1cmss.fd"
 File: t1cmss.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
-<Gambar/web_osm.png, id=36, 1028.34187pt x 548.0475pt>
+<Gambar/web_osm.png, id=72, 1028.34187pt x 548.0475pt>
 File: Gambar/web_osm.png Graphic file (type png)
 
 <use Gambar/web_osm.png>
 Package pdftex.def Info: Gambar/web_osm.png used on input line 23.
 (pdftex.def)             Requested size: 308.50494pt x 164.41551pt.
 
-<Gambar/co_graf.png, id=39, 616.55344pt x 346.29375pt>
+<Gambar/co_graf.png, id=75, 616.55344pt x 346.29375pt>
 File: Gambar/co_graf.png Graphic file (type png)
 
 <use Gambar/co_graf.png>
@@ -743,45 +751,113 @@ File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10.95> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 47.
  [2 <C:/Users/Andre/workspace/Skripsi/Gambar/co_graf.png>]) [3]
-(C:\Users\Andre\workspace\Skripsi\main.bbl [4
+(C:\Users\Andre\workspace\Skripsi\Bab/bab2.tex [4
+
 
 
 ]
+Bab 2.
+<Gambar/export_osm.png, id=120, 1008.01593pt x 484.05844pt>
+File: Gambar/export_osm.png Graphic file (type png)
 
-Package lineno Warning: Linenumber reference failed, 
-(lineno)                rerun to get it right.
-
+<use Gambar/export_osm.png>
+Package pdftex.def Info: Gambar/export_osm.png used on input line 15.
+(pdftex.def)             Requested size: 403.19923pt x 193.61993pt.
+ [5 <C:/Users/Andre/workspace/Skripsi/Gambar/export_osm.png>] ("C:\Program File
+s\MiKTeX 2.9\tex\latex\listings\lstlang1.sty"
+File: lstlang1.sty 2004/09/05 1.3 listings language file
 )
+("C:\Program Files\MiKTeX 2.9\tex\latex\listings\lstmisc.sty"
+File: lstmisc.sty 2007/02/22 1.4 (Carsten Heinz)
+) [6]
+LaTeX Font Info:    Try loading font information for T1+cmtt on input line 93.
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\base\t1cmtt.fd"
+File: t1cmtt.fd 1999/05/25 v2.5h Standard LaTeX font definitions
+) [7] [8] [9]
+("C:\Program Files\MiKTeX 2.9\tex\latex\listings\lstlang1.sty"
+File: lstlang1.sty 2004/09/05 1.3 listings language file
+) [10]
+Overfull \hbox (2.26643pt too wide) in paragraph at lines 285--288
+\T1/cmr/m/n/10.95 Javascript di-tu-lis meng-gu-nak-an ka-rak-ter Uni-co-de. Uni
+-co-de ada-lah su-per-set ASCII
+ []
+
+
+Overfull \hbox (19.30489pt too wide) in paragraph at lines 313--313
+ []\T1/cmtt/m/n/10.95 /javascript/gi // A "regular expression" literal (for pat
+tern matching)[] 
+ []
+
+[11]
+Overfull \hbox (2.32977pt too wide) in paragraph at lines 363--363
+ [][]\T1/cmtt/m/n/10.95 // Print the name and value of each property of o. Retu
+rn undefined.[] 
+ []
+
+
+Overfull \hbox (7.98814pt too wide) in paragraph at lines 371--371
+ [][]\T1/cmtt/m/n/10.95 // Compute the distance between Cartesian points (x1,y1
+) and (x2,y2).[] 
+ []
+
+[12] [13] <Gambar/graph.png, id=289, 250.9375pt x 165.61874pt>
+File: Gambar/graph.png Graphic file (type png)
+
+<use Gambar/graph.png>
+Package pdftex.def Info: Gambar/graph.png used on input line 489.
+(pdftex.def)             Requested size: 200.75026pt x 132.49516pt.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[14] <Gambar/direc_graph.jpg, id=301, 162.6075pt x 161.85469pt>
+File: Gambar/direc_graph.jpg Graphic file (type jpg)
+
+<use Gambar/direc_graph.jpg>
+Package pdftex.def Info: Gambar/direc_graph.jpg used on input line 504.
+(pdftex.def)             Requested size: 162.6071pt x 161.85428pt.
+ [15 <C:/Users/Andre/workspace/Skripsi/Gambar/graph.png> <C:/Users/Andre/worksp
+ace/Skripsi/Gambar/direc_graph.jpg>]) [16]
+(C:\Users\Andre\workspace\Skripsi\main.bbl)
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 513.
- [5]
+ [17
+
+
+]
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 513.
- (C:\Users\Andre\workspace\Skripsi\main.aux
-(C:\Users\Andre\workspace\Skripsi\Bab/bab1.aux))
+
+(C:\Users\Andre\workspace\Skripsi\main.aux
+(C:\Users\Andre\workspace\Skripsi\Bab/bab1.aux)
+(C:\Users\Andre\workspace\Skripsi\Bab/bab2.aux))
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 513.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 513.
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: 49B6C9524170EDD552D0F9FB16BA911F;1037.
+(rerunfilecheck)             Checksum: 9214B5B8181DC0B707C704532F3BE96C;2083.
  ) 
 Here is how much of TeX's memory you used:
- 11555 strings out of 494045
- 157555 string characters out of 3148387
- 368784 words of memory out of 3000000
- 14624 multiletter control sequences out of 15000+200000
- 15921 words of font info for 41 fonts, out of 3000000 for 9000
+ 12125 strings out of 494045
+ 165303 string characters out of 3148387
+ 644747 words of memory out of 3000000
+ 15013 multiletter control sequences out of 15000+200000
+ 18558 words of font info for 45 fonts, out of 3000000 for 9000
  719 hyphenation exceptions out of 8191
- 45i,11n,47p,814b,450s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 45i,11n,51p,814b,1787s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/cm-super/cm-super-t1.enc}<C:/Pro
 gram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Fil
-es/MiKTeX 2.9/fonts/type1/public/cm-super/sfbx1440.pfb><C:/Program Files/MiKTeX
- 2.9/fonts/type1/public/cm-super/sfcc1000.pfb><C:/Program Files/MiKTeX 2.9/font
-s/type1/public/cm-super/sfrm0600.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/p
-ublic/cm-super/sfrm0800.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/cm-
-super/sfrm0900.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/cm-super/sfr
-m1095.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/cm-super/sfss0600.pfb
-><C:/Program Files/MiKTeX 2.9/fonts/type1/public/cm-super/sfti1095.pfb>
-Output written on main.pdf (5 pages, 444393 bytes).
+es/MiKTeX 2.9/fonts/type1/public/cm-super/sfbx1095.pfb><C:/Program Files/MiKTeX
+ 2.9/fonts/type1/public/cm-super/sfbx1200.pfb><C:/Program Files/MiKTeX 2.9/font
+s/type1/public/cm-super/sfbx1440.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/p
+ublic/cm-super/sfcc1000.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/cm-
+super/sfrm0600.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/cm-super/sfr
+m0800.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/cm-super/sfrm0900.pfb
+><C:/Program Files/MiKTeX 2.9/fonts/type1/public/cm-super/sfrm1095.pfb><C:/Prog
+ram Files/MiKTeX 2.9/fonts/type1/public/cm-super/sfss0600.pfb><C:/Program Files
+/MiKTeX 2.9/fonts/type1/public/cm-super/sfti1095.pfb><C:/Program Files/MiKTeX 2
+.9/fonts/type1/public/cm-super/sftt1095.pfb>
+Output written on main.pdf (17 pages, 851909 bytes).
 PDF statistics:
- 122 PDF objects out of 1000 (max. 8388607)
- 29 named destinations out of 1000 (max. 500000)
- 75 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 395 PDF objects out of 1000 (max. 8388607)
+ 180 named destinations out of 1000 (max. 500000)
+ 162 words of extra memory for PDF output out of 10000 (max. 10000000)
 
