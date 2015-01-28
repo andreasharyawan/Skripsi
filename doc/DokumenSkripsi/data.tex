@@ -38,6 +38,10 @@
 \usepackage[table]{xcolor}
 \usepackage{longtable}
 \usepackage{amsmath}
+\usepackage{geometry}
+\usepackage{listings}
+\usepackage{color}
+\usepackage[T1]{fontenc}
 %=============================================================================
 
 %_____________________________________________________________________________
@@ -56,11 +60,11 @@
 % Jika tidak ingin mencetak daftar tabel/gambar (misalkan karena tidak ada 
 % isinya), edit manual di baris 439 dan 440 pada file main.tex
 %=============================================================================
-% \mode{kosong}
+\mode{kosong}
 % \mode{cover}
 % \mode{sidang}
 %\mode{sidang_akhir}
-\mode{final} 
+%\mode{final} 
 %=============================================================================
 
 %_____________________________________________________________________________
@@ -87,8 +91,8 @@
 % - double : jarak yang lebih lebar lagi, jika pembimbing berniat memberi 
 %            catatan yg banyak di antara baris (dianjurkan untuk bimbingan)
 %=============================================================================
-\linespacing{single}
-% \linespacing{onehalf}
+%\linespacing{single}
+\linespacing{onehalf}
 %\linespacing{double}
 %=============================================================================
 
@@ -104,7 +108,7 @@
 % Catatan: Jika ingin menambahkan bab ke-10 dan seterusnya, harus dilakukan 
 % secara manual
 %=============================================================================
-\bab{ }
+\bab{1,2}
 %=============================================================================
 
 %_____________________________________________________________________________
@@ -120,7 +124,7 @@
 % Catatan: Jika ingin menambahkan lampiran ke-J dan seterusnya, harus 
 % dilakukan secara manual
 %=============================================================================
-\lampiran{ }
+\lampiran{-1}
 %=============================================================================
 
 %_____________________________________________________________________________
@@ -143,7 +147,7 @@
 % - penguji : isi dengan para penguji anda, lihat daftar dosen di file dosen.tex
 %				(e.g. \penguji{\JHD}{\JCD} )
 %=============================================================================
-\namanpm{Lionov}{1997730020}
+\namanpm{Andreas}{2010730071}
 \tanggal{1}{7}{2002}
 \pembimbing{\OSS}{\TAB}     %Lihat singkatan pembimbing anda di file dosen.tex
 \penguji{\NIS}{\CEN} 		%Lihat singkatan penguji anda di file dosen.tex
