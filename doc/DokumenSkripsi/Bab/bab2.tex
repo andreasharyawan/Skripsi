@@ -1,14 +1,14 @@
 \chapter{Dasar Teori}
 \section{OpenStreetMap}
 OpenStreetMap (OSM) adalah portal peta terbuka yang menyediakan data dalam bentuk peta atau 
-XML \cite{wiki:001}. OSM menyediakan peta digital dan dapat diedit dari seluruh
-dunia, juga memungkinkan pengguna untuk mengakses gambar peta yang terdapat pada situs www.openstreetmap.org 
-secara gratis. OSM terbentuk dan mendapatkan datanya dari berbagai sukarelawan yang 
-bersedia untuk berkontribusi, misalnya para pengguna OSM yang menggunakan aplikasi untuk 
+XML \cite{wiki:001}. OSM menyediakan peta dijital dan dapat diedit dari seluruh
+dunia, juga memungkinkan pengguna untuk mengakses gambar peta yang terdapat pada
+situs \url{www.openstreetmap.org} secara gratis. OSM terbentuk dan mendapatkan
+datanya dari berbagai sukarelawan yang bersedia untuk berkontribusi, misalnya para pengguna OSM yang menggunakan aplikasi untuk 
 mengedit peta dan mengunggah data yang telah diedit ke situs OSM. Selain itu, OSM menyediakan 
 beberapa aplikasi bagi para pengguna untuk mengedit peta, seperti iD online editor dan JOSM. 
 Untuk mendapatkan gambar peta ataupun data peta dalam bentuk lain, pengguna dapat menggunakan 
-fitur export pada situs OSM \cite{wiki:002}. Fitur export pada situs OSM dapat
+fitur export pada situs OSM. Fitur export pada situs OSM dapat
 dilihat pada Gambar \ref{fig:export_osm}.
 \begin{figure}[h]
 \centering
@@ -18,7 +18,8 @@ OpenStreetMap}
 \label{fig:export_osm}
 \end{figure}
 
-Berikut ini adalah beberapa data yang dapat diambil menggunakan fitur export:
+Berikut ini adalah beberapa data yang dapat diambil menggunakan fitur export
+\cite{wiki:001}:
 \begin{enumerate}
 \item OpenStreetMap XML Data
 
@@ -26,11 +27,11 @@ OSM XML data dapat diperoleh dengan cara menggunakan tombol Export di bagian ata
 membuka sidebar. Tombol Export mengarahkan langsung browser kepada OpenStreetMap API yang 
 menyediakan data mentah OSM dalam bentuk XML.
 
-\item Mapnik Image 
+\item Mapnik \textit{Image} 
 
 Memungkinkan ekspor data OSM dalam bentuk PNG, JPEG, SVG, PDF dan peta PostScript.
 
-\item Embeddable HTML
+\item \textit{Embeddable} HTML
 
 Fitur ini memungkinkan pengguna untuk mendapatkan kode HTML yang dapat disalin dan digunakan pada halaman web lain. Kode HTML tersebut akan menyisipkan peta dalam sebuah iframe lengkap dengan javascript.
 \end{enumerate}
@@ -42,8 +43,6 @@ yang dikembangkan oleh W3C (World Wide Web Consortium)
 \lstset{basicstyle=\normalsize}
 \begin{lstlisting}
 <?xml version="1.0" encoding="utf-8"?>
-<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified"
-   xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <catalog>
    <book id="bk101">
       <author>Gambardella, Matthew</author>
@@ -65,8 +64,14 @@ yang dikembangkan oleh W3C (World Wide Web Consortium)
       of the world.</description>
    </book>
   <catalog>
-</xs:schema>
 \end{lstlisting}
+Contoh di atas memberikan informasi mengenai katalog buku yang disimpan pada
+dokumen XML. Pada awal dokumen tertera versi XML dan \textit{encoding} yang
+digunakan. Setelah itu, terdapat tag catalog yang memiliki \textit{child} yaitu
+tag buku beserta informasinya. Terdapat informasi id buku yang tertera pada atribut tag buku,
+seperti <book id="bk101">. Dan juga informasi lain seperti judul buku, penulis,
+genre, harga, tanggal terbit, dan deskripsi.
+
 XML dikembangkan terutama 
 untuk mengatasi keterbatasan pada HTML (Hypertext Markup Language). HTML adalah 
 salah satu bahasa markup yang paling populer dan terus dikembangkan, banyak tag baru 
@@ -87,7 +92,7 @@ terstruktur. Perubahan utama pada XML adalah tidak adanya tag yang ditetapkan pa
 Karena tidak ada tag yang ditetapkan, penulis dapat membuat tag yang dibutuhkan. 
 Beberapa ketentuan pada XML dapat dilihat pada uraian berikut:
 \begin{enumerate}
-\item Element Start and End Tags \\
+\item Tag pada XML \\
 Setiap elemen pada XML terdiri dari nama dan nilai, selain itu harus memiliki
 tag pembuka dan tag penutup. Contoh: 
 \begin{verbatim}
@@ -96,44 +101,49 @@ tag pembuka dan tag penutup. Contoh:
 Elemen untuk menyimpan nomor telepon memiliki nama tag tel, ditulis dengan <tel>
 dan ditutup dengan </tel>.
 
-\item Names in XML \\
+\item Nama pada XML \\
 Pemberian nama pada XML harus dimulai dengan huruf atau underscore (\_) dan
 sisanya diikuti huruf, angka, atau titik. Spasi tidak diperbolehkan pada
 pemberian nama.
 
-\item Attributes \\
+\item Atribut \\
 Atribut memungkinkan untuk menyisipkan informasi tambahan, atribut juga memiliki
 nama dan nilai. Contoh:
 \begin{verbatim}
 <tel preferred="true">513-555-8889</tel>
+<tel>513-555-7098</tel>
 \end{verbatim}
+Elemen tel dapat memiliki atribut \textit{preferred}, memberikan informasi nomor
+telepon yang lebih sering digunakan.
 
-\item Empty Element \\
+\item Elemen Kosong \\
 Elemen yang tidak memiliki nilai atau isi disebut sebagai elemen kosong. Elemen
 kosong biasanya memiliki atribut. Contoh:
 \begin{verbatim}
 <email href="mailto:jdoe@emailaholic.com"></email>
 \end{verbatim}
+Elemen email tidak memiliki nilai atau isi.
 
-\item Nesting of Elements \\
+\item \textit{Nesting of Elements} \\
 Sebuah elemen dapat memiliki elemen lain di dalamnya. Elemen yang berada di
 dalam elemen lain disebut \textit{child}, sedangkan elemen yang memiliki elemen
-lain disebut \textit{parent}. Pada contoh berikut elemen name memiliki dua
-\textit{child} yaitu fname dan lname dan elemen name merupakan \textit{parent}
-dari kedua elemen tersebut. 
+lain disebut \textit{parent}. Contoh
 \begin{verbatim}
 <name>
   <fname>Jack</fname>
   <lname>Smith</lname>
 </name>
 \end{verbatim}
+Pada contoh berikut elemen name memiliki dua
+\textit{child} yaitu fname dan lname dan elemen name merupakan \textit{parent}
+dari kedua elemen tersebut.
 
-\item Root \\
+\item \textit{Root} \\
 \textit{Root} merupakan elemen pada level tertinggi dan pada dokumen XML harus
 ada satu elemen pada level tertinggi. Dengan kata lain, elemen lain harus menjadi
 \textit{child} dari \textit{root}.
 
-\item XML Declaration \\
+\item Deklarasi XML \\
 Deklarasi XML dituliskan pada baris pertama dokumen. Pada deklarasi tersebut
 juga dituliskan versi XML yang digunakan. Contoh:
 \begin{verbatim}
@@ -144,8 +154,9 @@ juga dituliskan versi XML yang digunakan. Contoh:
 \subsection{OSMXML}
 OpenStreetMap XML atau biasa disingkat dengan OSMXML merupakan dokumen XML yang
 berisi data-data peta OSM. Pada dasarnya, OSMXML berisi data primitif
-(node, way, dan relation) yang merupakan arsitektur dari model OSM. Berikut
-ini adalah contoh dokumen OSMXML:
+(node, way, dan relation) yang merupakan arsitektur dari model OSM
+\cite{wiki:001}.
+Berikut ini adalah contoh dokumen OSMXML:
 \lstset{
   language=XML,
   morekeywords={osm,bounds,node,way,relation,tag,nd,member}
@@ -229,9 +240,9 @@ tambahan pada node tersebut, contoh:
 \end{verbatim}
 nama dari node tersebut adalah Neu Broderstorf.
 
-\item Elemen Way merupakan informasi garis yang melambangkan sebagai jalan pada
-peta OSM. Way menyimpan informasi node-node yang dilalui oleh garis dan juga
-sama seperti node dilengkapi atribut seperti id, uid, user, changeset,
+\item Elemen Way merupakan informasi garis yang dapat diartikan sebagai jalan
+ataupun elemen lain seperti rel kereta pada peta OSM. Way menyimpan informasi
+node-node yang dilalui oleh garis dan juga sama seperti node dilengkapi atribut seperti id, uid, user, changeset,
 timestamp. Elemen way memiliki \textit{child} elemen nd, contoh:  
 \begin{verbatim}
 <nd ref="292403538"/>
@@ -239,8 +250,8 @@ timestamp. Elemen way memiliki \textit{child} elemen nd, contoh:
 atribut ref pada elemen nd mengacu pada node yang memiliki id 292403538, dan
 elemen tag yang memberikan informasi tambahan pada elemen way,
 
-\item Elemen relation menyimpan informasi node-node yang bersinggungan. Elemen
-relation dapat menggambarkan suatu area seperti lapangan, taman bermain, atau
+\item Elemen relation menyimpan informasi node-node dan way yang bersinggungan.
+Elemen relation dapat menggambarkan suatu area seperti lapangan, taman bermain, atau
 pada contoh di atas menggambarkan rute bus.
 \end{enumerate}
 \end{itemize}
@@ -270,9 +281,13 @@ function myFunction() {
 </body>
 </html> 
 \end{lstlisting}
+Pada contoh di atas terdapat fungsi yang ditulis menggunakan javascript,
+fungsi tersebut akan mengubah string ``A Paragraph'' pada tag <p> menjadi
+``Paragraph changed'' jika \textit{button} atau tombol ``Try it'' di klik.
+
 Seluruh browser yang terdapat pada komputer, konsol game, tablet, dan smartphone
-sudah disertai dengan javascript interpreter. Interpreter adalah suatu program
-yang berfungsi untuk menerjemahkan kode program ke dalam bahasa mesin. Javascript adalah bagian yang 
+sudah disertai dengan javascript interpreter. Interpreter adalah suatu program yang berfungsi 
+untuk menerjemahkan kode program ke dalam bahasa mesin. Javascript adalah bagian yang 
 cukup penting pada sebuah halaman web, jika HTML 
 berfungsi untuk menentukan isi dari halaman dan CSS untuk menentukan tampilan pada halaman, javascript 
 berfungsi untuk menentukan ``behavior'' dari halaman web tersebut
@@ -282,11 +297,11 @@ Berikut ini adalah uraian dari struktur javascript dan beberapa contoh sintaks:
 \item Struktur
 
 \begin{itemize}
-\item Character Set \\
+\item \textit{Character Set} \\
 Javascript ditulis menggunakan karakter Unicode. Unicode adalah superset ASCII dan Latin-1 yang mendukung 
 hampir seluruh bahasa di dunia.
 
-\item Comments \\
+\item \textit{Comments} \\
 Javascript mendukung 2 jenis komentar yaitu komentar yang diletakkan setelah garis miring ganda // dan komentar yang 
 diletakkan antara karakter /* dan */.
 \begin{verbatim}
@@ -298,9 +313,11 @@ diletakkan antara karakter /* dan */.
 */
 \end{verbatim}
 
-\item Literals \\
-Literal adalah nilai data yang muncul secara langsung dalam program. Berikut ini
-adalah contoh literal:
+\item Literal \\
+Literal adalah notasi untuk merepresentasikan nilai 
+dan nilai yang dituliskan akan muncul secara langsung dalam program. Literal
+dapat berupa karakter, bilangan bulat, bilangan real, boolean. Berikut
+ini adalah contoh literal:
 \begin{verbatim}
 12 // The number twelve
 1.2 // The number one point two
@@ -312,17 +329,17 @@ false // The other Boolean value
 null // Absence of an object 
 \end{verbatim}
 
-\item Identifier \\
+\item \textit{Identifier} \\
 \textit{Identifier} pada javascript hanyalah nama yang digunakan untuk memberi
 nama pada variabel atau fungsi. Digit tidak diperbolehkan sebagai karakter
 pertama pada \textit{identifier}.
 
-\item Reserved words \\
+\item \textit{Reserved words} \\
 \textit{Reserved words} adalah kata-kata yang tidak dapat digunakan sebagai
 identifier, karena digunakan oleh javascript sebagai keyword. Beberapa contoh keyword seperti break, delete, if, 
 null, true, false, try, dan lain-lain.
 
-\item Optional Semicolons \\
+\item \textit{Optional Semicolons} \\
 Seperti banyak bahasa pemrograman lain, javascript menggunakan titik koma (;) untuk memisahkan perintah 
 yang ditulis. Hal ini penting untuk membuat kode program menjadi jelas mengenai awal dan akhir. Pada 
 javascript, titik koma dapat dihilangkan jika perintah ditulis pada baris yang berbeda, berikut adalah 
@@ -339,7 +356,7 @@ a = 3; b = 4;
 
 \item Sintaks
 \begin{itemize}
-\item Variable Declaration \\
+\item Deklarasi Variabel \\
 Pembuatan variabel pada javascript menggunakan keyword var. Contoh deklarasi atau pembuatan variabel pada javascript:
 \begin{verbatim}
 var i;
@@ -349,9 +366,9 @@ var i = 0, j = 0, k = 0;
 \end{verbatim}
 
 
-\item Function \\
-Fungsi adalah kode blok program yang hanya didefinisikan sekali, tapi dapat dipanggil atau 
-dijalankan berulang kali. Pada javascript, fungsi dapat dibuat menggunakan keyword function. 
+\item Fungsi \\
+Fungsi adalah blok kode program yang hanya didefinisikan sekali, tapi dapat
+dipanggil atau dijalankan berulang kali. Pada javascript, fungsi dapat dibuat menggunakan keyword function. 
 Sebuah fungsi harus memiliki nama, sepasang tanda kurung untuk parameter, dan sepasang kurung kurawal. 
 Berikut ini adalah beberapa contoh fungsi:
 \begin{verbatim}
@@ -371,11 +388,48 @@ function distance(x1, y1, x2, y2) {
 \end{verbatim}
 \end{itemize}
 \end{enumerate}
+
+\subsection{XMLHttpRequest}
+XMLHttpRequest adalah salah satu objek pada javascript yang dapat digunakan
+untuk mendapatkan \textit{file} XML dari \textit{server} secara \textit{asynchronous}
+atau \textit{synchronous} \cite{Edmond:2006}. \textit{Asynchronous} berarti
+bahwa pertukaran data dilakukan tanpa harus memuat ulang seluruh halaman \textit{web}, sedangkan 
+pertukaran data \textit{synchronous} harus memuat ulang seluruh halaman
+\textit{web}. Berikut ini adalah contoh penggunaan XMLHttpRequest:
+\begin{verbatim}
+var objXMLHTTP = new XMLHttpRequest();
+
+objXMLHTTP.open('GET', 'books.xml', false);
+objXMLHTTP.send(null);
+
+var objXML = objXMLHTTP.responseXML;
+\end{verbatim}
+Langkah pertama adalah dengan membuat objek XMLHttpRequest. Selanjutnya, dengan
+memanggil fungsi open(``method'', ``url'', asynchronous). Parameter
+\textit{method} menentukan metode yang digunakan, contoh ``GET'' untuk menerima
+data dan ``POST'' untuk mengirim data, parameter url adalah alamat
+\textit{file}, dan parameter boolean ``false'' menunjukkan bahwa permintaan tersebut
+dilakukan secara \textit{synchronous}. Langkah terakhir adalah mendapatkan
+respon dari \textit{server}
+
+\subsection{XML DOM}
+DOM adalah singkatan dari \textit{Document Object Model}, XML DOM adalah API
+umum untuk menangani dokumen XML \cite{Edmond:2006}. API adalah singkatan dari
+\textit{Application Programming Interface} merupakan fungsi atau perintah yang dapat digunakan untuk
+menangani masalah pemrograman tertentu. XML DOM menyediakan fungsi standar
+untuk mengakses, memodifikasi, dan menciptakan berbagai bagian dari sebuah dokumen XML.
+Contoh:
+\begin{verbatim}
+var myNodeset = objXML.getElementsByTagName('plant');
+\end{verbatim}
+Pemanggilan fungsi getElementsByTagName('plant') akan mengembalikan satu set
+node yang memiliki nama tag 'plant'. Contoh lain, pemanggilan fungsi
+.getAttribute() akan mengembalikan nilai atribut.
+
 \subsection{Google Maps Javascript API}
 Google Maps Javascript API memungkinkan untuk sebuah halaman web menampilkan
-peta dunia yang datanya didapat dari server google. API adalah singkatan dari
-\textit{Application Programming Interface} merupakan fungsi atau perintah yang
-disediakan oleh google untuk menampilkan dan menyesuaikan peta sesuai dengan
+peta dunia yang datanya didapat dari server google \cite{gmap:001}. Google
+menyediakan fungsi atau perintah untuk menampilkan dan menyesuaikan peta sesuai dengan
 kebutuhan. Berikut ini adalah contoh halaman web yang menampilkan peta di lokasi
 Sydney, Australia:
 \lstset{
@@ -470,12 +524,160 @@ google.maps.event.addDomListener(window, 'load', initialize);
 \end{verbatim}
 \end{itemize}
 
+\setcounter{secnumdepth}{3}
+\setcounter{tocdepth}{3}
+\subsubsection{Menggambar pada Peta}
+Peta pada Google Maps API dapat ditambahkan objek seperti titik, garis, area,
+atau objek lainnya. Objek tersebut dinamakan \textit{overlay}. Terdapat beberapa
+jenis \textit{overlay} yang dapat ditambahkan pada peta yaitu sebagai berikut: 
+\begin{enumerate}
+\item \textit{Marker} \\
+Lokasi tunggal pada peta ditunjukkan oleh \textit{Marker}.
+\begin{itemize}
+  \item Menambahkan \textit{Marker} \\
+  Untuk menampilkan \textit{marker} pada peta harus membuat objek
+  google.maps.Marker. Berikut ini adalah atribut penting pada saat
+  membuat objek \textit{marker}:
+  \begin{enumerate}
+    \item \textit{position} \\
+    atribut \textit{position} diperlukan untuk mengatur letak \textit{marker}
+    pada peta.
+    
+    \item \textit{map} \\
+    atribut \textit{map} bersifat opsional, untuk menentukan marker
+    tersebut akan diletakkan pada peta. Jika atribut \textit{map} tidak diatur,
+    maka \textit{marker} akan tetap dibuat tetapi tidak akan ditampilkan pada
+    peta.
+  \end{enumerate}
+  Berikut ini adalah contoh kode program untuk menambahkan \textit{marker} pada
+  peta:
+  \begin{verbatim}
+var myLatlng = new google.maps.LatLng(-25.363882,131.044922);
+	var mapOptions = {
+	  zoom: 4,
+	  center: myLatlng
+	}
+	var map = new google.maps.Map(document.getElementById
+	("map-canvas"), mapOptions);
+	
+	// To add the marker to the map, use the 'map' property
+	var marker = new google.maps.Marker({
+	    position: myLatlng,
+	    map: map,
+	    title:"Hello World!"
+	});
+  \end{verbatim}
+  Pada contoh, objek google.maps.Marker yang dibuat disimpan pada variabel
+  marker, terdapat atribut \textit{position} menggunakan variabel myLatlng
+  yang berisi koordinat (-25.363882,131.044922), atribut map menunjukkan bahwa
+  \textit{marker} akan ditampilkan pada objek map yang tersimpan pada variabel
+  map, dan atribut yang menunjukkan judul \textit{marker}. 
+  
+  \item Menghapus \textit{Marker} pada peta\\
+  Untuk menghapus \textit{marker} pada peta, hanya diperlukan pemanggilan
+  fungsi setMap() dan mengisi parameter fungsi tersebut dengan \textit{null}.
+  Contoh:
+  \begin{verbatim}
+marker.setMap(null);
+  \end{verbatim}
+  Pada contoh di atas hanya menghilangkan \textit{marker} dari peta dan tidak
+  menghapus objek \textit{marker}.
+  
+  \item Animasi \textit{Marker} \\
+  Menambahkan animasi pada \textit{marker}, hanya memerlukan pengaturan atribut
+  pada konstruktor google.maps.Marker. Contoh:
+  \begin{verbatim}
+  var marker = new google.maps.Marker({
+	    position: myLatlng,
+	    map: map,
+	    animation: google.maps.Animation.BOUNCE,
+	    title:"Hello World!"
+	});
+  \end{verbatim}
+  Pada contoh, menambahkan animasi \textit{bounce} pada marker sehingga
+  \textit{marker} bergerak melompat-lompat pada peta. 
+  
+  \item Mengubah Ikon \\
+  Gambar \textit{marker} pada peta dapat diubah sesuai keinginan, hanya
+  memerlukan pengaturan atribut pada konstruktor google.maps.Marker. Contoh:
+  \begin{verbatim}
+  var image = 'images/beachflag.png';
+  var myLatLng = new google.maps.LatLng(-33.890542, 151.274856);
+  var beachMarker = new google.maps.Marker({
+      position: myLatLng,
+      map: map,
+      icon: image
+  });
+  \end{verbatim}
+  Pada contoh, ikon \textit{marker} akan ditampilkan menggunakan \textit{file}
+  gambar beachflag.png
+  
+  \item \textit{Draggable} \\
+  Draggable memungkinkan pengguna untuk menyeret marker ke lokasi yang berbeda,
+  hanya memerlukan pengaturan atribut pada konstruktor google.maps.Marker. Contoh:
+  \begin{verbatim}
+  var marker = new google.maps.Marker({
+	    position: myLatlng,
+	    map: map,
+	    draggable: true,
+	    title:"Hello World!"
+	});
+  \end{verbatim}
+\end{itemize}
+\item \textit{Polyline} \\
+Objek \textit{polyline} adalah serangkaian garis pada peta, \textit{polyline}
+berguna untuk menunjukkan dari satu titik ke titik lain. \textit{Polyline}
+memiliki atribut yang dapat diubah sesuai kebutuhan seperti warna,
+\textit{opacity}, dan \textit{weight}. Berikut ini penjelasan dari
+beberapa atribut tersebut:
+\begin{itemize}
+  \item \textit{strokeColor} \\
+  Atribut \textit{strokeColor} menentukan warna dalam format
+  heksadesimal, contoh \\ "\#FFFFFF''.
+  
+  \item \textit{strokeOpacity} \\
+  Atribut \textit{strokeOpacity} menentukan \textit{opacity} dalam nilai antara
+  0.0 dan 1.0.
+  
+  \item \textit{strokeWeight} \\
+  Atribut \textit{strokeWeight} menentukan lebar garis dalam piksel.
+\end{itemize}
+Berikut ini adalah contoh potongan kode program untuk menampilkan
+\textit{polyline} pada peta:
+\begin{verbatim}
+var flightPlanCoordinates = [
+    new google.maps.LatLng(37.772323, -122.214897),
+    new google.maps.LatLng(21.291982, -157.821856),
+    new google.maps.LatLng(-18.142599, 178.431),
+    new google.maps.LatLng(-27.46758, 153.027892)
+  ];
+  var flightPath = new google.maps.Polyline({
+    path: flightPlanCoordinates,
+    strokeColor: '#FF0000',
+    strokeOpacity: 1.0,
+    strokeWeight: 2
+  });
+
+  flightPath.setMap(map);
+\end{verbatim}
+Pada contoh, akan menampilkan polyline pada peta yang akan menghubungkan setiap 
+koordinat yang terdapat pada variabel flightPlanCoordinates. \textit{Polyline}
+yang ditampilkan pada peta dapat dilihat pada Gambar \ref{fig:polyline}.
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.4]{Gambar/polyline}
+\caption[Polyline pada Peta]{Polyline pada Peta}
+\label{fig:polyline}
+\end{figure}
+\end{enumerate}
+
 \section{Graf}
 Graf adalah himpunan obyek yang terrdiri dari simpul (node) dan sisi (edge), graf 
 digambarkan sebagai node yang dihubungkan oleh edge. Konsep graf telah digunakan pada 
 banyak aplikasi komputer dan menggunakan beberapa jenis graf seperti graf sederhana, graf 
 tidak berarah, graf berarah, graf tak terbatas, dan lain-lain. Contoh graf dapat
-dilihat pada Gambar \ref{fig:graph}. Graf mengikuti aturan berikut:
+dilihat pada Gambar \ref{fig:graph}. Graf mengikuti aturan berikut
+\footnotemark[2]:
 \begin{enumerate}
 \item Graf terdiri dari dua bagian yang disebut simpul dan sisi.
 \item Node digambarkan berdasarkan tipenya dan nilainya mungkin terbatas atau
@@ -510,22 +712,29 @@ Berdasarkan contoh pada Gambar \ref{fig:direc_graph}  didapatkan informasi tipe
 dari simpul adalah huruf kapital \\
 Himpunan simpul = {A, B, C, D, E} \\ 
 Himpunan edge = {(A, B), (B, C), (D, C), (B, D), (D, B), (E, D), (B, E)}
+\footnotetext[2]{http://web.cecs.pdx.edu/~sheard/course/Cs163/Doc/Graphs.html}
 
 \section{Algoritma Dijkstra}
 Algoritma dijkstra adalah algoritma yang dapat mencari jalur terpendek pada graf
 berarah dengan persamaan G=(V,E) untuk kasus pada setiap sisinya bernilai tidak
-negatif. Algoritma ini menggunakan prinsip greedy. Prinsip greedy pada algoritma dijkstra 
-menyatakan bahwa pada setiap langkahnya memilih sisi yang berbobot minimum dan
-memasukannya dalam himpunan solusi. Berikut ini adalah \textit{pseudocode} dari
+negatif \cite{Cormen:2001}. Algoritma ini menggunakan prinsip greedy. Prinsip
+greedy pada algoritma dijkstra menyatakan bahwa pada setiap langkahnya memilih sisi yang berbobot minimum dan
+memasukannya dalam himpunan solusi. Berikut ini adalah langkah-langkah dari
 algoritma dijkstra:
-\begin{verbatim}
-DIJKSTRA(G, w, s)
- INITIALIZE-SINGLE-SOURCE(G, s)
- S = 0
- Q = V[G]
- while Q != 0
-   do u = EXTRACT-MIN(Q)
-     S = S ?{u}
-       for each vertex v ? Adj[u]
-         do RELAX(u, v, w)
-\end{verbatim}
+\begin{enumerate}
+  \item Inisialisasi setiap node dengan nilai jarak sementara dan berikan nilai nol pada
+node awal.
+
+  \item Tandai node awal tersebut sebagai \textit{current} node dan tandai juga seluruh
+node lainnya sebagai node yang belum dikunjungi (\textit{unvisited} set).
+ 
+  \item Hitung jarak seluruh node yang bertetangga dengan \textit{current} node dengan
+cara membandingkan jarak yang dimiliki \textit{current} node dan jarak tetangganya satu persatu, jika jarak yang dimiliki \textit{current} 
+node lebih besar maka ganti nilai tersebut.
+
+  \item Setelah selesai menghitung jarak seluruh tetangganya, hapus \textit{current} node
+dari \textit{unvisited} set dan tandai bahwa node tersebut sudah dikunjungi.
+
+  \item Selanjutnya, pilih node yang belum dikunjungi dengan nilai jarak
+terkecil dan tandai node tersebut sebagai \textit{current} node dan ulangi langkah 3.
+\end{enumerate}

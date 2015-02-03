@@ -14,8 +14,8 @@ tempat ke tempat lain.
 
 Aplikasi yang dibuat akan berbasis OpenStreetMap dan menggunakan 
 algoritma Dijkstra. OpenStreetMap adalah portal peta terbuka yang menyediakan data dalam bentuk 
-peta maupun XML, pengguna dapat mencari lokasi dan memilih area yang diinginkan
-. Setelah pengguna memilih area yang diinginkan, pengguna dapat menggunakan
+peta maupun XML, pengguna dapat mencari lokasi dan memilih area yang
+diinginkan . Setelah pengguna memilih area yang diinginkan, pengguna dapat menggunakan
 fitur export untuk mengunduh data XML pada area tersebut. Tampilan website
 OpenStreetMap dapat dilihat pada Gambar \ref{fig:web_osm}.
 \begin{figure}[h]
@@ -25,8 +25,17 @@ OpenStreetMap dapat dilihat pada Gambar \ref{fig:web_osm}.
 \footnotemark[1]}
 \label{fig:web_osm}
 \end{figure}
-\footnotetext[1]{http://www.openstreetmap.org}Sedangkan algoritma Dijkstra adalah algoritma untuk mencari jarak terpendek pada
-sebuah graf berarah dengan bobot yang bernilai tidak negatif pada setiap sisinya
+\footnotetext[1]{http://www.openstreetmap.org}. Data yang
+disediakan oleh OpenStreetMap dalam bentuk XML biasa disebut
+dengan OpenStreetMap XML dan disingkat menjadi OSMXML. OSMXML adalah dokumen XML
+yang berisi data-data peta OSM. Pada dasarnya, OSMXML berisi data primitif
+(node, way, dan relation) yang merupakan arsitektur dari model OSM. Node
+dapat diartikan sebagai titik pada peta dijital, way merupakan informasi garis
+pada peta yang melambangkan jalan atau elemen lain seperti rel kereta, dan
+relation memberikan informasi node-node yang bersinggungan, elemen
+relation dapat menggambarkan suatu area seperti lapangan, taman bermain, rute
+bus, dan lain-lain. Sedangkan algoritma Dijkstra
+adalah algoritma untuk mencari jarak terpendek pada sebuah graf berarah dengan bobot yang bernilai tidak negatif pada setiap sisinya
 \cite{Cormen:2001}. Graf adalah himpunan objek yang terdiri dari simpul(node)
 dan sisi (edge), graf digambarkan sebagai kumpulan titik yang dihubungkan oleh garis. 
 Contoh graf dapat dilihat pada Gambar \ref{fig:co_graf}.
@@ -47,25 +56,25 @@ Berdasarkan latar belakang, maka rumusan masalah berikut:
 	\item Bagaimana cara memodelkan data OSMXML menjadi sebuah graf?
 	\item Bagaimana cara menggunakan atau mengimplementasikan algoritma Dijkstra
 	pada sebuah graf untuk mencari rute terdekat?
-	\item Bagaimana cara membuat visualisasi graf menjadi peta dijital?
+	\item Bagaimana cara membuat visualisasi graf dan rute terdekat pada peta
+	dijital?
 \end{itemize}
 
 \section{Tujuan}
-Berdasarkan rumusan masalah yang telah diuraikan diatas, maka tujuan dari penelitian yang dilakukan
+Berdasarkan rumusan masalah yang telah diuraikan di atas, maka tujuan dari penelitian yang dilakukan
 adalah:
 \begin{itemize} 
-	\item Mengetahui dan mempelajari cara memodelkan data OSMXML menjadi sebuah
-	graf.
+	\item Mengetahui cara memodelkan data OSMXML menjadi sebuah	graf.
 	\item Mempelajari cara kerja algoritma Dijkstra dan	mengimplementasikannya pada
 	sebuah graf.
- 	\item Mempelajari cara membuat visualisasi graf menjadi peta dijital. 
+ 	\item Mempelajari cara membuat visualisasi graf dan rute terdekat pada peta
+ 	dijital.
  \end{itemize}
 
 \section{Batasan Masalah}
 Batasan permasalahan dari pembuatan aplikasi ini adalah :
 \begin{itemize}
-	\item Aplikasi hanya mencari rute terdekat antara satu titik dengan titik
-	tujuan.
+	\item Aplikasi tidak mencari rute terdekat kedua dan seterusnya.
 \end{itemize}
 
 \section{Metodologi Penelitian}
@@ -92,8 +101,8 @@ Pada setiap bab akan dibahas beberapa hal sebagai berikut :
 	aplikasi.
 	
 	\item Bab Analisis\\
-	Bab 3 berisi deskripsi sistem yang akan dibuat dan analisis cara kerja
-	algoritma Dijkstra.
+	Bab 3 berisi deskripsi sistem yang akan dibuat, analisis dasar teori, dan
+	analisis cara kerja algoritma Dijkstra pada graf.
 	
 	\item Bab Perancangan\\
 	Bab 4 berisi perancangan antarmuka aplikasi disertai beberapa gambar.

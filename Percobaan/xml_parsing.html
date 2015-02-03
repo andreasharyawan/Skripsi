@@ -1,0 +1,74 @@
+<html>
+<head>
+<style>
+table, th, td {
+    border: 1px solid black;
+    border-collapse:collapse;
+}
+th, td {
+    padding: 5px;
+}
+</style>
+</head>
+<body>
+
+<script>
+if (window.XMLHttpRequest)
+  {// code for IE7+, Firefox, Chrome, Opera, Safari
+  xmlhttp=new XMLHttpRequest();
+  }
+else
+  {// code for IE6, IE5
+  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+  }
+xmlhttp.open("GET","map.xml",false);
+xmlhttp.send();
+xmlDoc=xmlhttp.responseXML;
+
+document.write("<div style='float: left'>");
+document.write("<table><tr><th>Node</th><th>Id</th><th>Latitude</th><th>Longitude</th></tr>");
+document.write("<caption>Node</caption>");
+var node=xmlDoc.getElementsByTagName("node");
+for (i=0;i<node.length;i++)
+  {
+  document.write("<tr><td>");
+  document.write(i);
+  document.write("</td><td>");
+  document.write(node[i].getAttribute('id'));
+  document.write("</td><td>");
+  document.write(node[i].getAttribute('lat'));
+  document.write("</td><td>");
+  document.write(node[i].getAttribute('lon'));
+  document.write("</td></tr>");
+  }
+document.write("</table>");
+document.write("</div>");
+
+document.write("<div style='margin-left: 20px;float: left'>");
+document.write("<table><tr><th>Way</th><th>Id Way</th><th>Edge</th><th>Id Node 1</th><th>Id Node 2</th></tr>");
+document.write("<caption>Edge</caption>");
+var way = xmlDoc.getElementsByTagName("way");
+var nd;
+for (i=0;i<way.length;i++)
+  {
+	nd = way[i].getElementsByTagName("nd");
+	  for (j=0;j+1<nd.length;j++)
+	  {
+		  document.write("<tr><td>");
+		  document.write(i);
+		  document.write("</td><td>");
+		  document.write(way[i].getAttribute('id'));
+		  document.write("</td><td>");
+		  document.write(j);
+		  document.write("</td><td>");
+		  document.write(nd[j].getAttribute('ref'));
+		  document.write("</td><td>");
+		  document.write(nd[j+1].getAttribute('ref'));
+		  document.write("</td></tr>");
+	  }
+  }
+document.write("</div>");
+</script>
+
+</body>
+</html>
