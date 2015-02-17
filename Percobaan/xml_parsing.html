@@ -83,8 +83,18 @@ function getLonByAtt(str)
 	}
 }
 
-//document.write(getDistance("-6.9055397","107.5965000","-6.9056185","107.5965003"));
-//document.write(getDistance("-6.9056185","107.5965003","-6.9056188","107.5964229"));
+function isHighway(way,index){
+	var tag = way[index].getElementsByTagName("tag");
+	for (hg=0;hg<tag.length;hg++)
+	{
+		if(tag[hg].getAttribute('k') == "highway"){
+			return true;
+		}
+	}
+	return false;
+}
+
+
 
 document.write("<div style='margin-left: 20px;float: left'>");
 document.write("<table><tr><th>Way</th><th>Id Way</th><th>Edge</th><th>Id Node 1</th><th>Id Node 2</th><th>Jarak dalam meter</th></tr>");
@@ -98,25 +108,27 @@ var lon2;
 for (i=0;i<way.length;i++)
 {
 	nd = way[i].getElementsByTagName("nd");
-	for (j=0;j+1<nd.length;j++)
-	{
-		document.write("<tr><td>");
-		document.write(i);
-		document.write("</td><td>");
-		document.write(way[i].getAttribute('id'));
-		document.write("</td><td>");
-		document.write(j);
-		document.write("</td><td>");
-		document.write(nd[j].getAttribute('ref'));
-		document.write("</td><td>");
-		document.write(nd[j+1].getAttribute('ref'));
-		document.write("</td><td>");
-		lat1 = getLatByAtt(nd[j].getAttribute('ref'));
-		lon1 = getLonByAtt(nd[j].getAttribute('ref'));
-		lat2 = getLatByAtt(nd[j+1].getAttribute('ref'));
-		lon2 = getLonByAtt(nd[j+1].getAttribute('ref'));
-		document.write(getDistance(lat1,lon1,lat2,lon2)*1000);
-		document.write("</td></tr>");
+	if(isHighway(way,i)){
+		for (j=0;j<nd.length-1;j++)
+		{
+			document.write("<tr><td>");
+			document.write(i);
+			document.write("</td><td>");
+			document.write(way[i].getAttribute('id'));
+			document.write("</td><td>");
+			document.write(j);
+			document.write("</td><td>");
+			document.write(nd[j].getAttribute('ref'));
+			document.write("</td><td>");
+			document.write(nd[j+1].getAttribute('ref'));
+			document.write("</td><td>");
+			lat1 = getLatByAtt(nd[j].getAttribute('ref'));
+			lon1 = getLonByAtt(nd[j].getAttribute('ref'));
+			lat2 = getLatByAtt(nd[j+1].getAttribute('ref'));
+			lon2 = getLonByAtt(nd[j+1].getAttribute('ref'));
+			document.write(getDistance(lat1,lon1,lat2,lon2)*1000);	
+			document.write("</td></tr>");
+		}
 	}
 }
 document.write("</div>");

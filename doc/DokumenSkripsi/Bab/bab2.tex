@@ -1,7 +1,7 @@
 \chapter{Dasar Teori}
 \section{OpenStreetMap}
 OpenStreetMap (OSM) adalah portal peta terbuka yang menyediakan data dalam bentuk peta atau 
-XML \cite{wiki:001}. OSM menyediakan peta dijital dan dapat diedit dari seluruh
+XML \cite{osm}. OSM menyediakan peta dijital dan dapat diedit dari seluruh
 dunia, juga memungkinkan pengguna untuk mengakses gambar peta yang terdapat pada
 situs \url{www.openstreetmap.org} secara gratis. OSM terbentuk dan mendapatkan
 datanya dari berbagai sukarelawan yang bersedia untuk berkontribusi, misalnya para pengguna OSM yang menggunakan aplikasi untuk 
@@ -139,7 +139,7 @@ Pada contoh berikut elemen name memiliki dua
 dari kedua elemen tersebut.
 
 \item \textit{Root} \\
-\textit{Root} merupakan elemen pada level tertinggi dan pada dokumen XML harus
+\textit{Root} merupakan elemen level tertinggi, pada dokumen XML harus
 ada satu elemen pada level tertinggi. Dengan kata lain, elemen lain harus menjadi
 \textit{child} dari \textit{root}.
 
@@ -410,7 +410,48 @@ memanggil fungsi open(``method'', ``url'', asynchronous). Parameter
 data dan ``POST'' untuk mengirim data, parameter url adalah alamat
 \textit{file}, dan parameter boolean ``false'' menunjukkan bahwa permintaan tersebut
 dilakukan secara \textit{synchronous}. Langkah terakhir adalah mendapatkan
-respon dari \textit{server}
+respon dari \textit{server}. Berikut ini penjelasan dari setiap \textit{method}
+yang digunakan:
+\begin{enumerate}
+  \item open("method","url", asynchronous,"username","password")\\
+  Melakukan inisialisasi permintaan\\
+	Parameter:
+  \begin{itemize}
+    \item \textit{method}\\
+    Method pada HTTP yang digunakan seperti ``GET'' dan ``POST''.
+    
+    \item \textit{url}\\
+    Alamat url tujuan 
+    
+    \item \textit{asynchronous}\\
+    boolean Opsional, secara default bernilai \textit{true}. \textit{True}
+    menyatakan bahwa operasi yang dijalankan secara \textit{asynchronous}. Nilai
+    \textit{false} menyatakan sebaliknya.
+    
+    \item \textit{username}\\
+    Opsional, berisikan \textit{username} yang digunakan untuk keperluan
+    otentikasi.
+    Secara default, berisi string kosong.
+    
+    \item \textit{password}\\
+    Opsional, berisikan \textit{password} yang digunakan untuk keperluan
+    otentikasi. Secara default, berisi string kosong.
+  \end{itemize}
+  
+  \item send(content)\\
+  Mengirimkan permintaan\\
+  Parameter:
+  \begin{itemize}
+    \item \textit{content}\\
+    Opsional, \textit{content} dapat berisi string atau data lainnya seperti
+    Array, dokumen, dan lain-lain.
+  \end{itemize}
+  
+  \item responseXML\\
+  Respon dari permintaan\\
+  Return:\\
+  DOM Object
+\end{enumerate}
 
 \subsection{XML DOM}
 DOM adalah singkatan dari \textit{Document Object Model}, XML DOM adalah API
@@ -421,14 +462,39 @@ untuk mengakses, memodifikasi, dan menciptakan berbagai bagian dari sebuah dokum
 Contoh:
 \begin{verbatim}
 var myNodeset = objXML.getElementsByTagName('plant');
+var name = myNodeset[0].getAttribute('name');
 \end{verbatim}
 Pemanggilan fungsi getElementsByTagName('plant') akan mengembalikan satu set
 node yang memiliki nama tag 'plant'. Contoh lain, pemanggilan fungsi
-.getAttribute() akan mengembalikan nilai atribut.
+.getAttribute() akan mengembalikan nilai atribut. Berikut ini penjelasan dari
+setiap \textit{method} yang digunakan:
+\begin{enumerate}
+  \item getElementsByTagName('tagName')\\
+  Mengembalikan elemen-elemen yang memiliki kesesuaian nama.\\
+  Parameter:
+  \begin{itemize}
+    \item tagName\\
+    String yang menentukan nama elemen yang dicari.
+  \end{itemize}
+  Return:\\
+  objek berisi elemen yang memiliki nama sesuai dengan yang dicari.
+  
+  \item getAttribute('name')\\
+  Mengembalikan nilai atribut\\
+  Parameter:
+  \begin{itemize}
+    \item name\\
+    String yang menentukan nama atribut yang dicari.
+  \end{itemize}
+  Return:\\
+  Mengembalikan string jika atribut memiliki nilai, jika tidak mengembalikan
+  \textit{null}.
+\end{enumerate}
+
 
 \subsection{Google Maps Javascript API}
 Google Maps Javascript API memungkinkan untuk sebuah halaman web menampilkan
-peta dunia yang datanya didapat dari server google \cite{gmap:001}. Google
+peta dunia yang datanya didapat dari server google \cite{gmap}. Google
 menyediakan fungsi atau perintah untuk menampilkan dan menyesuaikan peta sesuai dengan
 kebutuhan. Berikut ini adalah contoh halaman web yang menampilkan peta di lokasi
 Sydney, Australia:
@@ -509,7 +575,7 @@ zoom: 8
 \end{verbatim}
 
 \item Map Object \\
-Obyek peta perlu dibuat dengan cara melakukan inisialisasi kelas
+objek peta perlu dibuat dengan cara melakukan inisialisasi kelas
 google.maps.Map. Pada contoh, peta diletakkan pada <div> yang memiliki id
 map-canvas.
 \begin{verbatim}
@@ -523,13 +589,83 @@ Google Maps API menyediakan fungsi untuk memuat peta
 google.maps.event.addDomListener(window, 'load', initialize);
 \end{verbatim}
 \end{itemize}
+Berikut ini adalah penjelasan kelas dan fungsi yang digunakan:
+\begin{enumerate}
+  \item google.maps.Map class\\
+  Membuat peta baru pada halaman html.\\
+  Parameter:
+  \begin{itemize}
+    \item mapDiv:Node\\
+    node yang digunakan untuk membuat peta.
+    
+    \item opts?:MapOptions\\
+    Opsi dari \textit{map} yang akan dibuat. 
+  \end{itemize}
+  
+  \item google.maps.LatLng class\\
+  Membuat objek Latlng yang merepresentasikan titik geografis.\\
+  Parameter:
+  \begin{itemize}
+    \item lat:number\\
+    \textit{Latitude} dalam derajat.
+    
+    \item lng:number\\
+    \textit{Longitude} dalam derajat.
+    
+    \item noWrap?:boolean\\
+    \textit{Latitude} ditentukan dalam rentang derajat -90 hingga 90 dan
+    \textit{longitude} ditentukan dalam rentang derajat -180 hingga 180. Isikan
+    nilai \textit{true} pada boolean noWrap untuk mengaktifkan nilai di luar
+    batas tersebut.
+  \end{itemize}
+  
+  \item google.maps.event.addDomListener(instance:Object, eventName:string,
+  handler:Function, capture?:boolean)\\
+  Menambahkan fungsi \textit{listener}\\
+  Parameter:
+  \begin{itemize}
+    \item instance:Object\\
+    Objek yang ditambahkan \textit{listener}.
+    
+    \item eventName:string\\
+    Nama dari \textit{listener} tersebut.
+    
+    \item handler:Function\\
+    fungsi yang menangani \textit{listener}.
+    
+    \item capture?:boolean
+  \end{itemize}
+  Return:\\
+  MapsEventListener
+\end{enumerate}
 
 \setcounter{secnumdepth}{3}
 \setcounter{tocdepth}{3}
 \subsubsection{Menggambar pada Peta}
 Peta pada Google Maps API dapat ditambahkan objek seperti titik, garis, area,
-atau objek lainnya. Objek tersebut dinamakan \textit{overlay}. Terdapat beberapa
-jenis \textit{overlay} yang dapat ditambahkan pada peta yaitu sebagai berikut: 
+atau objek lainnya. objek tersebut dinamakan \textit{overlay}. Terdapat beberapa
+jenis \textit{overlay} yang dapat ditambahkan pada peta yaitu \textit{marker}
+dan \textit{polyline}. Berikut ini adalah penjelasan kelas yang digunakan yaitu
+kelas \textit{marker} dan kelas \textit{polyline}:
+\begin{enumerate}
+  \item google.maps.Marker class \\
+  Membuat \textit{marker} pada peta dengan opsi tertentu.\\
+  Parameter:
+  \begin{itemize}
+    \item opts?:MarkerOptions\\
+    Opsi dari \textit{marker} yang dibuat.
+  \end{itemize}
+  
+  \item google.maps.Polyline class\\
+  Membuat \textit{polyline} pada peta dengan opsi tertentu.\\
+  Parameter:
+  \begin{itemize}
+    \item opts?:PolylineOptions\\
+    Opsi dari \textit{polyline} yang dibuat.
+  \end{itemize}
+\end{enumerate}
+Berikut ini adalah contoh penggunaan \textit{marker} dan \textit{polyline} pada
+peta:
 \begin{enumerate}
 \item \textit{Marker} \\
 Lokasi tunggal pada peta ditunjukkan oleh \textit{Marker}.
@@ -551,7 +687,7 @@ Lokasi tunggal pada peta ditunjukkan oleh \textit{Marker}.
   \end{enumerate}
   Berikut ini adalah contoh kode program untuk menambahkan \textit{marker} pada
   peta:
-  \begin{verbatim}
+\begin{verbatim}
 var myLatlng = new google.maps.LatLng(-25.363882,131.044922);
 	var mapOptions = {
 	  zoom: 4,
@@ -566,7 +702,7 @@ var myLatlng = new google.maps.LatLng(-25.363882,131.044922);
 	    map: map,
 	    title:"Hello World!"
 	});
-  \end{verbatim}
+\end{verbatim}
   Pada contoh, objek google.maps.Marker yang dibuat disimpan pada variabel
   marker, terdapat atribut \textit{position} menggunakan variabel myLatlng
   yang berisi koordinat (-25.363882,131.044922), atribut map menunjukkan bahwa
@@ -577,30 +713,30 @@ var myLatlng = new google.maps.LatLng(-25.363882,131.044922);
   Untuk menghapus \textit{marker} pada peta, hanya diperlukan pemanggilan
   fungsi setMap() dan mengisi parameter fungsi tersebut dengan \textit{null}.
   Contoh:
-  \begin{verbatim}
+\begin{verbatim}
 marker.setMap(null);
-  \end{verbatim}
+\end{verbatim}
   Pada contoh di atas hanya menghilangkan \textit{marker} dari peta dan tidak
   menghapus objek \textit{marker}.
   
   \item Animasi \textit{Marker} \\
   Menambahkan animasi pada \textit{marker}, hanya memerlukan pengaturan atribut
   pada konstruktor google.maps.Marker. Contoh:
-  \begin{verbatim}
+\begin{verbatim}
   var marker = new google.maps.Marker({
 	    position: myLatlng,
 	    map: map,
 	    animation: google.maps.Animation.BOUNCE,
 	    title:"Hello World!"
 	});
-  \end{verbatim}
+\end{verbatim}
   Pada contoh, menambahkan animasi \textit{bounce} pada marker sehingga
   \textit{marker} bergerak melompat-lompat pada peta. 
   
   \item Mengubah Ikon \\
   Gambar \textit{marker} pada peta dapat diubah sesuai keinginan, hanya
   memerlukan pengaturan atribut pada konstruktor google.maps.Marker. Contoh:
-  \begin{verbatim}
+\begin{verbatim}
   var image = 'images/beachflag.png';
   var myLatLng = new google.maps.LatLng(-33.890542, 151.274856);
   var beachMarker = new google.maps.Marker({
@@ -608,21 +744,21 @@ marker.setMap(null);
       map: map,
       icon: image
   });
-  \end{verbatim}
+\end{verbatim}
   Pada contoh, ikon \textit{marker} akan ditampilkan menggunakan \textit{file}
   gambar beachflag.png
   
   \item \textit{Draggable} \\
   Draggable memungkinkan pengguna untuk menyeret marker ke lokasi yang berbeda,
   hanya memerlukan pengaturan atribut pada konstruktor google.maps.Marker. Contoh:
-  \begin{verbatim}
+\begin{verbatim}
   var marker = new google.maps.Marker({
 	    position: myLatlng,
 	    map: map,
 	    draggable: true,
 	    title:"Hello World!"
 	});
-  \end{verbatim}
+\end{verbatim}
 \end{itemize}
 \item \textit{Polyline} \\
 Objek \textit{polyline} adalah serangkaian garis pada peta, \textit{polyline}
@@ -672,7 +808,7 @@ yang ditampilkan pada peta dapat dilihat pada Gambar \ref{fig:polyline}.
 \end{enumerate}
 
 \section{Graf}
-Graf adalah himpunan obyek yang terrdiri dari simpul (node) dan sisi (edge), graf 
+Graf adalah himpunan objek yang terdiri dari simpul (node) dan sisi (edge), graf 
 digambarkan sebagai node yang dihubungkan oleh edge. Konsep graf telah digunakan pada 
 banyak aplikasi komputer dan menggunakan beberapa jenis graf seperti graf sederhana, graf 
 tidak berarah, graf berarah, graf tak terbatas, dan lain-lain. Contoh graf dapat
@@ -697,6 +833,12 @@ simpul adalah bilangan bulat \\
 Himpunan simpul = {1,2,3,4,5,6} \\ 
 Himpunan edge = {(6,4),(4,5),(4,3),(3,2),(5,2),(2,1),(5,1)}
 
+\subsection{Graf Tidak Berarah}
+Graf tidak berarah tidak memiliki arah pada setiap edgenya, sehingga setiap
+simpul tidak memiliki urutan. Graf tidak berarah digambarkan dengan garis lurus
+antara simpul. Contoh graf berarah dapat dilihat pada Gambar
+\ref{fig:graph}.
+
 \subsection{Graf Berarah}
 Graf berarah memiliki arah pada setiap edgenya. Pada graf berarah, edge biasanya
 digambarkan dengan panah sesuai arahnya. Contoh graf berarah dapat dilihat pada
@@ -712,7 +854,64 @@ Berdasarkan contoh pada Gambar \ref{fig:direc_graph}  didapatkan informasi tipe
 dari simpul adalah huruf kapital \\
 Himpunan simpul = {A, B, C, D, E} \\ 
 Himpunan edge = {(A, B), (B, C), (D, C), (B, D), (D, B), (E, D), (B, E)}
-\footnotetext[2]{http://web.cecs.pdx.edu/~sheard/course/Cs163/Doc/Graphs.html}
+\footnotetext[2]{http://web.cecs.pdx.edu/sheard/course/Cs163/Doc/Graphs.html}
+
+\subsection{Representasi Graf}
+Terdapat dua cara untuk merepresentasikan graf yaitu dengan \textit{adjacency
+list} dan \textit{adjacency matrix} \cite{Cormen:2001}. Keduanya dapat
+merepresentasikan graf berarah ataupun graf tidak berarah. \textit{Adjacency list} merepresentasikan
+graf ke dalam bentuk array, sedangkan \textit{adjacency matrix}
+merepresentasikan graf ke dalam bentuk matriks.
+\begin{itemize}
+  \item \textit{Adjacency List}\\
+  \textit{Adjacency List} merupakan representasi graf ke dalam bentuk array,
+  panjang array sesuai dengan jumlah simpul pada graf. Setiap index pada array mengacu
+  pada setiap simpul graf, setiap index array tersebut memiliki list yang merepresentasikan 
+  hubungan dengan simpul-simpul lainnya. Contoh representasi graf tidak
+  berarah dalam bentuk \textit{adjacency list} dapat dilihat pada Gambar 
+  \ref{fig:adjlist_undirec} dan representasi graf berarah
+  dalam bentuk \textit{adjacency list} dapat dilihat pada Gambar
+  \ref{fig:adjlist_direc}.
+  
+\begin{figure}[h]
+\centering
+\includegraphics[scale=1]{Gambar/adjlist_undirec}
+\caption[Contoh Adjacency List]{Contoh Adjacency List (Graf Tidak Berarah)}
+\label{fig:adjlist_undirec}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+\includegraphics[scale=1]{Gambar/adjlist_direc}
+\caption[Contoh Adjacency List]{Contoh Adjacency List (Graf Berarah)}
+\label{fig:adjlist_direc}
+\end{figure}
+  
+  \item \textit{Adjacency Matrix}\\
+  \textit{Adjacency Matrix} merupakan representasi graf ke dalam bentuk matriks
+  nxn, pada matriks tersebut menyatakan hubungan antar simpul atau pada graf. Nilai n
+  pada matriks nxn sesuai dengan jumlah simpul pada graf. Nilai 1 pada
+  matriks menandakan terdapat hubungan pada simpul dan sebaliknya jika bernilai
+  0. Contoh representasi graf tidak berarah dalam bentuk \textit{adjacency
+  matrix} dapat dilihat pada Gambar \ref{fig:adjmat_undirec} dan representasi
+  graf berarah dalam bentuk \textit{adjacency matrix} dapat dilihat pada Gambar
+  \ref{fig:adjmat_direc}.
+  
+\begin{figure}[h]
+\centering
+\includegraphics[scale=1]{Gambar/adjmat_undirec}
+\caption[Contoh Adjacency Matrix]{Contoh Adjacency Matrix (Graf Tidak Berarah)}
+\label{fig:adjmat_undirec}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+\includegraphics[scale=1]{Gambar/adjmat_direc}
+\caption[Contoh Adjacency Matrix]{Contoh Adjacency Matrix (Graf Berarah)}
+\label{fig:adjmat_direc}
+\end{figure}
+  
+\end{itemize}
 
 \section{Algoritma Dijkstra}
 Algoritma dijkstra adalah algoritma yang dapat mencari jalur terpendek pada graf
@@ -738,3 +937,24 @@ dari \textit{unvisited} set dan tandai bahwa node tersebut sudah dikunjungi.
   \item Selanjutnya, pilih node yang belum dikunjungi dengan nilai jarak
 terkecil dan tandai node tersebut sebagai \textit{current} node dan ulangi langkah 3.
 \end{enumerate}
+
+\section{Haversine \textit{Formula}}
+Haversine \textit{formula} adalah persamaan yang dapat memberikan jarak antara
+dua titik berdasarkan \textit{latitude} atau garis lintang dan
+\textit{longitude} atau garis bujur \cite{haversine}. Haversine
+\textit{formula} dinyatakan dalam persamaan berikut ini:
+\\
+\[d=2r\sin^{-1}(\sqrt{\sin^2(\frac{\phi_2-\phi_1}{2})+\cos(\phi_1)\cos(\phi_2)\sin^2(\frac{\psi_2-\psi_1}{2})})\]
+dimana:
+\begin{itemize}
+  \item d : jarak antara dua buah titik
+  
+  \item r : radius bumi
+   
+  \item $\phi_1, \phi_2$ : \textit{latitude} dari titik 1 and \textit{latitude}
+  dari titik 2
+  
+  \item $\psi_1, \psi_2$ : \textit{longitude} dari titik 1 and
+  \textit{longitude} dari titik 2
+\end{itemize}
+   
