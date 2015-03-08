@@ -1,8 +1,7 @@
 \chapter{Dasar Teori}
 \section{OpenStreetMap}
-OpenStreetMap (OSM) adalah portal peta terbuka yang menyediakan data dalam bentuk peta atau 
-XML \cite{osm}. OSM menyediakan peta dijital dan dapat diedit dari seluruh
-dunia, juga memungkinkan pengguna untuk mengakses gambar peta yang terdapat pada
+OpenStreetMap (OSM) adalah portal peta terbuka yang menyediakan data dalam
+bentuk peta atau XML \cite{osm}. OSM menyediakan peta dijital dan dapat diedit dari seluruh dunia, juga memungkinkan pengguna untuk mengakses gambar peta yang terdapat pada
 situs \url{www.openstreetmap.org} secara gratis. OSM terbentuk dan mendapatkan
 datanya dari berbagai sukarelawan yang bersedia untuk berkontribusi, misalnya para pengguna OSM yang menggunakan aplikasi untuk 
 mengedit peta dan mengunggah data yang telah diedit ke situs OSM. Selain itu, OSM menyediakan 
@@ -19,7 +18,7 @@ OpenStreetMap}
 \end{figure}
 
 Berikut ini adalah beberapa data yang dapat diambil menggunakan fitur export
-\cite{wiki:001}:
+\cite{osm}:
 \begin{enumerate}
 \item OpenStreetMap XML Data
 
@@ -151,11 +150,11 @@ juga dituliskan versi XML yang digunakan. Contoh:
 \end{verbatim}
 \end{enumerate}
 
-\subsection{OSMXML}
+\subsection{OSMXML} \label{ssec:osmxml}
 OpenStreetMap XML atau biasa disingkat dengan OSMXML merupakan dokumen XML yang
 berisi data-data peta OSM. Pada dasarnya, OSMXML berisi data primitif
 (node, way, dan relation) yang merupakan arsitektur dari model OSM
-\cite{wiki:001}.
+\cite{osm}.
 Berikut ini adalah contoh dokumen OSMXML:
 \lstset{
   language=XML,
@@ -466,7 +465,7 @@ var name = myNodeset[0].getAttribute('name');
 \end{verbatim}
 Pemanggilan fungsi getElementsByTagName('plant') akan mengembalikan satu set
 node yang memiliki nama tag 'plant'. Contoh lain, pemanggilan fungsi
-.getAttribute() akan mengembalikan nilai atribut. Berikut ini penjelasan dari
+getAttribute() akan mengembalikan nilai atribut. Berikut ini penjelasan dari 
 setiap \textit{method} yang digunakan:
 \begin{enumerate}
   \item getElementsByTagName('tagName')\\
@@ -496,8 +495,13 @@ setiap \textit{method} yang digunakan:
 Google Maps Javascript API memungkinkan untuk sebuah halaman web menampilkan
 peta dunia yang datanya didapat dari server google \cite{gmap}. Google
 menyediakan fungsi atau perintah untuk menampilkan dan menyesuaikan peta sesuai dengan
-kebutuhan. Berikut ini adalah contoh halaman web yang menampilkan peta di lokasi
-Sydney, Australia:
+kebutuhan. 
+\setcounter{secnumdepth}{3}
+\setcounter{tocdepth}{3}
+\subsubsection{Elemen Dasar Google Maps}
+Google Maps Javascript API menyediakan fungsi dan kelas untuk memuat sebuah peta
+pada halaman html. Berikut ini adalah contoh halaman web yang menampilkan peta
+di lokasi Sydney, Australia:
 \lstset{
   language=HTML
 }
@@ -563,7 +567,7 @@ dalam fungsi tersebut dapat ditambahkan beberapa variabel yang dibutuhkan.
 \begin{verbatim}
 function initialize() {}
 \end{verbatim}
-Untuk inisialisasi peta, diperlukan variabel map options
+Untuk inisialisasi peta, diperlukan variabel \textit{map options}
 \begin{verbatim}
 var mapOptions = {};
 \end{verbatim}
@@ -584,7 +588,9 @@ var map = new google.maps.Map(document.getElementById("map-canvas"),
 \end{verbatim}
 
 \item Loading the Map \\
-Google Maps API menyediakan fungsi untuk memuat peta 
+Google Maps API menyediakan fungsi untuk memuat peta. Pada potongan kode
+di bawah, fungsi \textit{listener} akan memanggil fungsi \textit{initialize}
+ketika halaman dimuat.
 \begin{verbatim}
 google.maps.event.addDomListener(window, 'load', initialize);
 \end{verbatim}
@@ -614,13 +620,12 @@ Berikut ini adalah penjelasan kelas dan fungsi yang digunakan:
     
     \item noWrap?:boolean\\
     \textit{Latitude} ditentukan dalam rentang derajat -90 hingga 90 dan
-    \textit{longitude} ditentukan dalam rentang derajat -180 hingga 180. Isikan
-    nilai \textit{true} pada boolean noWrap untuk mengaktifkan nilai di luar
+    \textit{longitude} ditentukan dalam rentang derajat -180 hingga 180. Nilai
+    \textit{true} pada boolean noWrap untuk mengaktifkan nilai di luar
     batas tersebut.
   \end{itemize}
   
-  \item google.maps.event.addDomListener(instance:Object, eventName:string,
-  handler:Function, capture?:boolean)\\
+  \item google.maps.event.addDomListener()\\
   Menambahkan fungsi \textit{listener}\\
   Parameter:
   \begin{itemize}
@@ -628,25 +633,21 @@ Berikut ini adalah penjelasan kelas dan fungsi yang digunakan:
     Objek yang ditambahkan \textit{listener}.
     
     \item eventName:string\\
-    Nama dari \textit{listener} tersebut.
+    Nama \textit{Event}.
     
     \item handler:Function\\
-    fungsi yang menangani \textit{listener}.
-    
-    \item capture?:boolean
+    Fungsi yang dipanggil ketika \textit{event} terjadi.
   \end{itemize}
   Return:\\
   MapsEventListener
 \end{enumerate}
 
-\setcounter{secnumdepth}{3}
-\setcounter{tocdepth}{3}
 \subsubsection{Menggambar pada Peta}
 Peta pada Google Maps API dapat ditambahkan objek seperti titik, garis, area,
 atau objek lainnya. objek tersebut dinamakan \textit{overlay}. Terdapat beberapa
 jenis \textit{overlay} yang dapat ditambahkan pada peta yaitu \textit{marker}
-dan \textit{polyline}. Berikut ini adalah penjelasan kelas yang digunakan yaitu
-kelas \textit{marker} dan kelas \textit{polyline}:
+dan \textit{polyline}. Berikut ini adalah penjelasan kelas dan fungsi yang
+digunakan:
 \begin{enumerate}
   \item google.maps.Marker class \\
   Membuat \textit{marker} pada peta dengan opsi tertentu.\\
@@ -663,7 +664,24 @@ kelas \textit{marker} dan kelas \textit{polyline}:
     \item opts?:PolylineOptions\\
     Opsi dari \textit{polyline} yang dibuat.
   \end{itemize}
+  
+  \item setMap\\
+  Menyisipkan \textit{marker} atau \textit{polyline} pada peta tertentu.\\
+  Parameter:
+  \begin{itemize}
+    \item map:Map|StreetViewPanorama\\
+    Peta yang disisipkan \textit{marker} atau \textit{polyline}.
+  \end{itemize}
+  
+  \item setIcon\\
+  Mengubah \textit{icon} pada \textit{marker}.\\
+  Parameter:
+  \begin{itemize}
+    \item icon:string|Icon|Symbol\\
+    \textit{Icon yang digunakan}.
+  \end{itemize}
 \end{enumerate}
+
 Berikut ini adalah contoh penggunaan \textit{marker} dan \textit{polyline} pada
 peta:
 \begin{enumerate}
@@ -704,11 +722,30 @@ var myLatlng = new google.maps.LatLng(-25.363882,131.044922);
 	});
 \end{verbatim}
   Pada contoh, objek google.maps.Marker yang dibuat disimpan pada variabel
-  marker, terdapat atribut \textit{position} menggunakan variabel myLatlng
-  yang berisi koordinat (-25.363882,131.044922), atribut map menunjukkan bahwa
-  \textit{marker} akan ditampilkan pada objek map yang tersimpan pada variabel
-  map, dan atribut yang menunjukkan judul \textit{marker}. 
+  \textit{marker}, terdapat atribut \textit{position} menggunakan variabel
+  \textit{myLatlng} yang berisi koordinat (-25.363882,131.044922), atribut map
+  menunjukkan bahwa \textit{marker} akan ditampilkan pada objek map yang tersimpan pada variabel
+  \textit{map}, dan atribut yang menunjukkan judul \textit{marker}. 
   
+  \item Mengubah \textit{icon marker}\\
+  Untuk mengubah \textit{icon}, diperlukan pengaturan pada konstruktor
+  \textit{marker} tersebut. Pada contoh, \textit{icon marker} diubah
+  menjadi beachflag.png.
+\begin{verbatim}
+  var image = 'images/beachflag.png';
+  var myLatLng = new google.maps.LatLng(-33.890542, 151.274856);
+  var beachMarker = new google.maps.Marker({
+      position: myLatLng,
+      map: map,
+      icon: image
+  });
+\end{verbatim}
+Selain pengaturan pada kontruktor, pengubahan \textit{icon} juga dapat dilakukan
+dengan cara memanggil fungsi setIcon()
+\begin{verbatim}
+	beachMarkers.setIcon('images/beachflag.png');
+\end{verbatim}
+
   \item Menghapus \textit{Marker} pada peta\\
   Untuk menghapus \textit{marker} pada peta, hanya diperlukan pemanggilan
   fungsi setMap() dan mengisi parameter fungsi tersebut dengan \textit{null}.
@@ -797,8 +834,8 @@ var flightPlanCoordinates = [
   flightPath.setMap(map);
 \end{verbatim}
 Pada contoh, akan menampilkan polyline pada peta yang akan menghubungkan setiap 
-koordinat yang terdapat pada variabel flightPlanCoordinates. \textit{Polyline}
-yang ditampilkan pada peta dapat dilihat pada Gambar \ref{fig:polyline}.
+koordinat yang terdapat pada variabel \textit{flightPlanCoordinates}.
+\textit{Polyline} yang ditampilkan pada peta dapat dilihat pada Gambar \ref{fig:polyline}.
 \begin{figure}[h]
 \centering
 \includegraphics[scale=0.4]{Gambar/polyline}
@@ -807,36 +844,143 @@ yang ditampilkan pada peta dapat dilihat pada Gambar \ref{fig:polyline}.
 \end{figure}
 \end{enumerate}
 
+\subsubsection{\textit{Geometry Library}}
+Gambar pada Google Maps adalah dua dimensi, sedangkan bumi adalah tiga dimensi
+yang menyerupai bentuk bola. Hal ini tentu akan berbeda ketika mengukur suatu
+jarak dari satu titik ke titik lain, misalnya jarak terpendek antara dua titik 
+pada bola bukanlah garis lurus, tetapi menyerupai lingkaran besar atau busur. 
+Karena perbedaan tersebut, diperlukan \textit{spherical geometry} untuk
+menghitung data geometris pada permukaan bumi seperti sudut, jarak, dan area 
+yang berdasarkan garis lintang dan garis bujur. Google Maps JavaScript API 
+menyediakan \textit{geometry library} yang memiliki fungsi utilitas tersebut,
+fungsi utilitas tersebut dinamakan google.maps.geometry.spherical. Untuk
+menghitung jarak antara dua titik dapat memanggil fungsi
+computeDistanceBetween().
+\begin{enumerate}
+  \item google.maps.geometry.spherical namespace \\
+  Fungsi utilitas untuk menghitung sudut, jarak, dan area. Secara
+  \textit{default}, radius bumi yang digunakan adalah 6378137 meter.
+  
+  \item computeDistanceBetween() \\
+  Menghitung jarak antara dua titik.\\
+  Parameter:
+  \begin{itemize}
+    \item from:LatLng\\
+    Koordinat titik pertama.
+    
+    \item to:LatLng\\
+    Koordinat titik kedua.
+    
+    \item radius?:number\\
+    Radius yang digunakan.
+  \end{itemize}
+\end{enumerate}
+Berikut ini adalah contoh penggunaan fungsi computeDistanceBetween() untuk
+menghitung jarak antara koordinat Kota Jakarta dan koordinat Kota Bandung:
+\begin{verbatim}
+var jakarta = new google.maps.LatLng(-6.1745,106.8227);
+var bandung = new google.maps.LatLng(-6.9167,107.6000);
+
+var distance = google.maps.geometry.spherical
+.computeDistanceBetween(jakarta, bandung);
+\end{verbatim}
+setelah menggunakan fungsi computeDistanceBetween(), didapatkan jarak antara dua
+titik koordinat tersebut adalah 119231.23264342443 meter atau lebih kurang
+119,2 kilometer.
+ 
+\subsubsection{\textit{Info Window}}
+\textit{Info window} adalah kelas yang disediakan Google Maps untuk menampilkan
+konten (biasanya berupa teks atau gambar) pada jendela \textit{popup}.
+\textit{Info window} memiliki ujung yang melekat ke lokasi tertentu pada peta.
+Biasanya \textit{info window} diletakkan pada \textit{marker} yang ada pada
+peta, tetapi \textit{info window} juga dapat diletakkan pada koordinat peta
+tertentu. Berikut ini adalah contoh potongan kode program yang menampilkan
+\textit{marker} beserta \textit{info window}:
+\begin{verbatim}
+  var contentString = 'Info Window';
+
+  var infowindow = new google.maps.InfoWindow({
+      content: contentString
+  });
+
+  var marker = new google.maps.Marker({
+      position: myLatlng,
+      map: map,
+      title: 'Uluru (Ayers Rock)'
+  });
+  google.maps.event.addListener(marker, 'click', function() {
+    infowindow.open(map,marker);
+  });
+\end{verbatim}
+Pada contoh, terdapat variabel \textit{contentString} yang berisi teks yang akan
+dimuat pada \textit{info window}. Selanjutnya, diperlukan variabel
+\textit{infowindow} yang menginisialisasi \textit{info window} dan variabel
+\textit{marker} yang menginisialisasi \textit{marker}. Dan \textit{listener}
+yang memanggil fungsi \textit{open} ketika \textit{marker} tersebut diklik.
+Berikut ini adalah penjelasan dari kelas dan fungsi yang digunakan:
+\begin{enumerate}
+\item google.maps.InfoWindow class\\
+  Membuat \textit{overlay} yang berbentuk seperti gelembung dan memuat konten
+  seperti teks atau gambar.\\
+  Parameter:
+  \begin{itemize}
+    \item opts?:InfoWindowOptions\\
+    Opsi dari \textit{info window} yang dibuat.
+  \end{itemize}
+  
+\item open()\\
+  Membuka info window pada peta.\\
+  Parameter
+  \begin{itemize}
+    \item map?:Map|StreetViewPanorama\\
+    Membuka \textit{info window} pada peta yang diberikan.
+    
+    \item anchor?:MVCObject\\
+    Objek yang berhubungan dengan \textit{info window}, contoh: \textit{marker}.
+  \end{itemize}
+\end{enumerate}
+\textit{Info Window} yang ditampilkan pada peta dapat dilihat pada Gambar
+\ref{fig:infowindow}.
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.6]{Gambar/infowindow}
+\caption[Info Window pada Peta]{Info Window pada Peta}
+\label{fig:infowindow}
+\end{figure}
+
+
 \section{Graf}
-Graf adalah himpunan objek yang terdiri dari simpul (node) dan sisi (edge), graf 
+Graf adalah himpunan objek yang terdiri dari node (simpul) dan edge (sisi), graf 
 digambarkan sebagai node yang dihubungkan oleh edge. Konsep graf telah digunakan pada 
 banyak aplikasi komputer dan menggunakan beberapa jenis graf seperti graf sederhana, graf 
-tidak berarah, graf berarah, graf tak terbatas, dan lain-lain. Contoh graf dapat
+tidak berarah, graf berarah, graf berbobot, dan lain-lain. Contoh graf dapat
 dilihat pada Gambar \ref{fig:graph}. Graf mengikuti aturan berikut
 \footnotemark[2]:
+\footnotetext[2]{http://web.cecs.pdx.edu/sheard/course/Cs163/Doc/Graphs.html}
 \begin{enumerate}
-\item Graf terdiri dari dua bagian yang disebut simpul dan sisi.
+\item Graf terdiri dari dua bagian yang disebut node dan edge.
 \item Node digambarkan berdasarkan tipenya dan nilainya mungkin terbatas atau
 tidak terbatas. 
-\item Setiap sisi menghubungkan dua buah simpul.
+\item Setiap node menghubungkan dua buah edge.
 \item Node digambarkan sebagai kotak atau lingkaran dan edge digambarkan sebagai
 garis atau busur.
 \end{enumerate}
+
 \begin{figure}[h]
 \centering
-\includegraphics[scale=0.8]{Gambar/graph}
+\includegraphics[scale=0.9]{Gambar/graph}
 \caption[Contoh Graf]{Contoh Graf}
 \label{fig:graph}
 \end{figure}
 Berdasarkan contoh pada Gambar \ref{fig:graph}  didapatkan informasi tipe dari
-simpul adalah bilangan bulat \\
-Himpunan simpul = {1,2,3,4,5,6} \\ 
+node adalah bilangan bulat \\
+Himpunan node = {1,2,3,4,5,6} \\ 
 Himpunan edge = {(6,4),(4,5),(4,3),(3,2),(5,2),(2,1),(5,1)}
 
 \subsection{Graf Tidak Berarah}
 Graf tidak berarah tidak memiliki arah pada setiap edgenya, sehingga setiap
-simpul tidak memiliki urutan. Graf tidak berarah digambarkan dengan garis lurus
-antara simpul. Contoh graf berarah dapat dilihat pada Gambar
+node tidak memiliki urutan. Graf tidak berarah digambarkan dengan garis lurus
+antara node. Contoh graf berarah dapat dilihat pada Gambar
 \ref{fig:graph}.
 
 \subsection{Graf Berarah}
@@ -849,12 +993,26 @@ Gambar \ref{fig:direc_graph}.
 \caption[Contoh Graf Berarah]{Contoh Graf Berarah}
 \label{fig:direc_graph}
 \end{figure}
-
 Berdasarkan contoh pada Gambar \ref{fig:direc_graph}  didapatkan informasi tipe
-dari simpul adalah huruf kapital \\
-Himpunan simpul = {A, B, C, D, E} \\ 
+dari node adalah huruf kapital. \\
+Himpunan node = {A, B, C, D, E} \\ 
 Himpunan edge = {(A, B), (B, C), (D, C), (B, D), (D, B), (E, D), (B, E)}
-\footnotetext[2]{http://web.cecs.pdx.edu/sheard/course/Cs163/Doc/Graphs.html}
+
+\subsection{Graf Berbobot}
+Graf berbobot adalah graf yang memiliki nilai pada setiap edgenya. Nilai
+tersebut dapat berupa bilangan bulat ataupun bilangan pecahan desimal. Nilai
+tersebut dapat digunakan untuk menyimpan jarak dari suatu node ke node lain.
+Contoh graf berbobot dapat dilihat pada Gambar \ref{fig:weight_graph}.
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.8]{Gambar/weight_graph}
+\caption[Contoh Graf Berbobot]{Contoh Graf Berbobot}
+\label{fig:weight_graph}
+\end{figure}
+Berdasarkan contoh pada Gambar \ref{fig:weight_graph}  didapatkan informasi tipe
+dari node adalah bilangan bulat dan tipe dari bobot adalah bilangan bulat. \\
+Himpunan node = {1,2,3,4,5} \\ 
+Himpunan edge = {(1,4,5) ,(4,5,58) ,(3,5,34) ,(2,4,5) ,(2,5,4) ,(3,2,14) ,(1,2,2)} 
 
 \subsection{Representasi Graf}
 Terdapat dua cara untuk merepresentasikan graf yaitu dengan \textit{adjacency
@@ -865,17 +1023,17 @@ merepresentasikan graf ke dalam bentuk matriks.
 \begin{itemize}
   \item \textit{Adjacency List}\\
   \textit{Adjacency List} merupakan representasi graf ke dalam bentuk array,
-  panjang array sesuai dengan jumlah simpul pada graf. Setiap index pada array mengacu
-  pada setiap simpul graf, setiap index array tersebut memiliki list yang merepresentasikan 
-  hubungan dengan simpul-simpul lainnya. Contoh representasi graf tidak
-  berarah dalam bentuk \textit{adjacency list} dapat dilihat pada Gambar 
+  panjang array sesuai dengan jumlah node pada graf. Setiap index pada array
+  mengacu pada setiap node graf, setiap index array tersebut memiliki list yang
+  merepresentasikan hubungan dengan node-node lainnya. Contoh representasi graf
+  tidak berarah dalam bentuk \textit{adjacency list} dapat dilihat pada Gambar 
   \ref{fig:adjlist_undirec} dan representasi graf berarah
   dalam bentuk \textit{adjacency list} dapat dilihat pada Gambar
   \ref{fig:adjlist_direc}.
   
 \begin{figure}[h]
 \centering
-\includegraphics[scale=1]{Gambar/adjlist_undirec}
+\includegraphics[scale=0.8]{Gambar/adjlist_undirec}
 \caption[Contoh Adjacency List]{Contoh Adjacency List (Graf Tidak Berarah)}
 \label{fig:adjlist_undirec}
 \end{figure}
@@ -889,9 +1047,9 @@ merepresentasikan graf ke dalam bentuk matriks.
   
   \item \textit{Adjacency Matrix}\\
   \textit{Adjacency Matrix} merupakan representasi graf ke dalam bentuk matriks
-  nxn, pada matriks tersebut menyatakan hubungan antar simpul atau pada graf. Nilai n
-  pada matriks nxn sesuai dengan jumlah simpul pada graf. Nilai 1 pada
-  matriks menandakan terdapat hubungan pada simpul dan sebaliknya jika bernilai
+  nxn, pada matriks tersebut menyatakan hubungan antar node atau pada graf.
+  Nilai n pada matriks nxn sesuai dengan jumlah node pada graf. Nilai 1 pada
+  matriks menandakan terdapat hubungan pada node dan sebaliknya jika bernilai
   0. Contoh representasi graf tidak berarah dalam bentuk \textit{adjacency
   matrix} dapat dilihat pada Gambar \ref{fig:adjmat_undirec} dan representasi
   graf berarah dalam bentuk \textit{adjacency matrix} dapat dilihat pada Gambar
@@ -910,7 +1068,6 @@ merepresentasikan graf ke dalam bentuk matriks.
 \caption[Contoh Adjacency Matrix]{Contoh Adjacency Matrix (Graf Berarah)}
 \label{fig:adjmat_direc}
 \end{figure}
-  
 \end{itemize}
 
 \section{Algoritma Dijkstra}
@@ -918,43 +1075,26 @@ Algoritma dijkstra adalah algoritma yang dapat mencari jalur terpendek pada graf
 berarah dengan persamaan G=(V,E) untuk kasus pada setiap sisinya bernilai tidak
 negatif \cite{Cormen:2001}. Algoritma ini menggunakan prinsip greedy. Prinsip
 greedy pada algoritma dijkstra menyatakan bahwa pada setiap langkahnya memilih sisi yang berbobot minimum dan
-memasukannya dalam himpunan solusi. Berikut ini adalah langkah-langkah dari
+memasukannya dalam himpunan solusi. Berikut ini adalah \textit{pseudocode} dari
 algoritma dijkstra:
-\begin{enumerate}
-  \item Inisialisasi setiap node dengan nilai jarak sementara dan berikan nilai nol pada
-node awal.
-
-  \item Tandai node awal tersebut sebagai \textit{current} node dan tandai juga seluruh
-node lainnya sebagai node yang belum dikunjungi (\textit{unvisited} set).
- 
-  \item Hitung jarak seluruh node yang bertetangga dengan \textit{current} node dengan
-cara membandingkan jarak yang dimiliki \textit{current} node dan jarak tetangganya satu persatu, jika jarak yang dimiliki \textit{current} 
-node lebih besar maka ganti nilai tersebut.
-
-  \item Setelah selesai menghitung jarak seluruh tetangganya, hapus \textit{current} node
-dari \textit{unvisited} set dan tandai bahwa node tersebut sudah dikunjungi.
-
-  \item Selanjutnya, pilih node yang belum dikunjungi dengan nilai jarak
-terkecil dan tandai node tersebut sebagai \textit{current} node dan ulangi langkah 3.
-\end{enumerate}
-
-\section{Haversine \textit{Formula}}
-Haversine \textit{formula} adalah persamaan yang dapat memberikan jarak antara
-dua titik berdasarkan \textit{latitude} atau garis lintang dan
-\textit{longitude} atau garis bujur \cite{haversine}. Haversine
-\textit{formula} dinyatakan dalam persamaan berikut ini:
-\\
-\[d=2r\sin^{-1}(\sqrt{\sin^2(\frac{\phi_2-\phi_1}{2})+\cos(\phi_1)\cos(\phi_2)\sin^2(\frac{\psi_2-\psi_1}{2})})\]
-dimana:
-\begin{itemize}
-  \item d : jarak antara dua buah titik
-  
-  \item r : radius bumi
-   
-  \item $\phi_1, \phi_2$ : \textit{latitude} dari titik 1 and \textit{latitude}
-  dari titik 2
-  
-  \item $\psi_1, \psi_2$ : \textit{longitude} dari titik 1 and
-  \textit{longitude} dari titik 2
-\end{itemize}
-   
+\begin{algorithm}{}\label{dijkstra}
+\caption{$Dijkstra$}
+\begin{algorithmic}
+\State $dist[s] \leftarrow 0$
+\ForAll{$v \in V$}
+\State $dist[v] \leftarrow \infty$ 
+\EndFor
+\State $S \leftarrow \emptyset$
+\State $Q \leftarrow V$
+\While{$Q \neq \emptyset$} 
+\State $u \leftarrow  minDistance(Q,dist)$
+\State $S \leftarrow u$
+\ForAll{$v \in neighbors[u]$}
+\If{$dist[v] > dist[u] + w(u,  v)$}
+\State $d[v] \leftarrow d[u] + w(u,  v)$
+\EndIf
+\EndFor
+\EndWhile \\
+\Return dist
+\end{algorithmic}
+\end{algorithm}

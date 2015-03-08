@@ -28,9 +28,4 @@ Google, ``{Google Maps JavaScript API v3}.''
   \url{https://developers.google.com/maps/documentation/javascript/}, 2015.
 \newblock [Online; accessed 31-January-2015].
 
-\bibitem{haversine}
-N.~R.Chopde and M.~K. Nichat, ``Landmark based shortest path detection by using
-  a* and haversine formula,'' {\em International Journal of Innovative Research
-  in Computer and Communication Engineering}, vol.~1, 2013.
-
 \end{thebibliography}

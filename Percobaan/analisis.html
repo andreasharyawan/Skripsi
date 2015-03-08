@@ -1,0 +1,31 @@
+<html>
+<head>
+<style>
+table, th, td {
+    border: 1px solid black;
+    border-collapse:collapse;
+}
+th, td {
+    padding: 5px;
+}
+</style>
+</head>
+<body>
+<script>
+
+xmlhttp=new XMLHttpRequest();
+xmlhttp.open("GET","map.xml",false);
+xmlhttp.send();
+xmlDoc=xmlhttp.responseXML;
+
+var node = xmlDoc.getElementsByTagName("node");
+var way = xmlDoc.getElementsByTagName("way");
+
+var id_node = node[0].getAttribute('id');
+
+document.write(node[0].getAttribute('id'));
+
+</script>
+
+</body>
+</html>
