@@ -1,13 +1,135 @@
 <!DOCTYPE html>
 <html>
 <head>
-<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry"></script>
-
+ <script type="text/javascript"
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDjg34lHLVyLCt1nNPmWttR1Gr1wZd4vzs">
+ </script>
 </head>
-
+<style>
+.style-1 input[type="text"] {
+  padding: 10px;
+  border: solid 1px #dcdcdc;
+  transition: box-shadow 0.3s, border 0.3s;
+}
+.style-1 input[type="text"]:focus,
+.style-1 input[type="text"].focus {
+  border: solid 1px #707070;
+  box-shadow: 0 0 5px 1px #969696;
+}
+.cari {
+	-moz-box-shadow: 3px 4px 0px 0px #1564ad;
+	-webkit-box-shadow: 3px 4px 0px 0px #1564ad;
+	box-shadow: 3px 4px 0px 0px #1564ad;
+	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #79bbff), color-stop(1, #378de5));
+	background:-moz-linear-gradient(top, #79bbff 5%, #378de5 100%);
+	background:-webkit-linear-gradient(top, #79bbff 5%, #378de5 100%);
+	background:-o-linear-gradient(top, #79bbff 5%, #378de5 100%);
+	background:-ms-linear-gradient(top, #79bbff 5%, #378de5 100%);
+	background:linear-gradient(to bottom, #79bbff 5%, #378de5 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#79bbff', endColorstr='#378de5',GradientType=0);
+	background-color:#79bbff;
+	-moz-border-radius:5px;
+	-webkit-border-radius:5px;
+	border-radius:5px;
+	border:1px solid #337bc4;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:arial;
+	font-size:13px;
+	font-weight:bold;
+	padding:7px 18px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #528ecc;
+}
+.cari:hover {
+	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #378de5), color-stop(1, #79bbff));
+	background:-moz-linear-gradient(top, #378de5 5%, #79bbff 100%);
+	background:-webkit-linear-gradient(top, #378de5 5%, #79bbff 100%);
+	background:-o-linear-gradient(top, #378de5 5%, #79bbff 100%);
+	background:-ms-linear-gradient(top, #378de5 5%, #79bbff 100%);
+	background:linear-gradient(to bottom, #378de5 5%, #79bbff 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#378de5', endColorstr='#79bbff',GradientType=0);
+	background-color:#378de5;
+}
+.cari:active {
+	position:relative;
+	top:1px;
+}
+.reload {
+	-moz-box-shadow:inset 0px 1px 0px 0px #a4e271;
+	-webkit-box-shadow:inset 0px 1px 0px 0px #a4e271;
+	box-shadow:inset 0px 1px 0px 0px #a4e271;
+	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #89c403), color-stop(1, #77a809));
+	background:-moz-linear-gradient(top, #89c403 5%, #77a809 100%);
+	background:-webkit-linear-gradient(top, #89c403 5%, #77a809 100%);
+	background:-o-linear-gradient(top, #89c403 5%, #77a809 100%);
+	background:-ms-linear-gradient(top, #89c403 5%, #77a809 100%);
+	background:linear-gradient(to bottom, #89c403 5%, #77a809 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#89c403', endColorstr='#77a809',GradientType=0);
+	background-color:#89c403;
+	-moz-border-radius:6px;
+	-webkit-border-radius:6px;
+	border-radius:6px;
+	border:1px solid #74b807;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:arial;
+	font-size:15px;
+	font-weight:bold;
+	padding:6px 24px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #528009;
+}
+.reload:hover {
+	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #77a809), color-stop(1, #89c403));
+	background:-moz-linear-gradient(top, #77a809 5%, #89c403 100%);
+	background:-webkit-linear-gradient(top, #77a809 5%, #89c403 100%);
+	background:-o-linear-gradient(top, #77a809 5%, #89c403 100%);
+	background:-ms-linear-gradient(top, #77a809 5%, #89c403 100%);
+	background:linear-gradient(to bottom, #77a809 5%, #89c403 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#77a809', endColorstr='#89c403',GradientType=0);
+	background-color:#77a809;
+}
+.reload:active {
+	position:relative;
+	top:1px;
+}
+</style>
 <body>
-<div id="googleMap" style="width:1200px;height:600px;"></div>
-<a href="javascript:location.reload(true)">Reload</a>
+<div id="googleMap" style="width:75%;height:600px;float:left"></div>
+<div id="cari" style="width:25%;height:60px;float:left">
+<div style="margin-left:50px;margin-top:20px">
+	<table style="border:1">
+		<tr>
+			<label>Titik Asal:</label>
+		</tr>
+		<tr>
+			<ul class="input-list style-1 clearfix">
+				<input type="text" id="asal" placeholder=" Asal ">
+			</ul>
+		</tr>
+	</table>
+</div>
+<div style="margin-left:50px">
+<table>
+	<tr>
+		<label>Titik Tujuan:</label>
+	</tr>
+	<tr>
+		<ul class="input-list style-1 clearfix">
+            <input type="text" id="tujuan" placeholder=" Tujuan ">
+        </ul>
+	</tr>
+</table>
+</div>
+<br/>
+<div style="margin-left:70px">
+	<a href="#" class="cari">Cari!</a> &nbsp &nbsp
+	<a href="javascript:location.reload(true)" class="reload">Reload</a>
+</div>
+</div>
 
 <script>
 xmlhttp=new XMLHttpRequest();
@@ -37,7 +159,7 @@ function isHighway(way,index){
 	return false;
 }
 
-function indexForName(adjLists,id) {
+function indexForId(adjLists,id) {
 	for (var i=0; i < adjLists.length; i++){
 		if (adjLists[i].id == id){
 			return i;
@@ -60,8 +182,8 @@ function Graph(node,way){
 		if(isHighway(way,i)){
 			for (j=0;j<nd.length-1;j++)
 			{
-				v1 = indexForName(adjLists,nd[j].getAttribute('ref'));
-				v2 = indexForName(adjLists,nd[j+1].getAttribute('ref'));
+				v1 = indexForId(adjLists,nd[j].getAttribute('ref'));
+				v2 = indexForId(adjLists,nd[j+1].getAttribute('ref'));
 
 				adjLists[v1].adjList = new Neighbor(v2, adjLists[v1].adjList);
 				adjLists[v2].adjList = new Neighbor(v1, adjLists[v2].adjList);
@@ -100,16 +222,7 @@ function getLonByAtt(str)
 	}
 }
 
-function isHighway(way,index){
-	var tag = way[index].getElementsByTagName("tag");
-	for (hg=0;hg<tag.length;hg++)
-	{
-		if(tag[hg].getAttribute('k') == "highway"){
-			return true;
-		}
-	}
-	return false;
-}
+
 
 var currentId = 0;
 var uniqueId = function() {
@@ -145,9 +258,9 @@ for (i=0;i<way.length;i++)
 		markers[id] = marker;
 		
 		content = 'Id Node : '+nd[0].getAttribute('ref')+'<br>'+
-			'Index Node :'+indexForName(list,nd[0].getAttribute('ref'))+'<br>'+
-			'<a href="#" onclick="setAsal(\'' + id + '\')">Pilih sebagai asal</a>'+'<br>'+
-			'<a href="#" onclick="setTujuan(\'' + id + '\')">Pilih sebagai tujuan</a>';
+			'Index Node :'+indexForId(list,nd[0].getAttribute('ref'))+'<br>'+
+			'<a href="#" onclick="setAsal(\'' + id + '\',\'' + nd[0].getAttribute('ref') + '\')">Pilih sebagai asal</a>'+'<br>'+
+			'<a href="#" onclick="setTujuan(\'' + id + '\',\'' + nd[0].getAttribute('ref') + '\')">Pilih sebagai tujuan</a>';
 			
 		addInfoWindow(marker, content);
 		
@@ -164,9 +277,9 @@ for (i=0;i<way.length;i++)
 			
 		
 			content = 'Id Node : '+nd[j+1].getAttribute('ref')+'<br>'+
-			'Index Node : '+indexForName(list,nd[j+1].getAttribute('ref'))+'<br>'+
-			'<a href="#" onclick="setAsal(\'' + id + '\')">Pilih sebagai asal</a>'+'<br>'+
-			'<a href="#" onclick="setTujuan(\'' + id + '\')">Pilih sebagai tujuan</a>';
+			'Index Node : '+indexForId(list,nd[j+1].getAttribute('ref'))+'<br>'+
+			'<a href="#" onclick="setAsal(\'' + id + '\',\'' + nd[j+1].getAttribute('ref') + '\')">Pilih sebagai asal</a>'+'<br>'+
+			'<a href="#" onclick="setTujuan(\'' + id + '\',\'' + nd[j+1].getAttribute('ref') + '\')">Pilih sebagai tujuan</a>';
 			
 			addInfoWindow(marker, content);
 
@@ -196,7 +309,7 @@ var isAsalClicked = false;
 var isTujuanClicked = false;
 var asal,tujuan;
 
-function setAsal(id){
+function setAsal(id,idnode){
 	if(!isAsalClicked){
 		markers[id].setIcon('icon/dot_green.png');
 		isAsalClicked = true;
@@ -206,9 +319,10 @@ function setAsal(id){
 		markers[id].setIcon('icon/dot_green.png');
 		asal = id;
 	}
+	document.getElementById('asal').value = "Id Node: "+ idnode;
 }
 
-function setTujuan(id){
+function setTujuan(id,idnode){
 	if(!isTujuanClicked){
 		markers[id].setIcon('icon/dot_red.png');
 		isTujuanClicked = true;
@@ -218,6 +332,7 @@ function setTujuan(id){
 		markers[id].setIcon('icon/dot_red.png');
 		tujuan = id;
 	}
+	document.getElementById('tujuan').value = "Id Node: "+ idnode;
 }
 
 

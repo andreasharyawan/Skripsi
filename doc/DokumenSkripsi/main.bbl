@@ -1,0 +1,36 @@
+\begin{thebibliography}{1}
+
+\bibitem{Cormen:2001}
+T.~H. Cormen, C.~E. Leiserson, R.~L. Rivest, and C.~Stein, {\em Introduction to
+  Algorithms, Second Edition}.
+\newblock MIT Press and McGraw–Hill, 2001.
+
+\bibitem{osm}
+OpenStreetMap, ``{OpenStreetMap Wiki}.'' \url{http://wiki.openstreetmap.org/},
+  2014.
+\newblock [Online; accessed 30-January-2015].
+
+\bibitem{Benoit:2000}
+B.~Marchal, {\em XML by Example}.
+\newblock John Pierce, 2000.
+
+\bibitem{Flanagan:2011}
+D.~Flanagan, {\em JavaScript: The Definitive Guide, Sixth Edition}.
+\newblock O'Reilly Media, Inc, 2011.
+
+\bibitem{Edmond:2006}
+E.~Woychowsky, {\em Ajax: Creating Web Pages with Asynchronous JavaScript and
+  XML}.
+\newblock Prentice Hall, 2006.
+
+\bibitem{gmap}
+Google, ``{Google Maps JavaScript API v3}.''
+  \url{https://developers.google.com/maps/documentation/javascript/}, 2015.
+\newblock [Online; accessed 31-January-2015].
+
+\bibitem{haversine}
+N.~R.Chopde and M.~K. Nichat, ``Landmark based shortest path detection by using
+  a* and haversine formula,'' {\em International Journal of Innovative Research
+  in Computer and Communication Engineering}, vol.~1, 2013.
+
+\end{thebibliography}

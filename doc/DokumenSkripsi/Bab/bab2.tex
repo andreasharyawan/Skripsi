@@ -179,6 +179,7 @@ Berikut ini adalah contoh dokumen OSMXML:
   <nd ref="261728686"/>
   <tag k="highway" v="unclassified"/>
   <tag k="name" v="Pastower Straße"/>
+  <tag k="oneway" v="yes"/>
  </way>
  <relation id="56688" user="kmvar" uid="56190" visible="true" version="28" changeset="6947637" timestamp="2011-01-12T14:23:49Z">
   <member type="node" ref="294942404" role=""/>
@@ -204,11 +205,11 @@ encoding yang digunakan, pada contoh di atas digunakan xml versi 1.0 dan
 encoding UTF-8.
 
 \item Elemen osm memberikan informasi mengenai versi API dan generator yang
-digunakan. Generator adalah alat untuk membuat dokumen XML pada saat fitur
+digunakan. Generator adalah alat untuk membuat dokumen OSMXML pada saat fitur
 export digunakan. 
 
-\item Elemen bound memberikan informasi mengenai cakupan area pada dokumen XML
-tersebut. Dilengkapi dengan atribut koordinat yaitu latitude dan longitude.
+\item Elemen bound memberikan informasi mengenai cakupan area pada dokumen
+OSMXML tersebut. Dilengkapi dengan atribut koordinat yaitu latitude dan longitude.
 Data primitif pada OSM dibagi menjadi 3 bagian, yaitu node, way, dan relation.
 \begin{enumerate}
 \item Elemen Node merupakan informasi titik pada sebuah peta. Node memiliki
@@ -241,13 +242,39 @@ nama dari node tersebut adalah Neu Broderstorf.
 
 \item Elemen Way merupakan informasi garis yang dapat diartikan sebagai jalan
 ataupun elemen lain seperti rel kereta pada peta OSM. Way menyimpan informasi
-node-node yang dilalui oleh garis dan juga sama seperti node dilengkapi atribut seperti id, uid, user, changeset,
-timestamp. Elemen way memiliki \textit{child} elemen nd, contoh:  
+node-node terurut yang dilalui oleh garis dan juga sama seperti node dilengkapi
+atribut seperti id, uid, user, changeset, timestamp. Elemen way memiliki \textit{child}
+elemen nd, contoh:
 \begin{verbatim}
 <nd ref="292403538"/>
 \end{verbatim}
 atribut ref pada elemen nd mengacu pada node yang memiliki id 292403538, dan
-elemen tag yang memberikan informasi tambahan pada elemen way,
+elemen tag yang memberikan informasi tambahan pada elemen way. Selain itu,
+elemen way memiliki informasi lain yang disimpan pada elemen tag, elemen tag
+merupakan \textit{child} dari elemen way dan menyimpan informasi jenis jalan
+yaitu \textit{key highway} dan \textit{key oneway} yang memberikan informasi
+arah jalan, contoh:
+\begin{verbatim}
+<tag k="highway" v="unclassified"/>
+<tag k="oneway" v="yes"/>
+\end{verbatim}
+\textit{Key oneway} memiliki 4 jenis \textit{value}. Informasi arah jalan
+mengikuti node-node yang telah terurut. Berikut ini adalah
+penjelasan dari keempat \textit{value} tersebut:
+\begin{itemize}
+  \item oneway=yes \\
+  Menunjukkan jalan satu arah
+  
+  \item oneway=no \\
+  Menujukkan jalan dua arah
+  
+  \item oneway=-1 \\
+  Menunjukkan jalan satu arah dan berlawanan
+  
+  \item oneway=reversible \\
+  Menunjukkan jalan satu arah dan dapat berubah arah menjadi berlawanan. Contoh,
+  pengalihan jalan untuk mengatasi kemacetan.
+\end{itemize}
 
 \item Elemen relation menyimpan informasi node-node dan way yang bersinggungan.
 Elemen relation dapat menggambarkan suatu area seperti lapangan, taman bermain, atau
@@ -599,7 +626,7 @@ Berikut ini adalah penjelasan kelas dan fungsi yang digunakan:
 \begin{enumerate}
   \item google.maps.Map class\\
   Membuat peta baru pada halaman html.\\
-  Parameter:
+  Konstruktor:
   \begin{itemize}
     \item mapDiv:Node\\
     node yang digunakan untuk membuat peta.
@@ -610,7 +637,7 @@ Berikut ini adalah penjelasan kelas dan fungsi yang digunakan:
   
   \item google.maps.LatLng class\\
   Membuat objek Latlng yang merepresentasikan titik geografis.\\
-  Parameter:
+  Konstruktor:
   \begin{itemize}
     \item lat:number\\
     \textit{Latitude} dalam derajat.
@@ -625,7 +652,8 @@ Berikut ini adalah penjelasan kelas dan fungsi yang digunakan:
     batas tersebut.
   \end{itemize}
   
-  \item google.maps.event.addDomListener()\\
+  \item google.maps.event.addDomListener(instance:Object, eventName:string,
+  handler:Function)\\
   Menambahkan fungsi \textit{listener}\\
   Parameter:
   \begin{itemize}
@@ -651,7 +679,7 @@ digunakan:
 \begin{enumerate}
   \item google.maps.Marker class \\
   Membuat \textit{marker} pada peta dengan opsi tertentu.\\
-  Parameter:
+  Konstruktor:
   \begin{itemize}
     \item opts?:MarkerOptions\\
     Opsi dari \textit{marker} yang dibuat.
@@ -659,21 +687,21 @@ digunakan:
   
   \item google.maps.Polyline class\\
   Membuat \textit{polyline} pada peta dengan opsi tertentu.\\
-  Parameter:
+  Konstruktor:
   \begin{itemize}
     \item opts?:PolylineOptions\\
     Opsi dari \textit{polyline} yang dibuat.
   \end{itemize}
   
-  \item setMap\\
+  \item setMap(map:Map)\\
   Menyisipkan \textit{marker} atau \textit{polyline} pada peta tertentu.\\
   Parameter:
   \begin{itemize}
-    \item map:Map|StreetViewPanorama\\
+    \item map:Map\\
     Peta yang disisipkan \textit{marker} atau \textit{polyline}.
   \end{itemize}
   
-  \item setIcon\\
+  \item setIcon(icon:string|Icon|Symbol)\\
   Mengubah \textit{icon} pada \textit{marker}.\\
   Parameter:
   \begin{itemize}
@@ -861,7 +889,7 @@ computeDistanceBetween().
   Fungsi utilitas untuk menghitung sudut, jarak, dan area. Secara
   \textit{default}, radius bumi yang digunakan adalah 6378137 meter.
   
-  \item computeDistanceBetween() \\
+  \item computeDistanceBetween(from:LatLng, to:LatLng, radius?:number) \\
   Menghitung jarak antara dua titik.\\
   Parameter:
   \begin{itemize}
@@ -922,13 +950,13 @@ Berikut ini adalah penjelasan dari kelas dan fungsi yang digunakan:
 \item google.maps.InfoWindow class\\
   Membuat \textit{overlay} yang berbentuk seperti gelembung dan memuat konten
   seperti teks atau gambar.\\
-  Parameter:
+  Konstruktor:
   \begin{itemize}
     \item opts?:InfoWindowOptions\\
     Opsi dari \textit{info window} yang dibuat.
   \end{itemize}
   
-\item open()\\
+\item open(map?:Map|StreetViewPanorama, anchor?:MVCObject)\\
   Membuka info window pada peta.\\
   Parameter
   \begin{itemize}
@@ -936,7 +964,7 @@ Berikut ini adalah penjelasan dari kelas dan fungsi yang digunakan:
     Membuka \textit{info window} pada peta yang diberikan.
     
     \item anchor?:MVCObject\\
-    Objek yang berhubungan dengan \textit{info window}, contoh: \textit{marker}.
+    Objek yang berasosiasi dengan \textit{info window}, contoh: \textit{marker}.
   \end{itemize}
 \end{enumerate}
 \textit{Info Window} yang ditampilkan pada peta dapat dilihat pada Gambar
@@ -951,11 +979,10 @@ Berikut ini adalah penjelasan dari kelas dan fungsi yang digunakan:
 
 \section{Graf}
 Graf adalah himpunan objek yang terdiri dari node (simpul) dan edge (sisi), graf 
-digambarkan sebagai node yang dihubungkan oleh edge. Konsep graf telah digunakan pada 
-banyak aplikasi komputer dan menggunakan beberapa jenis graf seperti graf sederhana, graf 
-tidak berarah, graf berarah, graf berbobot, dan lain-lain. Contoh graf dapat
-dilihat pada Gambar \ref{fig:graph}. Graf mengikuti aturan berikut
-\footnotemark[2]:
+digambarkan sebagai node yang dihubungkan oleh edge. Terdapat berbagai
+macam jenis graf, tetapi pada subbab ini akan dibahas beberapa jenis graf
+seperti graf tidak berarah, graf berarah, dan graf berbobot. Contoh graf dapat
+dilihat pada Gambar \ref{fig:graph}. Graf mengikuti aturan berikut \footnotemark[2]:
 \footnotetext[2]{http://web.cecs.pdx.edu/sheard/course/Cs163/Doc/Graphs.html}
 \begin{enumerate}
 \item Graf terdiri dari dua bagian yang disebut node dan edge.
@@ -968,7 +995,7 @@ garis atau busur.
 
 \begin{figure}[h]
 \centering
-\includegraphics[scale=0.9]{Gambar/graph}
+\includegraphics[scale=1]{Gambar/graph}
 \caption[Contoh Graf]{Contoh Graf}
 \label{fig:graph}
 \end{figure}
@@ -978,8 +1005,8 @@ Himpunan node = {1,2,3,4,5,6} \\
 Himpunan edge = {(6,4),(4,5),(4,3),(3,2),(5,2),(2,1),(5,1)}
 
 \subsection{Graf Tidak Berarah}
-Graf tidak berarah tidak memiliki arah pada setiap edgenya, sehingga setiap
-node tidak memiliki urutan. Graf tidak berarah digambarkan dengan garis lurus
+Graf tidak berarah adalah graf yang tidak memiliki arah pada setiap edgenya,
+sehingga setiap node tidak memiliki urutan. Graf tidak berarah digambarkan dengan garis lurus
 antara node. Contoh graf berarah dapat dilihat pada Gambar
 \ref{fig:graph}.
 
@@ -1005,7 +1032,7 @@ tersebut dapat digunakan untuk menyimpan jarak dari suatu node ke node lain.
 Contoh graf berbobot dapat dilihat pada Gambar \ref{fig:weight_graph}.
 \begin{figure}[h]
 \centering
-\includegraphics[scale=0.8]{Gambar/weight_graph}
+\includegraphics[scale=1]{Gambar/weight_graph}
 \caption[Contoh Graf Berbobot]{Contoh Graf Berbobot}
 \label{fig:weight_graph}
 \end{figure}
@@ -1033,7 +1060,7 @@ merepresentasikan graf ke dalam bentuk matriks.
   
 \begin{figure}[h]
 \centering
-\includegraphics[scale=0.8]{Gambar/adjlist_undirec}
+\includegraphics[scale=1]{Gambar/adjlist_undirec}
 \caption[Contoh Adjacency List]{Contoh Adjacency List (Graf Tidak Berarah)}
 \label{fig:adjlist_undirec}
 \end{figure}
@@ -1057,14 +1084,14 @@ merepresentasikan graf ke dalam bentuk matriks.
   
 \begin{figure}[h]
 \centering
-\includegraphics[scale=1]{Gambar/adjmat_undirec}
+\includegraphics[scale=0.9]{Gambar/adjmat_undirec}
 \caption[Contoh Adjacency Matrix]{Contoh Adjacency Matrix (Graf Tidak Berarah)}
 \label{fig:adjmat_undirec}
 \end{figure}
 
 \begin{figure}[h]
 \centering
-\includegraphics[scale=1]{Gambar/adjmat_direc}
+\includegraphics[scale=0.9]{Gambar/adjmat_direc}
 \caption[Contoh Adjacency Matrix]{Contoh Adjacency Matrix (Graf Berarah)}
 \label{fig:adjmat_direc}
 \end{figure}
@@ -1074,9 +1101,9 @@ merepresentasikan graf ke dalam bentuk matriks.
 Algoritma dijkstra adalah algoritma yang dapat mencari jalur terpendek pada graf
 berarah dengan persamaan G=(V,E) untuk kasus pada setiap sisinya bernilai tidak
 negatif \cite{Cormen:2001}. Algoritma ini menggunakan prinsip greedy. Prinsip
-greedy pada algoritma dijkstra menyatakan bahwa pada setiap langkahnya memilih sisi yang berbobot minimum dan
-memasukannya dalam himpunan solusi. Berikut ini adalah \textit{pseudocode} dari
-algoritma dijkstra:
+greedy pada algoritma dijkstra adalah memilih sisi yang memiliki bobot paling
+kecil dan memasukannya dalam himpunan solusi. Berikut ini adalah
+\textit{pseudocode} dari algoritma dijkstra:
 \begin{algorithm}{}\label{dijkstra}
 \caption{$Dijkstra$}
 \begin{algorithmic}
@@ -1098,3 +1125,23 @@ algoritma dijkstra:
 \Return dist
 \end{algorithmic}
 \end{algorithm}
+
+\section{Haversine \textit{Formula}}
+Haversine \textit{formula} adalah persamaan yang dapat memberikan jarak antara
+dua titik berdasarkan \textit{latitude} atau garis lintang dan
+\textit{longitude} atau garis bujur \cite{haversine}. Haversine
+\textit{formula} dinyatakan dalam persamaan berikut ini:
+\\
+\[d=2r\sin^{-1}(\sqrt{\sin^2(\frac{\phi_2-\phi_1}{2})+\cos(\phi_1)\cos(\phi_2)\sin^2(\frac{\psi_2-\psi_1}{2})})\]
+dimana:
+\begin{itemize}
+  \item d : jarak antara dua buah titik
+  
+  \item r : radius bumi (6371 km)
+   
+  \item $\phi_1, \phi_2$ : \textit{latitude} dari titik 1 and \textit{latitude}
+  dari titik 2
+  
+  \item $\psi_1, \psi_2$ : \textit{longitude} dari titik 1 and
+  \textit{longitude} dari titik 2
+\end{itemize}

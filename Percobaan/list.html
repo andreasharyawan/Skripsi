@@ -1,22 +1,131 @@
  <!DOCTYPE html>
 <html>
 <head>
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry"></script>
 </head>
 <body>
 <script>
 xmlhttp=new XMLHttpRequest();
-xmlhttp.open("GET","map.xml",false);
+xmlhttp.open("GET","test.xml",false);
 xmlhttp.send();
 xmlDoc=xmlhttp.responseXML;
 
-function Neighbor(vnum, nbr){
+
+
+
+function PriorityQueue () {
+  this._nodes = [];
+
+  this.enqueue = function (priority, key) {
+    this._nodes.push({key: key, priority: priority });
+    this.sort();
+  }
+  this.dequeue = function () {
+    return this._nodes.shift().key;
+  }
+  this.sort = function () {
+    this._nodes.sort(function (a, b) {
+      return a.priority - b.priority;
+    });
+  }
+  this.isEmpty = function () {
+    return !this._nodes.length;
+  }
+}
+
+/**
+ * Pathfinding starts here
+ */
+function Dijkstra(){
+  var INFINITY = 1/0;
+  this.vertices = {};
+
+  this.addVertex = function(name, edges){
+    this.vertices[name] = edges;
+  }
+
+  this.shortestPath = function (start, finish) {
+    var nodes = new PriorityQueue(),
+        distances = {},
+        previous = {},
+        path = [],
+        smallest, vertex, neighbor, alt;
+
+    for(vertex in this.vertices) {
+      if(vertex === start) {
+        distances[vertex] = 0;
+        nodes.enqueue(0, vertex);
+      }
+      else {
+        distances[vertex] = INFINITY;
+        nodes.enqueue(INFINITY, vertex);
+      }
+
+      previous[vertex] = null;
+    }
+
+    while(!nodes.isEmpty()) {
+      smallest = nodes.dequeue();
+
+      if(smallest === finish) {
+        path;
+
+        while(previous[smallest]) {
+          path.push(smallest);
+          smallest = previous[smallest];
+        }
+
+        break;
+      }
+
+      if(!smallest || distances[smallest] === INFINITY){
+        continue;
+      }
+
+      for(neighbor in this.vertices[smallest]) {
+        alt = distances[smallest] + this.vertices[smallest][neighbor];
+
+        if(alt < distances[neighbor]) {
+          distances[neighbor] = alt;
+          previous[neighbor] = smallest;
+
+          nodes.enqueue(alt, neighbor);
+        }
+      }
+    }
+
+    return path;
+  }
+}
+
+
+
+
+
+
+
+
+
+function Neighbor(vnum, nbr, weight){
     this.vertexNum = vnum;
+	this.weight = weight;
     this.next = nbr;
 }
 
 function Node(id, neighbors){
     this.id = id;
     this.adjList = neighbors;
+}
+
+function isOneway(way,index){
+	var tag = way[index].getElementsByTagName("tag");
+	for (hg=0;hg<tag.length;hg++)
+	{
+		if(tag[hg].getAttribute('k') == "oneway"){
+			return tag[hg].getAttribute('v');
+		}
+	}
+	return false;
 }
 
 function isHighway(way,index){
@@ -30,18 +139,42 @@ function isHighway(way,index){
 	return false;
 }
 
-function indexForName(adjLists,id) {
-		for (var i=0; i < adjLists.length; i++){
-			if (adjLists[i].id == id){
-				return i;
-			}
+function indexForId(adjLists,id) {
+	for (var i=0; i < adjLists.length; i++){
+		if (adjLists[i].id == id){
+			return i;
 		}
-		return -1;
 	}
+	return -1;
+}
+
+function getLatByAtt(str)
+{
+	for (n=0;n<node.length;n++)
+	{
+		if(node[n].getAttribute('id') == str)
+		{
+			return node[n].getAttribute('lat');
+		}
+	}
+}
+function getLonByAtt(str)
+{
+	for (m=0;m<node.length;m++)
+	{
+		if(node[m].getAttribute('id') == str)
+		{
+			return node[m].getAttribute('lon');
+		}
+	}
+}
 
 function Graph(node,way){
 	var adjLists = [];
 	var nd;
+	var oneway;
+	var lat1,lon1,lat2,lon2;
+	var point1,point2,distance;
 	
 	for(v=0; v < node.length; v++){
 		adjLists.push(new Node(node[v].getAttribute('id'),null));
@@ -51,32 +184,106 @@ function Graph(node,way){
 	{
 		nd = way[i].getElementsByTagName("nd");
 		if(isHighway(way,i)){
+			oneway = isOneway(way,i);
 			for (j=0;j<nd.length-1;j++)
 			{
-				v1 = indexForName(adjLists,nd[j].getAttribute('ref'));
-				v2 = indexForName(adjLists,nd[j+1].getAttribute('ref'));
-
-				adjLists[v1].adjList = new Neighbor(v2, adjLists[v1].adjList);
-				//adjLists[v2].adjList = new Neighbor(v1, adjLists[v2].adjList);
+				v1 = indexForId(adjLists,nd[j].getAttribute('ref'));
+				v2 = indexForId(adjLists,nd[j+1].getAttribute('ref'));
+				
+				lat1 = getLatByAtt(nd[j].getAttribute('ref'));
+				lon1 = getLonByAtt(nd[j].getAttribute('ref'));
+				lat2 = getLatByAtt(nd[j+1].getAttribute('ref'));
+				lon2 = getLonByAtt(nd[j+1].getAttribute('ref'));
+	
+				point1 = new google.maps.LatLng(lat1,lon1);
+				point2 = new google.maps.LatLng(lat2,lon2);
+				distance = google.maps.geometry.spherical.computeDistanceBetween(point1, point2);
+				
+				if(oneway == "yes"){
+					adjLists[v1].adjList = new Neighbor(v2, adjLists[v1].adjList,distance);
+				}else if(oneway == "no"){
+					adjLists[v1].adjList = new Neighbor(v2, adjLists[v1].adjList,distance);
+					adjLists[v2].adjList = new Neighbor(v1, adjLists[v2].adjList,distance);
+				}else if(oneway == "-1"){
+					adjLists[v2].adjList = new Neighbor(v1, adjLists[v2].adjList,distance);
+				}else{
+					adjLists[v1].adjList = new Neighbor(v2, adjLists[v1].adjList,distance);
+					adjLists[v2].adjList = new Neighbor(v1, adjLists[v2].adjList,distance);
+				}	
 			}
 		}
 	}	
 	return adjLists;
 }
 
+function print(list){
+	for (j=0; j < list.length; j++){
+		document.write(j);
+		for (nbr=list[j].adjList; nbr != null;nbr=nbr.next) {
+			document.write("---->");
+			document.write('('+nbr.vertexNum+')');
+		}
+		document.write("<br>");
+	}
+}
+
+function print2(list){
+	for (j=0; j < list.length; j++){
+		document.write(j);
+		document.write("-->");
+		document.write(list[j].id);
+		for (nbr=list[j].adjList; nbr != null;nbr=nbr.next) {
+		document.write("---->");
+		document.write(list[nbr.vertexNum].id);
+		}
+		document.write("<br>");
+	}
+}
+
 var node = xmlDoc.getElementsByTagName("node");
 var way = xmlDoc.getElementsByTagName("way");
 
 var list = new Graph(node,way);
+print(list);
+//print2(list);
+
+
+/*
+var g = new Dijkstra();
+
+var edge = new Object();
+edge.B = 7;
+edge.C = 8;
+edge[list[0].adjList.vertexNum] = 10;
+
+console.log(edge);
+
+edge = new Object();
+
+console.log(edge);
+
 
 for (j=0; j < list.length; j++){
-	document.write(j);
+	edge = new Object();
 	for (nbr=list[j].adjList; nbr != null;nbr=nbr.next) {
-		document.write("---->");
-		document.write('('+nbr.vertexNum+')');
+		edge[nbr.vertexNum] = nbr.weight;	
 	}
-	document.write("<br>");
+	g.addVertex(j,edge);
 }
+
+console.log(g.vertices);
+document.write(g.shortestPath('1', '191').concat(['1']).reverse());
+
+
+g.addVertex('A', {B: 7, C: 8});
+g.addVertex('B', {A: 7, F: 2});
+g.addVertex('C', {A: 8, F: 6, G: 4});
+g.addVertex('D', {F: 8});
+g.addVertex('E', {H: 1});
+g.addVertex('F', {B: 2, C: 6, D: 8, G: 9, H: 3});
+g.addVertex('G', {C: 4, F: 9});
+g.addVertex('H', {E: 1, F: 3});
+*/
 
 </script>
 </body>
