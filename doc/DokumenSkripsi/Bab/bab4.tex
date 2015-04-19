@@ -3,13 +3,12 @@ Pada bab ini akan dijelaskan perancangan aplikasi pencarian rute terdekat
 berbasis OpenStreetMap. Pada bagian pertama akan dijelaskan perancangan antar
 muka untuk aplikasi yang akan dibangun. Diawali \textit{user} dengan membuka
 aplikasi, selanjutnya \textit{user} dapat memilih titik-titik yang terdapat pada
-peta sebagai titik asal ataupun titik tujuan. Dan mencari rute terdekat antara kedua titik
-tersebut.
+peta sebagai titik asal ataupun titik tujuan. Setelah itu, \textit{user} dapat
+mencari rute terdekat antara kedua titik tersebut.
 
 Pada bagian kedua akan dijelaskan rancangan untuk aplikasi agar dapat
-menjalankan fungsinya melalui diagram kelas.
-Dan pada bagian ketiga akan dijelaskan bagaimana alur aplikasi dari
-\textit{user} hingga mengeluarkan \textit{output} yaitu rute terdekat
+menjalankan fungsinya melalui diagram kelas. Pada bagian ketiga akan dijelaskan
+bagaimana alur aplikasi dari \textit{user} hingga mengeluarkan \textit{output} yaitu rute terdekat
 menggunakan diagram \textit{sequence}.
 
 \section{Perancangan Antar Muka}
@@ -119,29 +118,6 @@ dari setiap kelas beserta atribut dan fungsi yang digunakan:
 \label{fig:perancangan_kelas}
 \end{figure}
 \clearpage
-      
-      \item lat1 : double\\
-      Atribut lat1 menyimpan informasi \textit{latitude} untuk point1.
-      
-      \item lon1 : double\\
-      Atribut lon1 menyimpan informasi \textit{longitude} untuk point1.
-      
-      \item lat2 : double\\
-      Atribut lat2 menyimpan informasi \textit{latitude} untuk point2.
-      
-      \item lon2 : double\\
-      Atribut lon2 menyimpan informasi \textit{longitude} untuk point2.
-      
-      \item point1 : google.maps.Latlng\\
-      Atribut point1 untuk menyimpan informasi \textit{latitude} dan
-      \textit{longitude} pada node pertama, berupa objek google.maps.Latlng.
-      
-      \item point2 : google.maps.Latlng\\
-      Atribut point2 untuk menyimpan informasi \textit{latitude} dan
-      \textit{longitude} pada node kedua, berupa objek google.maps.Latlng.
-      
-      \item distance : double\\
-      Atribut distance untuk menyimpan jarak antara point1 dan point2.
     \end{itemize}
   \end{itemize}
   \begin{itemize}

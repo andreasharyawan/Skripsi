@@ -247,51 +247,36 @@ for (i=0;i<way.length;i++)
 {
 	nd = way[i].getElementsByTagName("nd");
 	if(isHighway(way,i))
-	{
-		id = uniqueId();
-		marker = new google.maps.Marker({
-			id: id,
-			position: new google.maps.LatLng(getLatByAtt(nd[0].getAttribute('ref')), getLonByAtt(nd[0].getAttribute('ref'))),
-			map: map,
-			icon: image,
-		});
-		markers[id] = marker;
-		
-		content = 'Id Node : '+nd[0].getAttribute('ref')+'<br>'+
-			'Index Node :'+indexForId(list,nd[0].getAttribute('ref'))+'<br>'+
-			'<a href="#" onclick="setAsal(\'' + id + '\',\'' + nd[0].getAttribute('ref') + '\')">Pilih sebagai asal</a>'+'<br>'+
-			'<a href="#" onclick="setTujuan(\'' + id + '\',\'' + nd[0].getAttribute('ref') + '\')">Pilih sebagai tujuan</a>';
-			
-		addInfoWindow(marker, content);
-		
-		for (j=0;j<nd.length-1;j++)
+	{	
+		for (j=0;j<nd.length;j++)
 		{
 			id = uniqueId();
 			marker = new google.maps.Marker({
 				id: id,
-				position: new google.maps.LatLng(getLatByAtt(nd[j+1].getAttribute('ref')), getLonByAtt(nd[j+1].getAttribute('ref'))),
+				position: new google.maps.LatLng(getLatByAtt(nd[j].getAttribute('ref')), getLonByAtt(nd[j].getAttribute('ref'))),
 				map: map,
 				icon: image,
 			});
 			markers[id] = marker;
 			
-		
-			content = 'Id Node : '+nd[j+1].getAttribute('ref')+'<br>'+
-			'Index Node : '+indexForId(list,nd[j+1].getAttribute('ref'))+'<br>'+
-			'<a href="#" onclick="setAsal(\'' + id + '\',\'' + nd[j+1].getAttribute('ref') + '\')">Pilih sebagai asal</a>'+'<br>'+
-			'<a href="#" onclick="setTujuan(\'' + id + '\',\'' + nd[j+1].getAttribute('ref') + '\')">Pilih sebagai tujuan</a>';
+			content = 'Id Node : '+nd[j].getAttribute('ref')+'<br>'+
+			'Index Node : '+indexForId(list,nd[j].getAttribute('ref'))+'<br>'+
+			'<a href="#" onclick="setAsal(\'' + id + '\',\'' + nd[j].getAttribute('ref') + '\')">Pilih sebagai asal</a>'+'<br>'+
+			'<a href="#" onclick="setTujuan(\'' + id + '\',\'' + nd[j].getAttribute('ref') + '\')">Pilih sebagai tujuan</a>';
 			
 			addInfoWindow(marker, content);
-
+		}	
+		
+		for (k=0;k<nd.length-1;k++){
 			line = new google.maps.Polyline({
-				path: [new google.maps.LatLng(getLatByAtt(nd[j].getAttribute('ref')), getLonByAtt(nd[j].getAttribute('ref'))),
-				new google.maps.LatLng(getLatByAtt(nd[j+1].getAttribute('ref')), getLonByAtt(nd[j+1].getAttribute('ref')))],
+				path: [new google.maps.LatLng(getLatByAtt(nd[k].getAttribute('ref')), getLonByAtt(nd[k].getAttribute('ref'))),
+				new google.maps.LatLng(getLatByAtt(nd[k+1].getAttribute('ref')), getLonByAtt(nd[k+1].getAttribute('ref')))],
 				strokeColor: "#000000",
 				strokeOpacity: 1.0,
 				strokeWeight: 3,
 				map: map
 			});
-		}	
+		}
 	}
 }
 

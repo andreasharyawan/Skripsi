@@ -115,8 +115,23 @@ xmlhttp.open("GET","map.xml",false);
 xmlhttp.send();
 xmlDoc=xmlhttp.responseXML;
 \end{verbatim}
-Objek XMLHttpRequest digunakan untuk mendapatkan \textit{file} XML yang telah
-diunduh sebelumnya.
+Objek XMLHttpRequest digunakan untuk membaca \textit{file} XML yang telah
+diunduh sebelumnya. Tahap-tahap yang dilakukan adalah sebagai berikut:
+\begin{enumerate}
+  \item Membuat objek XMLHttpRequest.
+  
+  \item Objek ini akan menginisialisasi permintaan dengan memanggil fungsi
+  open(), pada kode program di atas menggunakan \textit{method} ``GET'' yaitu meminta dokumen ``map.xml'' 
+  dan parameter ``false'' menunjukkan bahwa permintaan tersebut \textit{synchronous}.
+  
+  \item Objek mengirimkan permintaan yang telah diinisialisasi sebelumnya dengan
+  memanggil \textit{method} send();
+  
+  \item Tahap terakhir adalah mendapatkan respon dari permintaan yang telah
+  dikirimkan. Objek mengakses atribut responseXML, jika permintaan berhasil
+  maka variabel xmlDoc akan berisi dokumen XML yang diminta, jika gagal maka
+  variabel akan bernilai \textit{null}.
+\end{enumerate}
 
   \item Menampilkan informasi node yang didapat pada layar.
 \begin{verbatim}
@@ -124,39 +139,63 @@ document.write("<div style='float: left'>");
 document.write("<table><tr><th>Node</th><th>Id</th>
 <th>Latitude</th><th>Longitude</th></tr>");
 document.write("<caption>Node</caption>");
+
 var node=xmlDoc.getElementsByTagName("node");
-for (ct=0;ct<node.length;ct++)
-  {
-    document.write("<tr><td>");
-    document.write(ct);
-    document.write("</td><td>");
-    document.write(node[ct].getAttribute('id'));
-    document.write("</td><td>");
-    document.write(node[ct].getAttribute('lat'));
-    document.write("</td><td>");
-    document.write(node[ct].getAttribute('lon'));
-    document.write("</td></tr>");
-  }
+for (i=0;i<node.length;i++){
+  document.write("<tr><td>");
+  document.write(i);
+  document.write("</td><td>");
+  document.write(node[i].getAttribute('id'));
+  document.write("</td><td>");
+  document.write(node[i].getAttribute('lat'));
+  document.write("</td><td>");
+  document.write(node[i].getAttribute('lon'));
+  document.write("</td></tr>");
+}
 document.write("</table>");
 document.write("</div>");
 \end{verbatim}
 Kode diatas menampilkan informasi node pada dokumen OSMXML dalam bentuk tabel.
+Berikut ini adalah tahap-tahap yang dilakukan:
+\begin{enumerate}
+  \item Membuat tag <div> sebagai tempat tabel.
+  
+  \item Membuat tabel.
+  
+  \item Membuat variabel node, variabel ini berisi informasi seluruh node yang
+  terdapat pada variabel xmlDoc, \textit{method} yang digunakan adalah
+  getElementsByTagName(). Sebelumnya xmlDoc sudah berisi dengan dokumen ``map.xml''.
+  
+  \item Melakukan \textit{print} pada tabel, beberapa atribut yang ditampilkan
+  adalah id node, \textit{latitude}, dan \textit{longitude}.
+\end{enumerate}
 
   \item Membuat fungsi untuk melakukan \textit{filter} pada elemen way.
 \begin{verbatim}
 function isHighway(way,index){
   var tag = way[index].getElementsByTagName("tag");
-    for (hg=0;hg<tag.length;hg++)
-    {
-      if(tag[hg].getAttribute('k') == "highway"){
-        return true;
-      }
+  for (hg=0;hg<tag.length;hg++){
+    if(tag[hg].getAttribute('k') == "highway"){
+      return true;
     }
+  }
   return false;
 }
 \end{verbatim}
 \textit{Filter} dilakukan karena hanya elemen way yang berjenis \textit{highway}
-saja yang akan digunakan.
+saja yang akan digunakan. Berikut ini adalah tahap-tahap yang dilakukan:
+\begin{enumerate}
+  \item Membuat fungsi isHighway() dengan parameter \textit{input} way dan
+  index. Parameter way berisi informasi seluruh way, sedangkan parameter index
+  menunjukkan tag way pada index tersebut yang akan dicari.
+  
+  \item Membuat variabel yang menyimpan informasi way pada index yang dicari,
+  pada kode program variabel tersebut diberi nama ``tag''.
+  
+  \item Lakukan pengulangan untuk mencari setiap \textit{child} pada variabel
+  ``tag'' yang memiliki atribut ``k=highway'', jika ditemukan fungsi akan
+  mengembalikan \textit{true} dan \textit{false} jika tidak ditemukan.
+\end{enumerate}
 	
 	\item Menampilkan informasi way yang didapat pada layar.
 \begin{verbatim}
@@ -164,14 +203,13 @@ document.write("<div style='margin-left: 20px;float: left'>");
 document.write("<table><tr><th>Way</th><th>Id Way</th>
 <th>Edge</th><th>Id Node 1</th><th>Id Node 2</th></tr>");
 document.write("<caption>Edge</caption>");
+
 var way = xmlDoc.getElementsByTagName("way");
 var nd;
-for (i=0;i<way.length;i++)
-{
+for (i=0;i<way.length;i++){
   nd = way[i].getElementsByTagName("nd");
   if(isHighway(way,i)){
-    for (j=0;j<nd.length-1;j++)
-    {
+    for (j=0;j<nd.length-1;j++){
       document.write("<tr><td>");
       document.write(i);
       document.write("</td><td>");
@@ -189,8 +227,22 @@ for (i=0;i<way.length;i++)
 document.write("</div>");
 \end{verbatim}
 Kode diatas menampilkan informasi way pada dokumen OSMXML dalam bentuk tabel.
+\begin{enumerate}
+  \item Membuat tag <div> sebagai tempat tabel.
+  
+  \item Membuat tabel.
+  
+  \item Membuat variabel way, variabel ini berisi informasi seluruh way yang
+  terdapat pada variabel xmlDoc, \textit{method} yang digunakan adalah
+  getElementsByTagName(). Sebelumnya xmlDoc sudah berisi dengan dokumen ``map.xml''.
+  
+  \item Membuat variabel yang berisi informasi way pada index tertentu, dan
+  lakukan \textit{filter} dengan menggunakan fungsi isHighway().
+  
+  \item Melakukan \textit{print} pada tabel, beberapa atribut yang ditampilkan
+  adalah id way, id node pertama, dan id node kedua.
 \end{enumerate}
-Hasil dari kode program di atas dapat dilihat pada Gambar \ref{fig:xml_parsing}.
+\end{enumerate}
 \begin{figure}[h]
 \centering
 \includegraphics[scale=0.5]{Gambar/xml_parsing}
@@ -198,10 +250,10 @@ Hasil dari kode program di atas dapat dilihat pada Gambar \ref{fig:xml_parsing}.
 Javascript}
 \label{fig:xml_parsing}
 \end{figure}
-
-Pada Gambar \ref{fig:xml_parsing} dapat dilihat terdiri dari dua tabel yang
-menunjukkan informasi node dan edge yang sudah dibaca. Tabel node menunjukkan
-atribut penting yang akan digunakan yaitu id node, \textit{latitude}, dan
+Hasil dari kode program di atas dapat dilihat pada Gambar \ref{fig:xml_parsing}.
+Pada Gambar \ref{fig:xml_parsing} dapat dilihat terdiri dari dua tabel yang menunjukkan 
+informasi node dan edge yang sudah dibaca. Tabel 
+node menunjukkan atribut penting yang akan digunakan yaitu id node, \textit{latitude}, dan
 \textit{longitude}. Sedangkan tabel edge menujukkan informasi yang didapatkan
 dari tag way yang sudah dilakukan \textit{filter}, yaitu hanya tag way yang
 memiliki \textit{child} highway saja yang akan digunakan. Pada tabel edge
@@ -217,22 +269,21 @@ jarak antara koordinat Kota Bandung (-6.9167,107.6000) dan koordinat Kota
 Jakarta (-6.1745,106.8227). Berikut ini adalah rumus haversine yang telah
 diimplementasikan:
 \begin{verbatim}
-function getDistance(lat1,lon1,lat2,lon2) {
+function getDistance(lat1,lon1,lat2,lon2){
   var R = 6371; 
   var dLat = deg2rad(lat2-lat1); 
   var dLon = deg2rad(lon2-lon1); 
   var a = 
     Math.sin(dLat/2) * Math.sin(dLat/2) +
     Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) * 
-    Math.sin(dLon/2) * Math.sin(dLon/2)
-    ; 
+    Math.sin(dLon/2) * Math.sin(dLon/2); 
   var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
   var d = R * c; 
   return d;
 }
 
-function deg2rad(deg) {
-  return deg * (Math.PI/180)
+function deg2rad(deg){
+  return deg * (Math.PI/180);
 }
 \end{verbatim}
 Hasil yang ditunjukkan dari rumus haversine adalah 119.09781542340916 km dapat
@@ -280,8 +331,13 @@ yang sudah diketahui, graf terdiri dari node dan edge. Informasi node dan edge
 yang sudah didapatkan akan dimodelkan ke dalam bentuk graf berarah, hal ini
 karena jalan yang menghubungkan node-node tersebut memiliki arah, baik searah
 maupun dua arah, arah jalan diketahui dengan melihat informasi tag oneway. Untuk
-merepresentasikan graf tersebut akan digunakan \textit{adjacency list}. Berikut
-ini adalah langkah-langkah yang dilakukan untuk memodelkan OSMXML menjadi graf:
+merepresentasikan graf tersebut akan digunakan \textit{adjacency list}.
+Penggunaan \textit{adjacency list} disebabkan oleh penggunaan memori yang lebih
+kecil dibandingkan dengan \textit{adjacency matrix}. Pada \textit{adjacency
+list} memori yang digunakan adalah sebesar jumlah node yang terdapat pada
+OSMXML, sedangkan pada \textit{adjacency matrix} memori yang digunakan adalah
+nxn. Berikut ini adalah langkah-langkah yang dilakukan untuk memodelkan OSMXML
+menjadi graf:
 \begin{enumerate}
   \item Membuat kelas Node dan kelas Neighbor.
 \begin{verbatim}
@@ -296,101 +352,139 @@ function Neighbor(vnum, nbr, weight){
   this.next = nbr;
 }
 \end{verbatim}
-Kedua kelas tersebut digunakan untuk menyimpan informasi id node dan jarak.
+Kedua kelas tersebut digunakan untuk menyimpan informasi id node dan jarak. Id
+node disimpan pada kelas node menggunakan atribut id, sedangkan jarak disimpan
+pada kelas neighbor menggunakan atribut weight.
 
   \item Membaca seluruh informasi node dan menyimpan pada kelas node.
 \begin{verbatim}
-for(v=0; v < node.length; v++){
-  adjLists.push(new Node(node[v].getAttribute('id'),null));
+var adjLists = [];
+for(i=0;i<node.length;i++){
+  adjLists.push(new Node(node[i].getAttribute('id'),null));
 }
 \end{verbatim}
+  Berikut ini adalah tahap-tahap yang dilakukan untuk menyimpan seluruh
+  informasi tersebut:
+  \begin{enumerate}
+    \item Membuat variabel adjLists, variabel ini bertipe array.
+    
+    \item Lakukan pengulangan untuk memasukkan informasi node satu persatu.
+  \end{enumerate}
 
   \item Membuat fungsi untuk menentukan arah pada setiap node yang terhubung
   dengan node lain.
 \begin{verbatim}
 function wayDirection(way,index){
   var tag = way[index].getElementsByTagName("tag");
-  for (hg=0;hg<tag.length;hg++)
-    {
-      if(tag[hg].getAttribute('k') == "oneway"){
-        return tag[hg].getAttribute('v');
-      }
+  for (hg=0;hg<tag.length;hg++){
+    if(tag[hg].getAttribute('k') == "oneway"){
+      return tag[hg].getAttribute('v');
     }
+  }
   return false;
 }
 \end{verbatim}
+  Berikut ini adalah tahap-tahap yang dilakukan:
+  \begin{enumerate}
+  \item Membuat fungsi wayDirection() dengan parameter \textit{input} way dan
+  index. Parameter way berisi informasi seluruh way, sedangkan parameter index
+  menunjukkan tag way pada index tersebut yang akan dicari informasi arahnya.
+  
+  \item Membuat variabel yang menyimpan informasi way pada index yang dicari,
+  pada kode program variabel tersebut diberi nama ``tag''.
+  
+  \item Lakukan pengulangan untuk mencari setiap \textit{child} pada variabel
+  ``tag'' untuk mencari atribut ``k=oneway'', jika ditemukan fungsi akan
+  mengembalikan \textit{value} dari \textit{key} tersebut dan \textit{false}
+  jika tidak ditemukan.
+  \end{enumerate}
 
   \item Membuat fungsi untuk mendapatkan informasi koordinat node
   (\textit{latitude} dan \textit{longitude}).
 \begin{verbatim}
-function getLatByAtt(str)
-{
-  for (n=0;n<node.length;n++)
-  {
-    if(node[n].getAttribute('id') == str)
-    {
+function getLatByAtt(str){
+  for (n=0;n<node.length;n++){
+    if(node[n].getAttribute('id') == str){
       return node[n].getAttribute('lat');
     }
   }
+  return -1;
 }
 
-function getLonByAtt(str)
-{
-  for (m=0;m<node.length;m++)
-  {
-    if(node[m].getAttribute('id') == str)
-    {
+function getLonByAtt(str){
+  for (m=0;m<node.length;m++){
+    if(node[m].getAttribute('id') == str){
       return node[m].getAttribute('lon');
     }
   }
+  return -1;
 }
 \end{verbatim}
-  Fungsi tersebut digunakan sebagai parameter \textit{input} untuk mencari jarak
-  dari satu node ke node lain.
+  Kode di atas terdiri dari dua fungsi, fungsi getLatByAtt() mencari informasi
+  \textit{latitude} dan fungsi getLatByAtt() mencari informasi
+  \textit{longitude}. Kedua fungsi tersebut melakukan pencarian node berdasarkan
+  parameter \textit{input} str yang merupakan id node, jika ditemukan fungsi
+  akan mengembalikan nilai \textit{latitude} atau \textit{longitude} dan
+  mengembalikan nilai -1 jika tidak ditemukan.
 
   \item Membaca seluruh informasi edge yang terdapat pada tag way
 \begin{verbatim}
-for (i=0;i<way.length;i++)
-  {
-    nd = way[i].getElementsByTagName("nd");
-    if(isHighway(way,i)){
-      oneway = wayDirection(way,i);
-      for (j=0;j<nd.length-1;j++)
-      {
-        v1 = indexForId(adjLists,nd[j].getAttribute('ref'));
-        v2 = indexForId(adjLists,nd[j+1].getAttribute('ref'));
-				
-        lat1 = getLatByAtt(nd[j].getAttribute('ref'));
-        lon1 = getLonByAtt(nd[j].getAttribute('ref'));
-        lat2 = getLatByAtt(nd[j+1].getAttribute('ref'));
-        lon2 = getLonByAtt(nd[j+1].getAttribute('ref'));
-	
-        point1 = new google.maps.LatLng(lat1,lon1);
-        point2 = new google.maps.LatLng(lat2,lon2);
-        distance = google.maps.geometry.spherical.
-        computeDistanceBetween(point1,point2);
-				
-        if(oneway == "yes"){
-          adjLists[v1].adjList = new Neighbor(v2,
-          adjLists[v1].adjList,distance); 
-        }else if(oneway == "no"){
-          adjLists[v1].adjList = new Neighbor(v2,
-          adjLists[v1].adjList,distance); 
-          adjLists[v2].adjList = new Neighbor(v1,
-          adjLists[v2].adjList,distance);
-        }else if(oneway == "-1"){
-          adjLists[v2].adjList = new Neighbor(v1,
-          adjLists[v2].adjList,distance); 
-        }else{
-          adjLists[v1].adjList = new Neighbor(v2,
-          adjLists[v1].adjList,distance); 
-          adjLists[v2].adjList = new Neighbor(v1,
-          adjLists[v2].adjList,distance); 
-        }	
-      }
+for (i=0;i<way.length;i++){
+  nd = way[i].getElementsByTagName("nd");
+  if(isHighway(way,i)){
+    oneway = wayDirection(way,i);
+    for (j=0;j<nd.length-1;j++){
+      //cari jarak 
+      v1 = indexForId(adjLists,nd[j].getAttribute('ref'));
+      v2 = indexForId(adjLists,nd[j+1].getAttribute('ref'));	
+      lat1 = getLatByAtt(nd[j].getAttribute('ref'));
+      lon1 = getLonByAtt(nd[j].getAttribute('ref'));
+      lat2 = getLatByAtt(nd[j+1].getAttribute('ref'));
+      lon2 = getLonByAtt(nd[j+1].getAttribute('ref'));
+      
+      point1 = new google.maps.LatLng(lat1,lon1);
+      point2 = new google.maps.LatLng(lat2,lon2);
+      distance = google.maps.geometry.spherical.
+      computeDistanceBetween(point1,point2);
+	  
+      //memasukkan informasi edge		
+      if(oneway == "yes"){
+        adjLists[v1].adjList = new Neighbor(v2,
+        adjLists[v1].adjList,distance); 
+      }else if(oneway == "no"){
+        adjLists[v1].adjList = new Neighbor(v2,
+        adjLists[v1].adjList,distance); 
+        adjLists[v2].adjList = new Neighbor(v1,
+        adjLists[v2].adjList,distance);
+      }else if(oneway == "-1"){
+        adjLists[v2].adjList = new Neighbor(v1,
+        adjLists[v2].adjList,distance); 
+      }else{
+        adjLists[v1].adjList = new Neighbor(v2,
+        adjLists[v1].adjList,distance); 
+        adjLists[v2].adjList = new Neighbor(v1,
+        adjLists[v2].adjList,distance); 
+      }	
     }
   }
+}
 \end{verbatim}
+  Berikut ini adalah tahap-tahap yang dilakukan:
+  \begin{enumerate}
+    \item Melakukan pengulangan untuk setiap way.
+    
+    \item Melakukan \textit{filter} untuk setiap way, hanya ``highway'' saja
+    yang akan dimasukkan informasinya ke dalam \textit{adjacency list}.
+    
+    \item Melakukan pemanggilan fungsi wayDirection() dan memasukkan nilai
+    didapatkan dari fungsi tersebut ke variabel, pada kode di atas menggunakan
+    variabel ``oneway''.
+    
+    \item Cari jarak antar node.
+    
+    \item Memasukkan informasi edge berdasarkan arah yang dimasukkan ke dalam
+    variabel ``oneway''.
+  \end{enumerate}
 
   \item Membuat fungsi untuk menampilkan graf ke layar
 \begin{verbatim}
@@ -405,21 +499,24 @@ function print(list){
   }
 }
 \end{verbatim}
+  Fungsi akan menerima parameter \textit{input} berupa array, yaitu
+  variabel adjLists. Selanjutnya dilakukan pembacaan setiap index array dan
+  hasilnya ditampilkan di layar.
 \end{enumerate}
-Hasil dari kode program di atas dapat dilihat pada Gambar
-\ref{fig:graf_analisis}.
 \begin{figure}[h]
 \centering
 \includegraphics[scale=0.5]{Gambar/graf_analisis}
 \caption[Pemodelan OSMXML menjadi Graf]{Pemodelan OSMXML menjadi Graf}
 \label{fig:graf_analisis}
 \end{figure}
+Hasil dari kode program di atas dapat dilihat pada Gambar
+\ref{fig:graf_analisis}.
 Pada Gambar \ref{fig:graf_analisis}, data pada OSMXML sudah dimodelkan ke dalam
-bentuk graf menggunakan representasi \textit{adjacency list}. Graf tersebut
-selanjutnya akan divisualisasikan menggunakan Google Maps Javascript API yang
+bentuk graf menggunakan representasi \textit{adjacency list}. Tahap selanjutnya
+selanjutnya akan divisualisasikan menggunakan Google Maps Javascript API yang 
 akan dibahas pada subbab \ref{ssec:analisis_gmap}.
 
-\section{Visualisasi Graf} \label{ssec:analisis_gmap}
+\section{Visualisasi} \label{ssec:analisis_gmap}
 Data OSMXML yang sudah dimodelkan ke dalam bentuk graf, selanjutnya akan
 divisualisasikan menggunakan Google Maps Javascript API. Peta yang akan
 ditampilkan dalam bentuk \textit{roadmap}, karena peta jenis ini memberikan 
@@ -438,7 +535,7 @@ visualisasi graf:
 <div id="googleMap" style="width:75%;height:600px;float:left"></div>
 \end{verbatim}
   
-  \item Membuat kelas google.maps.Map dengan parameter \textit{input map
+  \item Membuat objek google.maps.Map dengan parameter \textit{input map
   options} (variabel mapProp). Peta disisipkan pada elemen div yang memiliki id
   googleMap.
 \begin{verbatim}
@@ -450,52 +547,47 @@ var mapProp = {
 
 var map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
 \end{verbatim}
+  Berikut ini tahap-tahap yang dilakukan:
+  \begin{enumerate}
+    \item Membuat variabel untuk mendefinisikan properti peta, pada kode
+    di atas dilakukan pengaturan titik tengah, zoom pada level 17, dan tipe peta
+    yaitu ``ROADMAP''.
+    
+    \item Membuat objek google.maps.Map, objek tersebut memiliki parameter
+    properti peta (variabel mapProp), selanjutnya peta disisipkan pada elemen
+    div yang memiliki id googleMap.
+  \end{enumerate}
 
   \item Membuat objek \textit{marker} untuk setiap node pada peta.
 \begin{verbatim}
-for (i=0;i<way.length;i++)
-{
-  nd = way[i].getElementsByTagName("nd");
-  if(isHighway(way,i))
-  {
-    id = uniqueId();
-    marker = new google.maps.Marker({
-      id: id,
-      position: new google.maps.LatLng(getLatByAtt(nd[0].getAttribute('ref')),
-      getLonByAtt(nd[0].getAttribute('ref'))),
-      map: map,
-      icon: image,
-    });
-    markers[id] = marker;
-    for (j=0;j<nd.length-1;j++)
-    {
-      id = uniqueId();
-      marker = new google.maps.Marker({
-        id: id,
-        position: new
-        google.maps.LatLng(getLatByAtt(nd[j+1].getAttribute('ref')), 
-        getLonByAtt(nd[j+1].getAttribute('ref'))), 
-        map: map, 
-        icon: image,
-      });
-      markers[id] = marker;
+for (j=0;j<nd.length;j++){
+  id = uniqueId();
+  marker = new google.maps.Marker({
+    id: id,
+    position: new google.maps.LatLng(getLatByAtt(nd[j].getAttribute('ref')),
+    getLonByAtt(nd[j].getAttribute('ref'))), map: map,
+    icon: image,
+  });
+  markers[id] = marker;
 \end{verbatim}
+  Dilakukan pengulangan untuk setiap node dan membuat objek \textit{marker},
+  membaca atribut \textit{latitude} dan \textit{longitude}, lalu menampilkan
+  seluruh \textit{marker} pada peta.
 
   \item Membuat objek \textit{polyline} yang menghubungkan setiap node pada
   peta.
-
 \begin{verbatim}
-      line = new google.maps.Polyline({
-        path: [new google.maps.LatLng(getLatByAtt(nd[j].getAttribute('ref')),
-        getLonByAtt(nd[j].getAttribute('ref'))), new
-        google.maps.LatLng(getLatByAtt(nd[j+1].getAttribute('ref')), 
-        getLonByAtt(nd[j+1].getAttribute('ref')))], 
-        strokeColor: "#000000",
-        strokeOpacity: 1.0, 
-        strokeWeight: 3, map: map
-      });	
-    }	
-  }
+for (k=0;k<nd.length-1;k++){
+  line = new google.maps.Polyline({
+    path: [new google.maps.LatLng(getLatByAtt(nd[k].getAttribute('ref')),
+    getLonByAtt(nd[k].getAttribute('ref'))), new
+    google.maps.LatLng(getLatByAtt(nd[k+1].getAttribute('ref')),
+    getLonByAtt(nd[k+1].getAttribute('ref')))], 
+    strokeColor: "#000000",
+    strokeOpacity: 1.0, 
+    strokeWeight: 3,
+    map: map
+  });
 }
 \end{verbatim}
   
@@ -512,48 +604,26 @@ function addInfoWindow(marker, message) {
   });
 }
 \end{verbatim}
-
-  \item Membuat fungsi untuk menandai \textit{marker} sebagai titik asal atau
-  titik tujuan.
-\begin{verbatim}
-function setAsal(id,idnode){
-  if(!isAsalClicked){
-    markers[id].setIcon('icon/dot_green.png');
-    isAsalClicked = true;
-    asal = id;
-  }else{
-    markers[asal].setIcon('icon/dot_blue.png');
-    markers[id].setIcon('icon/dot_green.png');
-    asal = id;
-  }
-  return asal;
-}
-
-function setTujuan(id,idnode){
-  if(!isTujuanClicked){
-    markers[id].setIcon('icon/dot_red.png');
-    isTujuanClicked = true;
-    tujuan = id;
-  }else{
-    markers[tujuan].setIcon('icon/dot_blue.png');
-    markers[id].setIcon('icon/dot_red.png');
-    tujuan = id;
-  }
-  return tujuan;
-}
-\end{verbatim}
+  Berikut ini adalah tahap-tahap yang dilakukan:
+  \begin{enumerate}
+    \item Membuat fungsi addInfoWindow dengan parameter \textit{input} yaitu
+    \textit{marker} dan pesan.
+    
+    \item Membuat objek google.maps.InfoWindow.
+    
+    \item Menambahkan objek google.maps.InfoWindow pada \textit{listener} yang
+    berasosiasi dengan parameter \textit{marker}.
+  \end{enumerate}
 \end{enumerate}
-Hasil dari langkah-langkah di atas dapat dilihat pada Gambar
-\ref{fig:visualisasi}.
 \begin{figure}[h]
 \centering
 \includegraphics[scale=0.5]{Gambar/visualisasi_graf}
-\caption[Visualisasi Graf]{Visualisasi Graf}
+\caption[Visualisasi]{Visualisasi}
 \label{fig:visualisasi}
 \end{figure}
-
-Setiap node pada graf yang sudah dilakukan \textit{filter}
-akan diwakili oleh marker. Setiap marker tersebut akan memiliki \textit{info
+Hasil dari langkah-langkah di atas dapat dilihat pada Gambar
+\ref{fig:visualisasi}. Setiap node pada graf yang sudah dilakukan
+\textit{filter} akan diwakili oleh marker. Setiap marker tersebut akan memiliki \textit{info
 window} yang akan memberikan informasi seperti id node, index node pada graf,
 dan dua buah \textit{hyperlink} yang berfungsi untuk menjadikan marker yang
 dipilih menjadi asal atau tujuan. Contoh \textit{info window} yang ditampilkan
@@ -576,40 +646,40 @@ digunakan:
 \begin{verbatim}
 function Dijkstra(){
   var INFINITY = 1/0;
-  this.vertices = {};
+  this.nodes = {};
 }
 \end{verbatim}
 
   \item Membuat fungsi untuk menambahkan node. 
 \begin{verbatim}
-this.addVertex = function(name,edges){
-  this.vertices[name] = edges;
+this.addNode = function(name,edges){
+  this.nodes[name] = edges;
 }
 \end{verbatim}
 
   \item Implementasi algoritma dijkstra
 \begin{verbatim}
 this.shortestPath = function(asal, tujuan){
-  var nodes = new PriorityQueue();
+  var PQ = new PriorityQueue();
   var distances = {};
   var previous = {};
   var path = [];
   var smallest, vertex, neighbor, alt;
 
-  for(vertex in this.vertices){
+  for(vertex in this.nodes){
     if(vertex === asal){
       distances[vertex] = 0;
-      nodes.enqueue(0, vertex);
+      PQ.enqueue(0, vertex);
     }
     else{
       distances[vertex] = INFINITY;
-      nodes.enqueue(INFINITY, vertex);
+      PQ.enqueue(INFINITY, vertex);
     }
     previous[vertex] = null;
   }
 
-  while(!nodes.isEmpty()){
-    smallest = nodes.dequeue();
+  while(!PQ.isEmpty()){
+    smallest = PQ.dequeue();
     if(smallest === tujuan){
       while(previous[smallest]){
         path.push(smallest);
@@ -617,19 +687,22 @@ this.shortestPath = function(asal, tujuan){
       }
       break;
     }
+
     if(!smallest || distances[smallest] === INFINITY){
       continue;
     }
-    for(neighbor in this.vertices[smallest]){
-      alt = distances[smallest] + this.vertices[smallest][neighbor];
+
+    for(neighbor in this.nodes[smallest]){
+      alt = distances[smallest] + this.nodes[smallest][neighbor];
       if(alt < distances[neighbor]) {
         distances[neighbor] = alt;
         previous[neighbor] = smallest;
-        nodes.enqueue(alt, neighbor);
+        PQ.enqueue(alt, neighbor);
       }
     }
   }
   return path;
+}
 \end{verbatim}
 \end{enumerate}
 Fungsi dijkstra akan menerima \textit{input} berupa objek ``edge'' yang berisi
@@ -649,7 +722,7 @@ Visualisasi rute terdekat dapat dilihat pada Gambar
  \begin{figure}[h]
 \centering
 \includegraphics[scale=0.5]{Gambar/visualisasi_dijkstra}
-\caption[visualisasi_dijkstra]{Visualisasi Rute Terdekat}
+\caption[Visualisasi Rute Terdekat]{Visualisasi Rute Terdekat}
 \label{fig:visualisasi_dijkstra}
 \end{figure}
 
@@ -659,11 +732,10 @@ disediakan oleh OpenStreetMap dalam bentuk XML dan memodelkannya ke dalam bentuk
 \textit{User} dapat memilih titik asal dan titik tujuan, selanjutnya akan
 diimplementasikan algoritma Dijkstra untuk mencari rute terdekat antara kedua titik 
 tersebut dan menunjukkan hasilnya secara visual menggunakan Google Maps
-Javascript API.
-Pada subbab ini akan memperjelas interaksi antara \textit{user} dengan
-sistem yaitu menggunakan diagram \textit{use case} dan skenario. Dan juga
-diagram kelas untuk menunjukkan kelas-kelas yang ada pada sistem dan
-hubungannya.
+Javascript API. Pada subbab ini akan membahas interaksi antara \textit{user}
+dengan sistem yaitu menggunakan diagram \textit{use case} dan skenario. Setelahnya,
+dibahas juga diagram kelas untuk menunjukkan kelas-kelas yang ada pada sistem
+dan hubungannya.
 
 \subsection{Diagram \textit{Use Case}}
 Diagram \textit{use case} adalah pemodelan yang berfungsi memperjelas interaksi
@@ -672,8 +744,8 @@ Diagram \textit{use case} aplikasi pencarian rute terdekat dapat dilihat pada
 Gambar \ref{fig:usecase}.
 \begin{figure}[h]
 \centering
-\includegraphics[scale=0.6]{Gambar/usecase}
-\caption[Diagram \textit{use case}]{Diagram \textit{use case}}
+\includegraphics[scale=0.55]{Gambar/usecase}
+\caption[Diagram Use Case]{Diagram \textit{use case}}
 \label{fig:usecase}
 \end{figure}
 

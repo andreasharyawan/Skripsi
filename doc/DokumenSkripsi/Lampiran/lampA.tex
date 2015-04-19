@@ -1,44 +1,854 @@
-\chapter{The Program}
-\label{app:A}
+\chapter{Kode Program}
+\label{kode_program}
 
-The interface of the program is shown in Figure~\ref{fig:appxa2}:
+%selalu gunakan single spacing untuk source code !!!!!
+\singlespacing 
+% language: bahasa dari kode program
+% terdapat beberapa pilihan : Java, C, C++, PHP, Matlab, R, dll
+%
+% basicstyle : ukuran font untuk kode program
+% terdapat beberapa pilihan : tiny, scriptsize, footnotesize, dll
+%
+% caption : nama yang akan ditampilkan di dokumen akhir, lihat contoh
+\begin{lstlisting}[language=HTML,basicstyle=\tiny,caption=aplikasi.html]
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry"></script>
 
-\begin{figure}[H]
-\centering
-\includegraphics[scale=1]{Gambar/appxa2}
-\caption[Interface of the program]{Interface of the program} 
-\label{fig:appxa2}
-\end{figure}
+</head>
+<style>
+.style-1 input[type="text"] {
+  padding: 10px;
+  border: solid 1px #dcdcdc;
+  transition: box-shadow 0.3s, border 0.3s;
+}
 
-Step by step to compute the median trajectory using the program:
-\begin{enumerate}
-\item
-Create several waypoints. 
-Click anywhere in the ``Environment'' area(1) or create them automatically by setting the parameters for waypoint(2) or clicking the button ``Random''(3).
-\item
-The ``Variation'' tab could be used to create variations by providing values needed to make them(4).
-\item
-Create a set of trajectories by setting all parameters(5) and clicking the button ``Create''(6).
-\item
-Compute the median using the homotopic algorithm: 
-\begin{itemize}
-\item Define all parameters needed for the homotopic algorithm(7).
-\item Create crosses by clicking the ``Create Crosses'' button(8).\item Compute the median by clicking the ``Compute Median'' button(9).
-\end{itemize}
-\item
-Compute the median using the switching method and the buffer algorithm: 
-\begin{itemize}
-\item Define all parameters needed for the buffer algorithm(10).
-\item Create valid edges by clicking the ``Create Valid Edges''button(11). 
-\item Compute the median by clicking the ``Compute Median''button(12).
-\end{itemize}
-\item
-Save the resulting median by clicking the ``Save Trajectories'' button(13).
-The result is saved in the computer memory and can be seen in ``Data'' tab(14) 
-\item 
-The set of trajectories and its median trajectories will appear in the ``Environment'' area(1) and the user can change what to display by selecting various choices in ``Visualize'' and ``Median'' area(15).
-\item
-To save all data to the disk, click the ``Save''(16) button. A file dialog menu will appear.
-\item
-To load data from the disk, click the ``Load''(17) button.
-\end{enumerate}
+.style-1 input[type="text"]:focus,
+.style-1 input[type="text"].focus {
+  border: solid 1px #707070;
+  box-shadow: 0 0 5px 1px #969696;
+}
+
+.cari {
+	-moz-box-shadow: 3px 4px 0px 0px #1564ad;
+	-webkit-box-shadow: 3px 4px 0px 0px #1564ad;
+	box-shadow: 3px 4px 0px 0px #1564ad;
+	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #79bbff), color-stop(1, #378de5));
+	background:-moz-linear-gradient(top, #79bbff 5%, #378de5 100%);
+	background:-webkit-linear-gradient(top, #79bbff 5%, #378de5 100%);
+	background:-o-linear-gradient(top, #79bbff 5%, #378de5 100%);
+	background:-ms-linear-gradient(top, #79bbff 5%, #378de5 100%);
+	background:linear-gradient(to bottom, #79bbff 5%, #378de5 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#79bbff', endColorstr='#378de5',GradientType=0);
+	background-color:#79bbff;
+	-moz-border-radius:5px;
+	-webkit-border-radius:5px;
+	border-radius:5px;
+	border:1px solid #337bc4;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:arial;
+	font-size:13px;
+	font-weight:bold;
+	padding:7px 18px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #528ecc;
+}
+
+.cari:hover {
+	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #378de5), color-stop(1, #79bbff));
+	background:-moz-linear-gradient(top, #378de5 5%, #79bbff 100%);
+	background:-webkit-linear-gradient(top, #378de5 5%, #79bbff 100%);
+	background:-o-linear-gradient(top, #378de5 5%, #79bbff 100%);
+	background:-ms-linear-gradient(top, #378de5 5%, #79bbff 100%);
+	background:linear-gradient(to bottom, #378de5 5%, #79bbff 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#378de5', endColorstr='#79bbff',GradientType=0);
+	background-color:#378de5;
+}
+
+.cari:active {
+	position:relative;
+	top:1px;
+}
+
+.reload {
+	-moz-box-shadow:inset 0px 1px 0px 0px #a4e271;
+	-webkit-box-shadow:inset 0px 1px 0px 0px #a4e271;
+	box-shadow:inset 0px 1px 0px 0px #a4e271;
+	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #89c403), color-stop(1, #77a809));
+	background:-moz-linear-gradient(top, #89c403 5%, #77a809 100%);
+	background:-webkit-linear-gradient(top, #89c403 5%, #77a809 100%);
+	background:-o-linear-gradient(top, #89c403 5%, #77a809 100%);
+	background:-ms-linear-gradient(top, #89c403 5%, #77a809 100%);
+	background:linear-gradient(to bottom, #89c403 5%, #77a809 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#89c403', endColorstr='#77a809',GradientType=0);
+	background-color:#89c403;
+	-moz-border-radius:6px;
+	-webkit-border-radius:6px;
+	border-radius:6px;
+	border:1px solid #74b807;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:arial;
+	font-size:15px;
+	font-weight:bold;
+	padding:6px 24px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #528009;
+}
+
+.reload:hover {
+	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #77a809), color-stop(1, #89c403));
+	background:-moz-linear-gradient(top, #77a809 5%, #89c403 100%);
+	background:-webkit-linear-gradient(top, #77a809 5%, #89c403 100%);
+	background:-o-linear-gradient(top, #77a809 5%, #89c403 100%);
+	background:-ms-linear-gradient(top, #77a809 5%, #89c403 100%);
+	background:linear-gradient(to bottom, #77a809 5%, #89c403 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#77a809', endColorstr='#89c403',GradientType=0);
+	background-color:#77a809;
+}
+
+.reload:active {
+	position:relative;
+	top:1px;
+}
+</style>
+<body>
+<div id="googleMap" style="width:75%;height:600px;float:left"></div>
+<div id="cari" style="width:25%;height:60px;float:left">
+<div style="margin-left:50px;margin-top:20px">
+	<table style="border:1">
+		<tr>
+			<label>Titik Asal:</label>
+		</tr>
+		<tr>
+			<ul class="input-list style-1 clearfix">
+				<input type="text" id="asal" placeholder=" Asal ">
+			</ul>
+		</tr>
+	</table>
+</div>
+<div style="margin-left:50px">
+<table>
+	<tr>
+		<label>Titik Tujuan:</label>
+	</tr>
+	<tr>
+		<ul class="input-list style-1 clearfix">
+            <input type="text" id="tujuan" placeholder=" Tujuan ">
+        </ul>
+	</tr>
+</table>
+</div>
+<br/>
+<div style="margin-left:70px">
+	<a href="#" onclick="result()" class="cari">Cari!</a> &nbsp &nbsp
+	<a href="javascript:location.reload(true)" class="reload">Reload</a>
+</div>
+</div>
+<script>
+//Load XML
+xmlhttp=new XMLHttpRequest();
+xmlhttp.open("GET","bandung2.xml",false);
+xmlhttp.send();
+xmlDoc=xmlhttp.responseXML;
+
+// Adjacency List
+//Kelas Neighbor
+function Neighbor(vnum, nbr, weight){
+    this.vertexNum = vnum;
+    this.next = nbr;
+	this.weight = weight;
+}
+
+//Kelas Node
+function Node(id, neighbors){
+    this.id = id;
+    this.adjList = neighbors;
+}
+
+//Kelas Graph
+function Graph(node,way){
+	var adjLists = [];
+	var nd;
+	var oneway;
+	
+	function wayDirection(way,index){
+		var tag = way[index].getElementsByTagName("tag");
+		for (hg=0;hg<tag.length;hg++)
+		{
+			if(tag[hg].getAttribute('k') == "oneway"){
+				return tag[hg].getAttribute('v');
+			}
+		}
+		return false;
+	}
+	 
+	function isHighway(way,index){
+		var tag = way[index].getElementsByTagName("tag");
+		for (hg=0;hg<tag.length;hg++)
+		{
+			if(tag[hg].getAttribute('k') == "highway"){
+				return true;
+			}
+		}
+		return false;
+	}
+
+	function indexForId(adjLists,id) {
+		for (var i=0; i < adjLists.length; i++){
+			if (adjLists[i].id == id){
+				return i;
+			}
+		}
+		return -1;
+	}
+
+	function getLatByAtt(str)
+	{
+		for (n=0;n<node.length;n++)
+		{
+			if(node[n].getAttribute('id') == str)
+			{
+				return node[n].getAttribute('lat');
+			}
+		}
+	}
+	
+	function getLonByAtt(str)
+	{
+		for (m=0;m<node.length;m++)
+		{
+			if(node[m].getAttribute('id') == str)
+			{
+				return node[m].getAttribute('lon');
+			}
+		}
+	}
+	
+	for(v=0; v < node.length; v++){
+		adjLists.push(new Node(node[v].getAttribute('id'),null));
+	}
+	
+	var lat1,lon1,lat2,lon2;
+	var point1,point2,distance;
+	
+	for (i=0;i<way.length;i++)
+	{
+		nd = way[i].getElementsByTagName("nd");
+		if(isHighway(way,i)){
+			oneway = wayDirection(way,i);
+			for (j=0;j<nd.length-1;j++)
+			{
+				v1 = indexForId(adjLists,nd[j].getAttribute('ref'));
+				v2 = indexForId(adjLists,nd[j+1].getAttribute('ref'));
+				
+				lat1 = getLatByAtt(nd[j].getAttribute('ref'));
+				lon1 = getLonByAtt(nd[j].getAttribute('ref'));
+				lat2 = getLatByAtt(nd[j+1].getAttribute('ref'));
+				lon2 = getLonByAtt(nd[j+1].getAttribute('ref'));
+	
+				point1 = new google.maps.LatLng(lat1,lon1);
+				point2 = new google.maps.LatLng(lat2,lon2);
+				distance = google.maps.geometry.spherical.computeDistanceBetween(point1, point2);
+				
+				if(oneway == "yes"){
+					adjLists[v1].adjList = new Neighbor(v2, adjLists[v1].adjList,distance);
+				}else if(oneway == "no"){
+					adjLists[v1].adjList = new Neighbor(v2, adjLists[v1].adjList,distance);
+					adjLists[v2].adjList = new Neighbor(v1, adjLists[v2].adjList,distance);
+				}else if(oneway == "-1"){
+					adjLists[v2].adjList = new Neighbor(v1, adjLists[v2].adjList,distance);
+				}else{
+					adjLists[v1].adjList = new Neighbor(v2, adjLists[v1].adjList,distance);
+					adjLists[v2].adjList = new Neighbor(v1, adjLists[v2].adjList,distance);
+				}	
+			}
+		}
+	}	
+	return adjLists;
+}
+
+//Kelas Map
+function Map(){
+	var path;
+	var markers = {};
+	var nd,marker,line,content,id;
+	var image = 'icon/dot_blue.png';
+	
+	var mapProp = {
+		center:new google.maps.LatLng(-6.906845432118958,107.59851515293121),
+		zoom:17,
+		mapTypeId:google.maps.MapTypeId.ROADMAP
+	};
+	var map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
+	
+	function indexForId(adjLists,id) {
+		for (var i=0; i < adjLists.length; i++){
+			if (adjLists[i].id == id){
+				return i;
+			}
+		}
+		return -1;
+	}
+	
+	var currentId = 0;
+	var uniqueId = function() {
+		return ++currentId;
+	}
+	 
+	function isHighway(way,index){
+		var tag = way[index].getElementsByTagName("tag");
+		for (hg=0;hg<tag.length;hg++)
+		{
+			if(tag[hg].getAttribute('k') == "highway"){
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	function getLatByAtt(str)
+	{
+		for (n=0;n<node.length;n++)
+		{
+			if(node[n].getAttribute('id') == str)
+			{
+				return node[n].getAttribute('lat');
+			}
+		}
+	}
+	
+	function getLonByAtt(str)
+	{
+		for (m=0;m<node.length;m++)
+		{
+			if(node[m].getAttribute('id') == str)
+			{
+				return node[m].getAttribute('lon');
+			}
+		}
+	}
+	
+	function addInfoWindow(marker, message) {
+		var infoWindow = new google.maps.InfoWindow({
+			content: message
+		});
+
+		google.maps.event.addDomListener(marker, 'click', function () {
+			infoWindow.open(map, marker);
+		});
+	}
+	
+	this.hasilCari = function(rute){
+		for (i=0; i < rute.length-1; i++){
+			line = new google.maps.Polyline({
+				path: [new google.maps.LatLng(getLatByAtt(list[rute[i]].id), getLonByAtt(list[rute[i]].id)),
+				new google.maps.LatLng(getLatByAtt(list[rute[i+1]].id), getLonByAtt(list[rute[i+1]].id))],
+				strokeColor: "#FF0000",
+				strokeOpacity: 1.0,
+				strokeWeight: 6,
+				map: map,
+			});
+		}	
+	}
+	
+	this.generate = function(){
+		for (i=0;i<way.length;i++)
+		{
+			nd = way[i].getElementsByTagName("nd");
+			if(isHighway(way,i))
+			{
+				for (j=0;j<nd.length;j++)
+				{
+					id = uniqueId();
+					marker = new google.maps.Marker({
+						id: id,
+						position: new google.maps.LatLng(getLatByAtt(nd[j].getAttribute('ref')), getLonByAtt(nd[j].getAttribute('ref'))),
+						map: map,
+						icon: image,
+					});
+					markers[id] = marker;
+
+					content = 'Id Node : '+nd[j].getAttribute('ref')+'<br>'+
+					'Index Node : '+indexForId(list,nd[j].getAttribute('ref'))+'<br>'+
+					'<a href="#" onclick="setAsal(\'' + id + '\',\'' + nd[j].getAttribute('ref') + '\',\'' + indexForId(list,nd[j].getAttribute('ref')) + '\')">Pilih sebagai asal</a>'+'<br>'+
+					'<a href="#" onclick="setTujuan(\'' + id + '\',\'' + nd[j].getAttribute('ref') + '\',\'' + indexForId(list,nd[j].getAttribute('ref')) + '\')">Pilih sebagai tujuan</a>';
+					
+					addInfoWindow(marker, content);	
+				}
+				
+				for (k=0;k<nd.length-1;k++)
+				{
+					line = new google.maps.Polyline({
+						path: [new google.maps.LatLng(getLatByAtt(nd[k].getAttribute('ref')), getLonByAtt(nd[k].getAttribute('ref'))),
+						new google.maps.LatLng(getLatByAtt(nd[k+1].getAttribute('ref')), getLonByAtt(nd[k+1].getAttribute('ref')))],
+						strokeColor: "#000000",
+						strokeOpacity: 0.4,
+						strokeWeight: 3,
+						map: map
+					});
+				}
+			}
+		}
+		return markers;
+	}
+}
+
+//Kelas PriorityQueue
+function PriorityQueue(){
+	this._nodes = [];
+  
+	this.enqueue = function(priority,key){
+		this._nodes.push({key: key,priority: priority});
+		this.sort();
+	}
+	
+	this.dequeue = function () {
+		return this._nodes.shift().key;
+	}
+	
+	this.sort = function(){
+		this._nodes.sort(function(a,b){
+			return a.priority - b.priority;
+		});
+	}
+  
+	this.isEmpty = function(){
+		return !this._nodes.length;
+	}
+}
+
+//Kelas Dijkstra
+function Dijkstra(){
+	var INFINITY = 1/0;
+	this.nodes = {};
+
+	this.addNode = function(name,edges){
+		this.nodes[name] = edges;
+	}
+
+	this.shortestPath = function(asal, tujuan){
+		var PQ = new PriorityQueue();
+		var	distances = {};
+		var	previous = {};
+		var	path = [];
+		var	smallest, vertex, neighbor, alt;
+
+		for(vertex in this.nodes){
+			if(vertex === asal){
+				distances[vertex] = 0;
+				PQ.enqueue(0, vertex);
+			}
+			else{
+				distances[vertex] = INFINITY;
+				PQ.enqueue(INFINITY, vertex);
+			}
+			previous[vertex] = null;
+		}
+
+		while(!PQ.isEmpty()){
+			smallest = PQ.dequeue();
+			if(smallest === tujuan){
+				while(previous[smallest]){
+					path.push(smallest);
+					smallest = previous[smallest];
+				}
+				break;
+			}
+
+			if(!smallest || distances[smallest] === INFINITY){
+				continue;
+			}
+
+			for(neighbor in this.nodes[smallest]){
+				alt = distances[smallest] + this.nodes[smallest][neighbor];
+				if(alt < distances[neighbor]) {
+					distances[neighbor] = alt;
+					previous[neighbor] = smallest;
+					PQ.enqueue(alt, neighbor);
+				}
+			}
+		}
+		return path;
+	}
+}
+
+
+var node = xmlDoc.getElementsByTagName("node");
+var way = xmlDoc.getElementsByTagName("way");
+
+var list = new Graph(node,way);
+var peta = new Map();
+var mark = peta.generate();
+
+//Fungsi SetAsal dan Tujuan
+var isAsalClicked = false;
+var isTujuanClicked = false;
+var idAsal,idTujuan,indexAsal,indexTujuan;
+
+function setAsal(id,idnode,indexNode){
+	if(!isAsalClicked){
+		mark[id].setIcon('icon/dot_green.png');
+		isAsalClicked = true;
+		idAsal = id;
+		indexAsal = indexNode;
+	}else{
+		mark[idAsal].setIcon('icon/dot_blue.png');
+		mark[id].setIcon('icon/dot_green.png');
+		idAsal = id;
+		indexAsal = indexNode;
+	}
+	document.getElementById('asal').value = "Id Node: "+ idnode;
+}
+
+function setTujuan(id,idnode,indexNode){
+	if(!isTujuanClicked){
+		mark[id].setIcon('icon/dot_red.png');
+		isTujuanClicked = true;
+		idTujuan = id;
+		indexTujuan = indexNode;
+	}else{
+		mark[idTujuan].setIcon('icon/dot_blue.png');
+		mark[id].setIcon('icon/dot_red.png');
+		idTujuan = id;
+		indexTujuan = indexNode;
+	}
+	document.getElementById('tujuan').value = "Id Node: "+ idnode;
+}
+
+function result(){
+	var cari = new Dijkstra();
+	var rute;
+	var edge;
+	for (j=0; j < list.length; j++){
+		edge = new Object();
+		for (nbr=list[j].adjList; nbr != null;nbr=nbr.next) {
+			edge[nbr.vertexNum] = nbr.weight;	
+		}
+		cari.addNode(j,edge);
+	}
+
+	console.log("Titik Asal: "+indexAsal);
+	console.log("Titik Tujuan: "+indexTujuan);
+	rute = cari.shortestPath(indexAsal,indexTujuan).concat([indexAsal]).reverse();
+	console.log(rute);
+	if(rute.length == 1){
+		if(indexAsal == null){
+			alert("Anda belum memilih titik Asal");
+		}else if(indexTujuan == null){
+			alert("Anda belum memilih titik Tujuan");
+		}else if(indexAsal != null && indexTujuan != null){
+			alert("Rute Tidak Ditemukan");
+		}
+	}else{
+		peta.hasilCari(rute);
+	}
+}
+
+</script>
+</body>
+</html>
+\end{lstlisting}
+
+\begin{lstlisting}[language=HTML,basicstyle=\tiny,caption=list.html]
+ <!DOCTYPE html>
+<html>
+<head>
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry"></script>
+</head>
+<body>
+<script>
+xmlhttp=new XMLHttpRequest();
+xmlhttp.open("GET","test.xml",false);
+xmlhttp.send();
+xmlDoc=xmlhttp.responseXML;
+
+function Neighbor(vnum, nbr, weight){
+    this.vertexNum = vnum;
+	this.weight = weight;
+    this.next = nbr;
+}
+
+function Node(id, neighbors){
+    this.id = id;
+    this.adjList = neighbors;
+}
+
+function isOneway(way,index){
+	var tag = way[index].getElementsByTagName("tag");
+	for (hg=0;hg<tag.length;hg++)
+	{
+		if(tag[hg].getAttribute('k') == "oneway"){
+			return tag[hg].getAttribute('v');
+		}
+	}
+	return false;
+}
+
+function isHighway(way,index){
+	var tag = way[index].getElementsByTagName("tag");
+	for (hg=0;hg<tag.length;hg++)
+	{
+		if(tag[hg].getAttribute('k') == "highway"){
+			return true;
+		}
+	}
+	return false;
+}
+
+function indexForId(adjLists,id) {
+	for (var i=0; i < adjLists.length; i++){
+		if (adjLists[i].id == id){
+			return i;
+		}
+	}
+	return -1;
+}
+
+function getLatByAtt(str)
+{
+	for (n=0;n<node.length;n++)
+	{
+		if(node[n].getAttribute('id') == str)
+		{
+			return node[n].getAttribute('lat');
+		}
+	}
+}
+function getLonByAtt(str)
+{
+	for (m=0;m<node.length;m++)
+	{
+		if(node[m].getAttribute('id') == str)
+		{
+			return node[m].getAttribute('lon');
+		}
+	}
+}
+
+function Graph(node,way){
+	var adjLists = [];
+	var nd;
+	var oneway;
+	var lat1,lon1,lat2,lon2;
+	var point1,point2,distance;
+	
+	for(v=0; v < node.length; v++){
+		adjLists.push(new Node(node[v].getAttribute('id'),null));
+	}
+	
+	for (i=0;i<way.length;i++)
+	{
+		nd = way[i].getElementsByTagName("nd");
+		if(isHighway(way,i)){
+			oneway = isOneway(way,i);
+			for (j=0;j<nd.length-1;j++)
+			{
+				v1 = indexForId(adjLists,nd[j].getAttribute('ref'));
+				v2 = indexForId(adjLists,nd[j+1].getAttribute('ref'));
+				
+				lat1 = getLatByAtt(nd[j].getAttribute('ref'));
+				lon1 = getLonByAtt(nd[j].getAttribute('ref'));
+				lat2 = getLatByAtt(nd[j+1].getAttribute('ref'));
+				lon2 = getLonByAtt(nd[j+1].getAttribute('ref'));
+	
+				point1 = new google.maps.LatLng(lat1,lon1);
+				point2 = new google.maps.LatLng(lat2,lon2);
+				distance = google.maps.geometry.spherical.computeDistanceBetween(point1, point2);
+				
+				if(oneway == "yes"){
+					adjLists[v1].adjList = new Neighbor(v2, adjLists[v1].adjList,distance);
+				}else if(oneway == "no"){
+					adjLists[v1].adjList = new Neighbor(v2, adjLists[v1].adjList,distance);
+					adjLists[v2].adjList = new Neighbor(v1, adjLists[v2].adjList,distance);
+				}else if(oneway == "-1"){
+					adjLists[v2].adjList = new Neighbor(v1, adjLists[v2].adjList,distance);
+				}else{
+					adjLists[v1].adjList = new Neighbor(v2, adjLists[v1].adjList,distance);
+					adjLists[v2].adjList = new Neighbor(v1, adjLists[v2].adjList,distance);
+				}	
+			}
+		}
+	}	
+	return adjLists;
+}
+
+function print(list){
+	for (j=0; j < list.length; j++){
+		document.write(j);
+		for (nbr=list[j].adjList; nbr != null;nbr=nbr.next) {
+			document.write("---->");
+			document.write('('+nbr.vertexNum+')');
+		}
+		document.write("<br>");
+	}
+}
+
+function print2(list){
+	for (j=0; j < list.length; j++){
+		document.write(j);
+		document.write("-->");
+		document.write(list[j].id);
+		for (nbr=list[j].adjList; nbr != null;nbr=nbr.next) {
+		document.write("---->");
+		document.write(list[nbr.vertexNum].id);
+		}
+		document.write("<br>");
+	}
+}
+
+var node = xmlDoc.getElementsByTagName("node");
+var way = xmlDoc.getElementsByTagName("way");
+
+var list = new Graph(node,way);
+print(list);
+//print2(list);
+
+
+</script>
+</body>
+</html> 
+\end{lstlisting}
+
+\begin{lstlisting}[language=HTML,basicstyle=\tiny,caption=xml\_parsing.html]
+<html>
+<head>
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry"></script>
+<style>
+table, th, td {
+    border: 1px solid black;
+    border-collapse:collapse;
+}
+th, td {
+    padding: 5px;
+}
+</style>
+</head>
+<body>
+<script>
+xmlhttp=new XMLHttpRequest();
+xmlhttp.open("GET","test.xml",false);
+xmlhttp.send();
+xmlDoc=xmlhttp.responseXML;
+
+function getDistance(lat1,lon1,lat2,lon2) {
+  var R = 6371; // Radius of the earth in km
+  var dLat = deg2rad(lat2-lat1);  // deg2rad below
+  var dLon = deg2rad(lon2-lon1); 
+  var a = 
+    Math.sin(dLat/2) * Math.sin(dLat/2) +
+    Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) * 
+    Math.sin(dLon/2) * Math.sin(dLon/2)
+    ; 
+  var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
+  var d = R * c; // Distance in km
+  return d;
+}
+
+function deg2rad(deg) {
+  return deg * (Math.PI/180)
+}
+
+document.write("<div style='float: left'>");
+document.write("<table><tr><th>Node</th><th>Id</th><th>Latitude</th><th>Longitude</th></tr>");
+document.write("<caption>Node</caption>");
+var node=xmlDoc.getElementsByTagName("node");
+for (ct=0;ct<node.length;ct++)
+  {
+  document.write("<tr><td>");
+  document.write(ct);
+  document.write("</td><td>");
+  document.write(node[ct].getAttribute('id'));
+  document.write("</td><td>");
+  document.write(node[ct].getAttribute('lat'));
+  document.write("</td><td>");
+  document.write(node[ct].getAttribute('lon'));
+  document.write("</td></tr>");
+  }
+document.write("</table>");
+document.write("</div>");
+
+function isHighway(way,index){
+	var tag = way[index].getElementsByTagName("tag");
+	for (hg=0;hg<tag.length;hg++)
+	{
+		if(tag[hg].getAttribute('k') == "highway"){
+			return true;
+		}
+	}
+	return false;
+}
+
+function getLatByAtt(str)
+{
+	for (n=0;n<node.length;n++)
+	{
+		if(node[n].getAttribute('id') == str)
+		{
+			return node[n].getAttribute('lat');
+		}
+	}
+	return -1;
+}
+function getLonByAtt(str)
+{
+	for (m=0;m<node.length;m++)
+	{
+		if(node[m].getAttribute('id') == str)
+		{
+			return node[m].getAttribute('lon');
+		}
+	}
+	return -1;
+}
+
+document.write("<div style='margin-left: 20px;float: left'>");
+document.write("<table><tr><th>Way</th><th>Id Way</th><th>Edge</th><th>Id Node 1</th><th>Id Node 2</th><th>Jarak dalam meter</th></tr>");
+document.write("<caption>Edge</caption>");
+var way = xmlDoc.getElementsByTagName("way");
+var nd;
+var lat1;
+var lon1;
+var lat2;
+var lon2;
+for (i=0;i<way.length;i++)
+{
+	nd = way[i].getElementsByTagName("nd");
+	if(isHighway(way,i)){
+		for (j=0;j<nd.length-1;j++)
+		{
+			document.write("<tr><td>");
+			document.write(i);
+			document.write("</td><td>");
+			document.write(way[i].getAttribute('id'));
+			document.write("</td><td>");
+			document.write(j);
+			document.write("</td><td>");
+			document.write(nd[j].getAttribute('ref'));
+			document.write("</td><td>");
+			document.write(nd[j+1].getAttribute('ref'));
+			document.write("</td><td>");
+			lat1 = getLatByAtt(nd[j].getAttribute('ref'));
+			lon1 = getLonByAtt(nd[j].getAttribute('ref'));
+			lat2 = getLatByAtt(nd[j+1].getAttribute('ref'));
+			lon2 = getLonByAtt(nd[j+1].getAttribute('ref'));
+			
+			point1 = new google.maps.LatLng(lat1,lon1);
+			point2 = new google.maps.LatLng(lat2,lon2);
+			distance = google.maps.geometry.spherical.computeDistanceBetween(point1, point2);
+			//document.write(getDistance(lat1,lon1,lat2,lon2)*1000);			
+			document.write(distance);			
+			document.write("</td></tr>");
+		}
+	}
+}
+document.write("</div>");
+
+</script>
+</body>
+</html>
+\end{lstlisting}

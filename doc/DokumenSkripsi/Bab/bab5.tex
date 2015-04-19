@@ -8,8 +8,9 @@ apakah fungsi-fungsi utama aplikasi sudah berjalan dengan baik dan
 juga untuk mengetahui kekurangan yang dimiliki aplikasi tersebut.
 
 \section{Implementasi}
-Implementasi dilakukan menggunakan bahasa pemrograman javascript. Berikut ini
-adalah lingkungan pembangunan aplikasi pada saat implementasi dilakukan:
+Implementasi dilakukan menggunakan bahasa pemrograman javascript, hasil
+implementasi adalah dokumen HTML. Berikut ini adalah lingkungan pembangunan
+aplikasi pada saat implementasi dilakukan:
 \begin{enumerate}
   \item Processor\\
   Intel Core i5-2410M CPU @ 2.30Ghz (4 CPU)
@@ -32,3 +33,315 @@ adalah lingkungan pembangunan aplikasi pada saat implementasi dilakukan:
   \item Teks Editor\\
   Notepad++
 \end{enumerate}
+
+\section{Pengujian}
+Pada subbab ini akan dibahas pengujian yang dilakukan. Pengujian yang dilakukan
+dibagi menjadi dua tahap yaitu pengujian fungsional dan pengujian eksperimental.
+Pengujian fungsional menguji tampilan antar muka aplikasi beserta method atau
+fungsi dasar, sedangkan pengujian eksperimental dilakukan dengan menggunakan
+tiga dokumen OSMXML yang berbeda.
+
+\subsection{Pengujian Fungsional}
+Pengujian fungsional menguji tampilan antar muka aplikasi beserta method atau
+fungsi dasar. Seluruh pengujian fungsional menggunakan dokumen OSMXML
+yang bernama ``test.xml'', dokumen ini memiliki batas koordinat yaitu ``<bounds
+minlat="-6.9131000" minlon="107.5931000" maxlat="-6.9003000"
+maxlon="107.6149000"/>'', cakupan area tersebut berlokasi di Kota Bandung.
+Berikut ini adalah daftar fungsi yang diujikan:
+\begin{enumerate}
+  \item Tampilan antar muka.\\
+  Pada tampilan antar muka aplikasi terdapat elemen ``<div>'' sebagai tempat
+  untuk menampilkan peta dengan ukuran lebar 75\% dari lebar layar dan tinggi 600px. 
+  Di sebelah kanan layar terdapat 2 buah \textit{TextBox} yang menampilkan informasi titik asal
+  dan titik tujuan ketika \textit{user} memilih. Selain itu, terdapat 2 buah
+  tombol yaitu ``Cari!'' untuk mencari rute terdekat antara kedua titik
+  dan tombol kedua adalah ``Reload'' untuk memuat ulang aplikasi. Hasil
+  pengujian tampilan antar muka dapat dilihat pada Gambar \ref{fig:pu_antarmuka}.
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.45]{Gambar/pu_antarmuka}
+\caption[Pengujian Antar Muka]{Pengujian Antar Muka}
+\label{fig:pu_antarmuka}
+\end{figure}
+  
+  \item Fungsi untuk membaca dokumen OSMXML.\\
+  Aplikasi mendapatkan informasi dari dokumen OSMXML. Pengujian
+  fungsi ini dilakukan untuk memastikan bahwa dokumen OSMXML dapat dibaca dengan
+  baik. Pengujian dilakukan dengan cara membandingkan dokumen OSMXML dengan
+  informasi yang sudah dibaca. Contoh kasus adalah membandingkan 10 node
+  pertama, potongan informasi 10 node pertama pada ``test.xml'' dapat dilihat
+  pada Gambar \ref{fig:pu_osmxml2} dan hasil pengujian dapat dilihat pada Gambar
+  \ref{fig:pu_osmxml1}. Pada Gambar \ref{fig:pu_osmxml2} menunjukkan bahwa hasil
+  pembacaan sama dengan ``test.xml'' pada Gambar \ref{fig:pu_osmxml1}, hal ini
+  menunjukkan fungsi untuk membaca dokumen OSMXML sudah berjalan dengan baik.
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.7]{Gambar/pu_osmxml2}
+\caption[Dokumen test.xml]{Dokumen test.xml}
+\label{fig:pu_osmxml2}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+\includegraphics[scale=1]{Gambar/pu_osmxml1}
+\caption[Pengujian Fungsi OSMXML]{Pengujian Fungsi OSMXML}
+\label{fig:pu_osmxml1}
+\end{figure}
+\clearpage
+
+  \item Fungsi untuk mengukur jarak antara dua titik.\\
+  Pengukuran jarak antara dua titik menggunakan \textit{geometry spherical}.
+  Contoh kasus adalah mencari jarak setiap titik yang terdapat pada tag way
+  dengan id 190605660, hasil pengujian dapat dilihat pada Gambar
+  \ref{fig:pu_jarak1} dan \ref{fig:pu_jarak2}.
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.7]{Gambar/pu_jarak1}
+\caption[Dokumen test.xml]{Dokumen test.xml}
+\label{fig:pu_jarak1}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+\includegraphics[scale=1]{Gambar/pu_jarak2}
+\caption[Pengujian Jarak]{Pengujian Jarak}
+\label{fig:pu_jarak2}
+\end{figure}
+
+\item Fungsi untuk mengubah informasi OSMXML menjadi graf.
+\begin{figure}[h]
+\centering
+\includegraphics[scale=1]{Gambar/pu_graf}
+\caption[Pengujian Fungsi OSMXML Menjadi Graf]{Pengujian Fungsi OSMXML Menjadi Graf}
+\label{fig:pu_graf}
+\end{figure}\\
+  Informasi yang didapatkan dari OSMXML, selanjutnya diubah menjadi graf.
+  Pengujian dilakukan dengan mengubah seluruh ``test.xml'' menjadi graf
+  menggunakan \textit{adjacency list}. Berikut hasil pengujian, dapat dilihat
+  pada Gambar \ref{fig:pu_graf}. Pada Gambar \ref{fig:pu_graf} hanya ditampilkan
+  hingga 32 node, hal ini dikarenakan ``test.xml'' memiliki 207 buah node dan 
+  terlalu banyak jika ditampilkan seluruhnya.
+  
+  \item Fungsi untuk melakukan visualisasi.\\
+  Fungsi ini menggambarkan setiap node menggunakan \textit{marker} dan
+  setiap edge menggunakan \text{polyline} pada peta, hasil pengujian dapat
+  dilihat pada Gambar \ref{fig:pu_visual}.
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.5]{Gambar/pu_visual}
+\caption[Pengujian Fungsi Visualisasi]{Pengujian Fungsi Visualisasi}
+\label{fig:pu_visual}
+\end{figure}
+
+  \item Fungsi untuk memilih titik asal dan titik tujuan.\\
+  Pengujian dilakukan dengan memilih titik asal dan titik tujuan. Titik asal
+  yang sudah dipilih berganti \textit{icon} dengan warna hijau dan titik tujuan
+  yang sudah dipilih berganti \textit{icon} dengan warna merah. Informasi
+  Id Node dari kedua titik yang sudah dipilih, ditampilkan di sebelah kanan
+  layar. Hasil pengujian dapat dilihat pada Gambar \ref{fig:pu_titik}.
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.45]{Gambar/pu_titik}
+\caption[Pengujian Titik Asal dan Tujuan]{Pengujian Titik Asal dan Tujuan}
+\label{fig:pu_titik}
+\end{figure}
+  
+  \item Fungsi untuk mencari rute terdekat antar dua titik menggunakan
+  algoritma dijkstra.\\
+  Pengujian dilakukan dengan contoh kasus mencari rute terdekat dari titik asal
+  (id node : 29356381, index node : 16) ke titik tujuan (id node : 25500626,
+  index node : 11), hasil pengujian dapat dilihat pada Gambar \ref{fig:pu_rute}.
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.8]{Gambar/pu_rute}
+\caption[Pengujian Rute Terdekat]{Pengujian Rute Terdekat}
+\label{fig:pu_rute}
+\end{figure}
+
+  \item Fungsi untuk visualisasi rute terdekat.\\
+  Pengujian dilakukan dengan contoh kasus yang sama pada fungsi pencari rute
+  terdekat, rute terdekat digambarkan dengan \textit{polyline} berwarna
+  merah. Hasil pengujian dapat dilihat pada Gambar \ref{fig:pu_visualrute}.
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.45]{Gambar/pu_visualrute}
+\caption[Pengujian Visualisasi Rute Terdekat]{Pengujian Visualisasi Rute
+Terdekat}
+\label{fig:pu_visualrute}
+\end{figure}
+\end{enumerate}
+
+\subsection{Pengujian Eksperimental}
+Pengujian eksperimental dilakukan dengan menggunakan tiga dokumen OSMXML yang
+berbeda. Ketiga dokumen tersebut diberi nama bandung1.xml, bandung2.xml, dan
+bandung3.xml, berikut ini adalah cakupan area dari ketiga OSMXML tersebut:
+\begin{enumerate}
+  \item Bandung 1
+  \begin{itemize}
+    \item Batas Atas : -6.9044500
+    
+    \item Batas Bawah : -6.9076500
+    
+    \item Batas Kiri : 107.5961800
+    
+    \item Batas Kanan : 107.6016300
+  \end{itemize}
+
+  \item Bandung 2
+  \begin{itemize}
+    \item Batas Atas : -6.9003000
+    
+    \item Batas Bawah : -6.9131000
+    
+    \item Batas Kiri : 107.5931000
+    
+    \item Batas Kanan : 107.6149000
+  \end{itemize}
+  
+  \item Bandung 3
+  \begin{itemize}
+    \item Batas Atas : -6.8194
+    
+    \item Batas Bawah : -6.9959
+    
+    \item Batas Kiri : 107.553
+    
+    \item Batas Kanan : 107.745
+  \end{itemize}
+\end{enumerate}
+
+\setcounter{secnumdepth}{3}
+\setcounter{tocdepth}{3}
+\subsubsection{Pengujian Eksperimental Bandung 1}
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.75]{Gambar/pu_bandung1}
+\caption[Pengujian Bandung 1]{Pengujian Bandung 1}
+\label{fig:pu_bandung1}
+\end{figure}
+Pengujian dilakukan dengan melihat waktu \textit{load} ``bandung1.xml''
+(ukuran \textit{file} sebesar 98Kb), hasil pengujian dapat dilihat pada Gambar
+\ref{fig:pu_bandung1}.
+Pada Gambar \ref{fig:pu_bandung1} menunjukkan total waktu yang dibutuhkan untuk 
+melakukan \textit{load} ``bandung1.xml'' adalah 7.710ms. Berikut ini
+adalah aplikasi yang menggunakan dokumen ``bandung1.xml'' dapat dilihat pada
+Gambar \ref{fig:bandung1_load}.
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.45]{Gambar/bandung1_load}
+\caption[Pengujian Bandung 1]{Pengujian Bandung 1}
+\label{fig:bandung1_load}
+\end{figure}\\
+Setelah melakukan \textit{load} aplikasi menggunakan ``bandung1.xml'', pengujian
+dilanjutkan dengan mencari rute terdekat dari titik asal (Id Node : 25433686,
+Index Node : 192) ke titik tujuan (Id Node : 2325451571, Index Node : 198).
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.45]{Gambar/pu_bandung1_rute}
+\caption[Pengujian Bandung 1]{Pengujian Bandung 1}
+\label{fig:pu_bandung1_rute}
+\end{figure}
+Pada Gambar \ref{fig:pu_bandung1_rute} ditemukan \textit{bug} yaitu aplikasi
+menunjukkan rute terdekat (dalam kasus pengujian melalui Jl. Dr Rum) walaupun
+rute tersebut melawan arah (pada peta Google Maps menunjukkan bahwa Jl. Dr Rum
+adalah jalan satu arah). Setelah dilakukan penelitian lebih lanjut, ternyata kesalahan
+ditemukan pada dokumen OSMXML yaitu ``bandung1.xml'' yang tidak memberikan
+informasi ``oneway'', sehingga aplikasi memasukkan informasi yang salah tersebut
+ke dalam graf sebagai jalan dua arah. Berikut ini adalah potongan dokumen
+``bandung1.xml'' yang memberikan informasi Jl. Dr Rum, dapat dilihat pada Gambar
+\ref{fig:bandung1_xml} 
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.7]{Gambar/bandung1_xml}
+\caption[bandung1.xml]{bandung1.xml}
+\label{fig:bandung1_xml}
+\end{figure}
+
+\subsubsection{Pengujian Eksperimental Bandung 2}
+Pengujian dilakukan dengan melihat waktu \textit{load} ``bandung2.xml'' (ukuran
+\textit{file} sebesar 821Kb), hasil pengujian dapat dilihat pada Gambar
+\ref{fig:pu_bandung2}. Pada Gambar \ref{fig:pu_bandung2} menunjukkan total waktu yang dibutuhkan untuk 
+melakukan \textit{load} ``bandung2.xml'' adalah 70.460ms. 
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.8]{Gambar/pu_bandung2}
+\caption[Pengujian Bandung 2]{Pengujian Bandung 2}
+\label{fig:pu_bandung2}
+\end{figure}
+Berikut ini adalah aplikasi yang menggunakan dokumen ``bandung2.xml'' dapat
+dilihat pada Gambar \ref{fig:bandung2_load}.
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.45]{Gambar/bandung2_load}
+\caption[Pengujian Bandung 2]{Pengujian Bandung 2}
+\label{fig:bandung2_load}
+\end{figure}
+Setelah melakukan \textit{load} aplikasi menggunakan ``bandung2.xml'', pengujian
+dilanjutkan dengan mencari rute terdekat dari titik asal (Id Node : 29356503,
+Index Node : 47) ke titik tujuan (Id Node : 1700554920, Index Node : 1163).
+Hasil pengujian dapat dilihat pada Gambar \ref{fig:pu_bandung2_rute}.
+\clearpage
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.45]{Gambar/pu_bandung2_rute}
+\caption[Pengujian Bandung 2]{Pengujian Bandung 2}
+\label{fig:pu_bandung2_rute}
+\end{figure}
+
+\subsubsection{Pengujian Eksperimental Bandung 3}
+Pengujian dilakukan dengan melihat waktu \textit{load} ``bandung3.xml'' (ukuran
+\textit{file} sebesar 17,631Kb). Dokumen ``bandung3.xml'' adalah OSMXML yang
+mencakup seluruh wilayah Kota Bandung, berdasarkan pengujian yang telah dilakukan, aplikasi tidak berhasil untuk 
+menggunakan ``bandung3.xml''. Hal ini disebabkan oleh dokumen ``bandung3.xml
+yang terlalu besar'', waktu \textit{load} yang terlalu lama sehingga browser 
+menampilkan kotak dialog yang dapat dilihat pada Gambar
+\ref{fig:pu_bandung3}.
+\begin{figure}[h]
+\centering
+\includegraphics[scale=1]{Gambar/pu_bandung3}
+\caption[Pengujian Bandung 3]{Pengujian Bandung 3}
+\label{fig:pu_bandung3}
+\end{figure}
+
+\subsubsection{Hasil Pengujian Eksperimental}
+Berdasarkan pengujian eksperimental yang telah dilakukan, diketahui beberapa hal
+yaitu:
+\begin{enumerate}
+  \item \textit{Load} 3 dokumen OSMXML\\
+  Dapat dilihat pada Gambar \ref{fig:doc_xml}.
+\begin{figure}[h]
+\centering
+\includegraphics[scale=1]{Gambar/doc_xml}
+\caption[Ketiga Dokumen OSMXML]{Ketiga Dokumen OSMXML}
+\label{fig:doc_xml}
+\end{figure}
+  \begin{enumerate}
+    \item Bandung1.xml\\
+    memiliki ukuran file sebesar 98Kb dengan waktu \textit{load} 7.710ms.
+    
+    \item Bandung2.xml\\
+    memiliki ukuran file sebesar 821Kb dengan waktu \textit{load} 70.460ms.
+    
+    \item Bandung3.xml\\
+    memiliki ukuran file sebesar 17,631Kb, dokumen ini tidak berhasil dibuka
+    oleh aplikasi.
+  \end{enumerate}
+  Berdasarkan pengujian tersebut, diketahui bawah semakin besar dokumen OSMXML,
+  semakin besar pula waktu \textit{load} yang diperlukan.
+  
+  \item Bug\\
+  Bug ditemukan ketika pengujian berlangsung, yaitu rute terdekat yang
+  ditunjukkan oleh aplikasi melawan arus jalan, hal ini disebabkan oleh dokumen
+  OSMXML yang tidak memberikan informasi ``oneway''.
+\end{enumerate}
+
+
+
+
+
+
+
+
+
+
+
