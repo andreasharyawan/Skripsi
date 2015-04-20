@@ -664,18 +664,18 @@ this.shortestPath = function(asal, tujuan){
   var distances = {};
   var previous = {};
   var path = [];
-  var smallest, vertex, neighbor, alt;
+  var smallest, node, neighbor, alt;
 
-  for(vertex in this.nodes){
-    if(vertex === asal){
-      distances[vertex] = 0;
-      PQ.enqueue(0, vertex);
+  for(node in this.nodes){
+    if(node === asal){
+      distances[node] = 0;
+      PQ.enqueue(0, node);
     }
     else{
-      distances[vertex] = INFINITY;
-      PQ.enqueue(INFINITY, vertex);
+      distances[node] = INFINITY;
+      PQ.enqueue(INFINITY, node);
     }
-    previous[vertex] = null;
+    previous[node] = null;
   }
 
   while(!PQ.isEmpty()){
