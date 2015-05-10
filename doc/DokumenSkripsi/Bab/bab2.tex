@@ -424,7 +424,7 @@ pertukaran data \textit{synchronous} harus memuat ulang seluruh halaman
 var objXMLHTTP = new XMLHttpRequest();
 
 objXMLHTTP.open('GET', 'books.xml', false);
-objXMLHTTP.send(null);
+objXMLHTTP.send();
 
 var objXML = objXMLHTTP.responseXML;
 \end{verbatim}

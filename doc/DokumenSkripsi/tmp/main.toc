@@ -1,7 +1,7 @@
 \select@language {bahasa}
-\contentsline {chapter}{Daftar Isi}{v}{section*.1}
-\contentsline {chapter}{Daftar Gambar}{vii}{section*.2}
-\contentsline {chapter}{Daftar Tabel}{ix}{section*.3}
+\contentsline {chapter}{Daftar Isi}{ix}{section*.1}
+\contentsline {chapter}{Daftar Gambar}{xi}{section*.2}
+\contentsline {chapter}{Daftar Tabel}{xiii}{section*.3}
 \contentsline {chapter}{\numberline {1}Pendahuluan}{1}{chapter.1}
 \contentsline {section}{\numberline {1.1}Latar Belakang}{1}{section.1.1}
 \contentsline {section}{\numberline {1.2}Rumusan Masalah}{2}{section.1.2}
@@ -53,7 +53,7 @@
 \contentsline {subsubsection}{\numberline {5.2.2.1}Pengujian Eksperimental Bandung 1}{67}{subsubsection.5.2.2.1}
 \contentsline {subsubsection}{\numberline {5.2.2.2}Pengujian Eksperimental Bandung 2}{69}{subsubsection.5.2.2.2}
 \contentsline {subsubsection}{\numberline {5.2.2.3}Pengujian Eksperimental Bandung 3}{71}{subsubsection.5.2.2.3}
-\contentsline {subsubsection}{\numberline {5.2.2.4}Hasil Pengujian Eksperimental}{72}{subsubsection.5.2.2.4}
+\contentsline {subsubsection}{\numberline {5.2.2.4}Hasil Pengujian}{72}{subsubsection.5.2.2.4}
 \contentsline {chapter}{\numberline {6}Kesimpulan dan Saran}{73}{chapter.6}
 \contentsline {section}{\numberline {6.1}Kesimpulan}{73}{section.6.1}
 \contentsline {section}{\numberline {6.2}Saran}{73}{section.6.2}

@@ -67,8 +67,8 @@
 %=============================================================================
 %\mode{kosong}
 % \mode{cover}
-\mode{sidang}
-%\mode{sidang_akhir}
+%\mode{sidang}
+\mode{sidang_akhir}
 %\mode{final} 
 %=============================================================================
 
@@ -186,40 +186,25 @@
 %			 bawahnya
 %=============================================================================
 
-\abstrakINA{Kami mengembangkan dua algoritma baru untuk menghitung lintasan dari median set lintasan.
-	Algoritma pertama adalah $O(1.2108^{m} + m^{5}n^{5})$ terburuk waktu algoritma, dengan menggunakan konsep Jarak Fr\'{e}chet.
-	Algoritma kedua menggunakan metode penyangga.
-	Dalam situasi praktis, algoritma ini dapat menghitung median lintasan di $O((mn)^{2} \log mn)$ waktu.
-	Untuk kedua algoritma, $m$ adalah jumlah lintasan dalam mengatur dan lintasan masing-masing memiliki segmen $n$.
-	Kami membandingkan algoritma buffer dengan dua algoritma lain, salah satu dari mereka menggunakan konsep homotopy.
-	Hasil kami menunjukkan bahwa algoritma penyangga melakukan agak lebih baik.
-
-	Kami mengembangkan dua algoritma baru untuk menghitung lintasan dari median set lintasan.
-	Algoritma pertama adalah $O(1.2108^{m} + m^{5}n^{5})$ terburuk waktu algoritma, dengan menggunakan konsep Jarak Fr\'{e}chet.
-	Algoritma kedua menggunakan metode penyangga.
-	Dalam situasi praktis, algoritma ini dapat menghitung median lintasan di $O((mn)^{2} \log mn)$ waktu.
-	Untuk kedua algoritma, $m$ adalah jumlah lintasan dalam mengatur dan lintasan masing-masing memiliki segmen $n$.
-	Kami membandingkan algoritma buffer dengan dua algoritma lain, salah satu dari mereka menggunakan konsep homotopy.
-	Hasil kami menunjukkan bahwa algoritma penyangga melakukan agak lebih baik.
+\abstrakINA{Pada penelitian ini, dibahas cara pembangunan aplikasi untuk mencari
+rute terdekat dengan memanfaatkan data peta yang disediakan oleh OpenStreetMap.
+OpenStreetMap adalah portal peta terbuka yang menyediakan data dalam bentuk gambar 
+peta maupun dokumen XML yang disebut dengan OSMXML. Aplikasi dapat
+digunakan oleh pengemudi untuk membantu mencari rute terdekat agar sampai ke
+tempat tujuan lebih cepat. Aplikasi menggunakan data peta dalam OSMXML dan
+algoritma dijkstra untuk pencarian rute terdekat. Aplikasi menampilkan seluruh 
+node dan edge yang didapatkan dari OSMXML pada peta dijital sehingga pengguna
+dapat memilih titik asal dan titik tujuan untuk mencari rute terdekat.
 }
 
-\abstrakENG{We develop two new algorithms to compute a median trajectory from a
-	set of trajectories.
-	The first algorithm is an $O(1.2108^{m} + m^{5}n^{5})$ worst-case time algorithm, using the concept of Fr\'{e}chet Distance.
-	The second algorithm uses a buffer method.
-	In practical situations, this algorithm can compute the median trajectory in $O((mn)^{2} \log mn)$ time. 
-	For both algorithms, $m$ is the number of trajectories in the set and each trajectory has $n$ segments.
-	We compare the buffer algorithm with two other algorithms, one of them using the homotopy concept.
-	Our results suggest that the buffer algorithm performs somewhat better.
-	
-	We develop two new algorithms to compute a median trajectory from a
-	set of trajectories.
-	The first algorithm is an $O(1.2108^{m} + m^{5}n^{5})$ worst-case time algorithm, using the concept of Fr\'{e}chet Distance.
-	The second algorithm uses a buffer method.
-	In practical situations, this algorithm can compute the median trajectory in $O((mn)^{2} \log mn)$ time. 
-	For both algorithms, $m$ is the number of trajectories in the set and each trajectory has $n$ segments.
-	We compare the buffer algorithm with two other algorithms, one of them using the homotopy concept.
-	Our results suggest that the buffer algorithm performs somewhat better.
+\abstrakENG{This research aims to develop an application that can find the
+closest route, use map data provided by OpenStreetMap. OpenStreetMap is an
+opensource map portal that provides data in the form of a map image and XML
+document which is called by OSMXML. The application can be used by the driver to help 
+looking for a closest route to the destination more quickly. The Application use data in
+OSMXML and dijkstra algorithm to find the closest route. The Application show
+every node and edge obtained from OSMXML on a digital map so users can choose the 
+source and destination point to find the closest route.
 } 
 
 %=============================================================================
@@ -232,9 +217,9 @@
 % - kunciINA: kata-kata kunci dalam bahasa indonesia
 % - kunciENG: keywords in english
 %=============================================================================
-\kunciINA{Lintasan, Homotopy, Fr\'{e}chet, Lintasan Median, Penyangga}
+\kunciINA{Rute Terdekat, OSMXML, Algoritma Dijkstra, Peta Dijital}
 
-\kunciENG{Trajectory, Homotopy, Fr\'{e}chet, Median Trajectory, Buffer}
+\kunciENG{Shortest Path, OSMXML, Dijkstra Algorithm, Digital Map}
 %=============================================================================
 
 %_____________________________________________________________________________
@@ -274,6 +259,7 @@
 \hyphenation{map-prop}
 \hyphenation{peng-uji-an}
 \hyphenation{road-map}
+\hyphenation{open-street-map}
 %=============================================================================
 
 

@@ -303,31 +303,29 @@ menampilkan kotak dialog yang dapat dilihat pada Gambar
 \label{fig:pu_bandung3}
 \end{figure}
 
-\subsubsection{Hasil Pengujian Eksperimental}
+\subsubsection{Hasil Pengujian}
 Berdasarkan pengujian eksperimental yang telah dilakukan, diketahui beberapa hal
 yaitu:
 \begin{enumerate}
-  \item \textit{Load} 3 dokumen OSMXML\\
-  Dapat dilihat pada Gambar \ref{fig:doc_xml}.
-\begin{figure}[h]
+  \item \textit{Load} dokumen OSMXML\\
+  Hasil pengujian ketiga dokumen OSMXML dapat dilihat pada Tabel
+  \ref{tab:doc_xml}.
+\begin{table}[h]
 \centering
-\includegraphics[scale=1]{Gambar/doc_xml}
-\caption[Ketiga Dokumen OSMXML]{Ketiga Dokumen OSMXML}
-\label{fig:doc_xml}
-\end{figure}
-  \begin{enumerate}
-    \item Bandung1.xml\\
-    memiliki ukuran file sebesar 98Kb dengan waktu \textit{load} 7.710ms.
-    
-    \item Bandung2.xml\\
-    memiliki ukuran file sebesar 821Kb dengan waktu \textit{load} 70.460ms.
-    
-    \item Bandung3.xml\\
-    memiliki ukuran file sebesar 17,631Kb, dokumen ini tidak berhasil dibuka
-    oleh aplikasi.
-  \end{enumerate}
-  Berdasarkan pengujian tersebut, diketahui bawah semakin besar dokumen OSMXML,
-  semakin besar pula waktu \textit{load} yang diperlukan.
+\caption{Dokumen OSMXML} 
+\label{tab:doc_xml}
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+          & Ukuran File & Waktu Load & Jumlah Node & Jumlah Edge \\ \hline
+Bandung 1 & 98 Kb       & 7.710 ms   & 208         & 141         \\ \hline
+Bandung 2 & 821 Kb      & 70.460 ms  & 2680        & 1073        \\ \hline
+Bandung 3 & 17,631 Kb   & -          & -           & -           \\ \hline
+\end{tabular}
+\end{table}
+
+  Berdasarkan pengujian tersebut, ``bandung3.xml" tidak berhasil dibuka
+  karena ukurannya yang terlalu besar dan diketahui bawah semakin besar dokumen
+  OSMXML, semakin besar pula waktu \textit{load} yang diperlukan.
   
   \item Bug\\
   Bug ditemukan ketika pengujian berlangsung, yaitu rute terdekat yang

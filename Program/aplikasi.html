@@ -139,7 +139,7 @@
 <script>
 //Load XML
 xmlhttp=new XMLHttpRequest();
-xmlhttp.open("GET","bandung1.xml",false);
+xmlhttp.open("GET","bandung2.xml",false);
 xmlhttp.send();
 xmlDoc=xmlhttp.responseXML;
 
@@ -387,25 +387,25 @@ function Map(){
 
 //Kelas PriorityQueue
 function PriorityQueue(){
-	this._nodes = [];
+	this.queue = [];
   
 	this.enqueue = function(priority,key){
-		this._nodes.push({key: key,priority: priority});
+		this.queue.push({key: key,priority: priority});
 		this.sort();
 	}
 	
 	this.dequeue = function () {
-		return this._nodes.shift().key;
+		return this.queue.shift().key;
 	}
 	
 	this.sort = function(){
-		this._nodes.sort(function(a,b){
+		this.queue.sort(function(a,b){
 			return a.priority - b.priority;
 		});
 	}
   
 	this.isEmpty = function(){
-		return !this._nodes.length;
+		return !this.queue.length;
 	}
 }
 
