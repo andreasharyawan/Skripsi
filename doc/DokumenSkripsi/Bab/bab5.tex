@@ -43,10 +43,10 @@ tiga dokumen OSMXML yang berbeda.
 
 \subsection{Pengujian Fungsional}
 Pengujian fungsional menguji tampilan antar muka aplikasi beserta method atau
-fungsi dasar. Seluruh pengujian fungsional menggunakan dokumen OSMXML
-yang bernama ``test.xml'', dokumen ini memiliki batas koordinat yaitu ``<bounds
-minlat="-6.9131000" minlon="107.5931000" maxlat="-6.9003000"
-maxlon="107.6149000"/>'', cakupan area tersebut berlokasi di Kota Bandung.
+fungsi dasar. Seluruh pengujian fungsional menggunakan OSMXML
+yang bernama ``bandung1.xml'', batas area pada dokumen ini memiliki batas
+koordinat yaitu <bounds minlat="-6.9076500" minlon="107.5961800" maxlat="-6.9044500" 
+maxlon="107.6016300"/>, cakupan area tersebut berlokasi di Kota Bandung.
 Berikut ini adalah daftar fungsi yang diujikan:
 \begin{enumerate}
   \item Tampilan antar muka.\\
@@ -77,7 +77,7 @@ Berikut ini adalah daftar fungsi yang diujikan:
 \begin{figure}[h]
 \centering
 \includegraphics[scale=0.7]{Gambar/pu_osmxml2}
-\caption[Dokumen test.xml]{Dokumen test.xml}
+\caption[Dokumen test.xml]{Dokumen bandung1.xml}
 \label{fig:pu_osmxml2}
 \end{figure}
 
@@ -97,7 +97,7 @@ Berikut ini adalah daftar fungsi yang diujikan:
 \begin{figure}[h]
 \centering
 \includegraphics[scale=0.7]{Gambar/pu_jarak1}
-\caption[Dokumen test.xml]{Dokumen test.xml}
+\caption[Dokumen test.xml]{Dokumen bandung1.xml}
 \label{fig:pu_jarak1}
 \end{figure}
 
@@ -119,7 +119,7 @@ Berikut ini adalah daftar fungsi yang diujikan:
   Pengujian dilakukan dengan mengubah seluruh ``test.xml'' menjadi graf
   menggunakan \textit{adjacency list}. Berikut hasil pengujian, dapat dilihat
   pada Gambar \ref{fig:pu_graf}. Pada Gambar \ref{fig:pu_graf} hanya ditampilkan
-  hingga 32 node, hal ini dikarenakan ``test.xml'' memiliki 207 buah node dan 
+  hingga 32 node, hal ini dikarenakan ``test.xml'' memiliki 208 buah node dan 
   terlalu banyak jika ditampilkan seluruhnya.
   
   \item Fungsi untuk melakukan visualisasi.\\

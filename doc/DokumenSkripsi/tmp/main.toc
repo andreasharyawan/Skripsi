@@ -60,4 +60,4 @@
 \contentsline {chapter}{Daftar Referensi}{75}{chapter*.4}
 \renewcommand {\cftchappresnum }{\bf \scshape }
 \contentsline {chapter}{\numberline {A}Kode Program}{77}{appendix.A}
-\contentsline {chapter}{\numberline {B}Test OSMXML}{87}{appendix.B}
+\contentsline {chapter}{\numberline {B}Bandung 1 OSMXML}{87}{appendix.B}
