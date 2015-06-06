@@ -7,7 +7,8 @@ taksi yang mengemudikan kendaraannya untuk mengantar penumpang hingga sampai ke 
 sampai ke titik tujuan, banyak rute yang dapat dilalui oleh seorang pengemudi. Seorang pengemudi, tentu 
 saja akan mencari rute terdekat yang dapat dilalui, hal tersebut bertujuan untuk
 menghemat penggunaan bahan bakar dan juga waktu. Pemilihan rute terdekat untuk dapat sampai 
-ke tujuan menjadi cukup penting, karena saat ini mobilitas masyarakat yang semakin tinggi.
+ke tujuan menjadi cukup penting, karena saat ini mobilitas masyarakat semakin
+tinggi.
 Aplikasi pencarian rute terdekat dapat membantu seorang pengemudi untuk menemukan rute terdekat 
 agar sampai ke tempat tujuan lebih cepat. Aplikasi dapat menunjukkan rute
 mengemudi terdekat dari satu tempat ke tempat lain. 
@@ -35,9 +36,10 @@ pada peta yang melambangkan jalan atau elemen lain seperti rel kereta, dan
 relation memberikan informasi node-node yang bersinggungan, elemen
 relation dapat menggambarkan suatu area seperti lapangan, taman bermain, rute
 bus, dan lain-lain. Sedangkan algoritma Dijkstra
-adalah algoritma untuk mencari jarak terpendek pada sebuah graf berarah dengan bobot yang bernilai tidak negatif pada setiap sisinya
-\cite{Cormen:2001}. Graf adalah himpunan objek yang terdiri dari simpul(node)
-dan sisi (edge), graf digambarkan sebagai kumpulan titik yang dihubungkan oleh garis. 
+adalah algoritma untuk mencari jarak terpendek antara 2 node pada sebuah graf
+berarah dengan bobot yang bernilai tidak negatif pada setiap sisinya \cite{Cormen:2001}. Graf adalah himpunan objek yang terdiri dari simpul(node)
+dan sisi (edge), graf dapat digambarkan sebagai kumpulan simpul yang dihubungkan
+oleh garis.
 Contoh graf dapat dilihat pada Gambar \ref{fig:co_graf}.
 \begin{figure}[h]
 \centering
@@ -51,7 +53,7 @@ dalam bentuk XML dan memodelkannya ke dalam bentuk graf. Selanjutnya akan diimpl
 Dijkstra untuk mencari rute terdekat pada graf tersebut dan menunjukkan hasilnya secara visual.
 
 \section{Rumusan Masalah}
-Berdasarkan latar belakang, maka rumusan masalah berikut: 
+Berdasarkan latar belakang, maka muncul rumusan masalah berikut: 
 \begin{itemize}
 	\item Bagaimana cara memodelkan data OSMXML menjadi sebuah graf?
 	\item Bagaimana cara menggunakan atau mengimplementasikan algoritma Dijkstra

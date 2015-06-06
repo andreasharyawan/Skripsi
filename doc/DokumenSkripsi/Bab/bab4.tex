@@ -1,13 +1,14 @@
 \chapter{Perancangan}
-Pada bab ini akan dijelaskan perancangan aplikasi pencarian rute terdekat
-berbasis OpenStreetMap. Pada bagian pertama akan dijelaskan perancangan antar
-muka untuk aplikasi yang akan dibangun. Diawali \textit{user} dengan membuka
+Pada bab ini dijelaskan perancangan aplikasi pencarian rute terdekat
+berbasis OpenStreetMap. Pada bagian pertama dijelaskan perancangan antar
+muka untuk aplikasi yang dibangun. Diawali dengan \textit{user} membuka
 aplikasi, selanjutnya \textit{user} dapat memilih titik-titik yang terdapat pada
 peta sebagai titik asal ataupun titik tujuan. Setelah itu, \textit{user} dapat
-mencari rute terdekat antara kedua titik tersebut.
+menekan tombol cari dan aplikasi memulai proses pencarian rute terdekat antara
+kedua titik tersebut.
 
-Pada bagian kedua akan dijelaskan rancangan untuk aplikasi agar dapat
-menjalankan fungsinya melalui diagram kelas. Pada bagian ketiga akan dijelaskan
+Pada bagian kedua dijelaskan rancangan untuk aplikasi agar dapat
+menjalankan fungsinya melalui diagram kelas. Pada bagian ketiga dijelaskan
 bagaimana alur aplikasi dari \textit{user} hingga mengeluarkan \textit{output} yaitu rute terdekat
 menggunakan diagram \textit{sequence}.
 
@@ -268,7 +269,7 @@ dari setiap kelas beserta atribut dan fungsi yang digunakan:
   \end{itemize}
   
   \item Kelas PriorityQueue\\
-  Kelas ini merupakan struktur data \textit{queue} yang digunakan pada
+  Kelas ini merupakan struktur data \textit{priority queue} yang digunakan pada
   kelas dijkstra.
   \begin{itemize}
     \item Atribut

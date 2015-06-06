@@ -9,8 +9,185 @@ juga untuk mengetahui kekurangan yang dimiliki aplikasi tersebut.
 
 \section{Implementasi}
 Implementasi dilakukan menggunakan bahasa pemrograman javascript, hasil
-implementasi adalah dokumen HTML. Berikut ini adalah lingkungan pembangunan
-aplikasi pada saat implementasi dilakukan:
+implementasi adalah dokumen HTML. Berikut ini adalah beberapa bagian dari hasil
+implementasi, keseluruhan hasil implementasi dapat dilihat pada Lampiran A:
+\begin{itemize}
+  \item Pembuatan Kelas Node dan Kelas Neighbor \\
+  Berikut ini adalah hasil implementasi dalam bentuk kode program dari kelas
+  node dan neighbor. Kedua kelas tersebut merupakan komponen utama untuk
+  pembuatan graf.
+\lstset{basicstyle=\scriptsize}
+\begin{lstlisting}
+//Kelas Node
+function Node(id, neighbors){
+  this.id = id;
+  this.adjList = neighbors;
+}
+
+//Kelas Neighbor
+function Neighbor(vnum, nbr, weight){
+  this.vertexNum = vnum;
+  this.next = nbr;
+  this.weight = weight;
+}
+\end{lstlisting}
+  
+  \item Pemodelan OSMXML menjadi graf. \\
+  Berikut ini adalah hasil implementasi dalam bentuk kode program yang berfungsi
+  untuk memodelkan OSMXML menjadi graf
+\begin{lstlisting}
+for(v=0; v < node.length; v++){
+  adjLists.push(new Node(node[v].getAttribute('id'),null));
+}
+
+for (i=0;i<way.length;i++){
+  nd = way[i].getElementsByTagName("nd");
+  if(isHighway(way,i)){
+    oneway = wayDirection(way,i);
+    for (j=0;j<nd.length-1;j++){
+      //cari jarak 
+      v1 = indexForId(adjLists,nd[j].getAttribute('ref'));
+      v2 = indexForId(adjLists,nd[j+1].getAttribute('ref'));	
+      lat1 = getLatByAtt(nd[j].getAttribute('ref'));
+      lon1 = getLonByAtt(nd[j].getAttribute('ref'));
+      lat2 = getLatByAtt(nd[j+1].getAttribute('ref'));
+      lon2 = getLonByAtt(nd[j+1].getAttribute('ref'));
+      
+      point1 = new google.maps.LatLng(lat1,lon1);
+      point2 = new google.maps.LatLng(lat2,lon2);
+      distance = google.maps.geometry.spherical.
+      computeDistanceBetween(point1,point2);
+	  
+      //memasukkan informasi edge		
+      if(oneway == "yes"){
+        adjLists[v1].adjList = new Neighbor(v2,
+        adjLists[v1].adjList,distance); 
+      }else if(oneway == "no"){
+        adjLists[v1].adjList = new Neighbor(v2,
+        adjLists[v1].adjList,distance); 
+        adjLists[v2].adjList = new Neighbor(v1,
+        adjLists[v2].adjList,distance);
+      }else if(oneway == "-1"){
+        adjLists[v2].adjList = new Neighbor(v1,
+        adjLists[v2].adjList,distance); 
+      }else{
+        adjLists[v1].adjList = new Neighbor(v2,
+        adjLists[v1].adjList,distance); 
+        adjLists[v2].adjList = new Neighbor(v1,
+        adjLists[v2].adjList,distance); 
+      }	
+    }
+  }
+}
+\end{lstlisting}
+
+  \item Visualisasi Graf \\
+  Berikut ini adalah hasil implementasi kode program yang berfungsi untuk
+  menampilkan node dan edge pada peta dijital.
+\begin{lstlisting}
+this.generate = function(){
+		for (i=0;i<way.length;i++)
+		{
+			nd = way[i].getElementsByTagName("nd");
+			if(isHighway(way,i))
+			{
+				for (j=0;j<nd.length;j++)
+				{
+					id = uniqueId();
+					marker = new google.maps.Marker({
+						id: id,
+						position: new google.maps.LatLng(getLatByAtt(nd[j].getAttribute('ref')), getLonByAtt(nd[j].getAttribute('ref'))),
+						map: map,
+						icon: image,
+					});
+					markers[id] = marker;
+
+					content = 'Id Node : '+nd[j].getAttribute('ref')+'<br>'+
+					'Index Node : '+indexForId(list,nd[j].getAttribute('ref'))+'<br>'+
+					'<a href="#" onclick="setAsal(\'' + id + '\',\'' + nd[j].getAttribute('ref') + '\',\'' + indexForId(list,nd[j].getAttribute('ref')) + '\')">Pilih sebagai asal</a>'+'<br>'+
+					'<a href="#" onclick="setTujuan(\'' + id + '\',\'' + nd[j].getAttribute('ref') + '\',\'' + indexForId(list,nd[j].getAttribute('ref')) + '\')">Pilih sebagai tujuan</a>';
+					
+					addInfoWindow(marker, content);	
+				}
+				
+				for (k=0;k<nd.length-1;k++)
+				{
+					line = new google.maps.Polyline({
+						path: [new google.maps.LatLng(getLatByAtt(nd[k].getAttribute('ref')), getLonByAtt(nd[k].getAttribute('ref'))),
+						new google.maps.LatLng(getLatByAtt(nd[k+1].getAttribute('ref')), getLonByAtt(nd[k+1].getAttribute('ref')))],
+						strokeColor: "#000000",
+						strokeOpacity: 1,
+						strokeWeight: 3,
+						map: map
+					});
+				}
+			}
+		}
+		return markers;
+	}
+\end{lstlisting}
+
+  \item Pencarian Rute Terdekat \\
+  Berikut ini adalah hasil implementasi algoritma Dijkstra untuk pencarian rute
+  terdekat.
+\begin{lstlisting}
+this.shortestPath = function(asal, tujuan){
+  var PQ = new PriorityQueue();
+  var distances = {};
+  var previous = {};
+  var path = [];
+  var smallest, node, neighbor, alt;
+
+  for(node in this.nodes){
+    if(node === asal){
+      distances[node] = 0;
+      PQ.enqueue(0, node);
+    }
+    else{
+      distances[node] = INFINITY;
+      PQ.enqueue(INFINITY, node);
+    }
+    previous[node] = null;
+  }
+
+  while(!PQ.isEmpty()){
+    smallest = PQ.dequeue();
+    if(smallest === tujuan){
+      while(previous[smallest]){
+        path.push(smallest);
+        smallest = previous[smallest];
+      }
+      break;
+    }
+    
+    if(distances[smallest] === INFINITY){
+      break;
+    }
+
+    for(neighbor in this.nodes[smallest]){
+      alt = distances[smallest] + this.nodes[smallest][neighbor];
+      if(alt < distances[neighbor]) {
+        distances[neighbor] = alt;
+        previous[neighbor] = smallest;
+        PQ.enqueue(alt, neighbor);
+      }
+    }
+  }
+  return path;
+}
+\end{lstlisting}
+\end{itemize}
+
+\section{Pengujian}
+Pada subbab ini dibahas lingkungan pengujian dan pengujian yang dilakukan.
+Pengujian yang dilakukan dibagi menjadi dua tahap yaitu pengujian fungsional 
+dan pengujian eksperimental.
+Pengujian fungsional menguji tampilan antar muka aplikasi beserta method atau
+fungsi dasar, sedangkan pengujian eksperimental dilakukan dengan menggunakan
+tiga dokumen OSMXML yang berbeda.
+
+\subsection{Lingkungan Pengujian}
+Berikut ini adalah lingkungan pengujian aplikasi:
 \begin{enumerate}
   \item Processor\\
   Intel Core i5-2410M CPU @ 2.30Ghz (4 CPU)
@@ -25,7 +202,7 @@ aplikasi pada saat implementasi dilakukan:
   Windows 7 Ultimate 64-bit
   
   \item Browser\\
-  Mozilla Firefox Version 37.0 dan Google Chrome Version 41.0.2272.118 m 
+  Google Chrome Version 41.0.2272.118 m 
   
   \item Bahasa Pemrograman\\
   Javascript
@@ -34,20 +211,14 @@ aplikasi pada saat implementasi dilakukan:
   Notepad++
 \end{enumerate}
 
-\section{Pengujian}
-Pada subbab ini akan dibahas pengujian yang dilakukan. Pengujian yang dilakukan
-dibagi menjadi dua tahap yaitu pengujian fungsional dan pengujian eksperimental.
-Pengujian fungsional menguji tampilan antar muka aplikasi beserta method atau
-fungsi dasar, sedangkan pengujian eksperimental dilakukan dengan menggunakan
-tiga dokumen OSMXML yang berbeda.
-
 \subsection{Pengujian Fungsional}
 Pengujian fungsional menguji tampilan antar muka aplikasi beserta method atau
 fungsi dasar. Seluruh pengujian fungsional menggunakan OSMXML
 yang bernama ``bandung1.xml'', batas area pada dokumen ini memiliki batas
 koordinat yaitu <bounds minlat="-6.9076500" minlon="107.5961800" maxlat="-6.9044500" 
-maxlon="107.6016300"/>, cakupan area tersebut berlokasi di Kota Bandung.
-Berikut ini adalah daftar fungsi yang diujikan:
+maxlon="107.6016300"/>, cakupan area tersebut berlokasi di Kota Bandung. Untuk
+dokumen bandung1.xml dapat dilihat pada Lampiran B. Berikut ini adalah daftar
+fungsi yang diujikan:
 \begin{enumerate}
   \item Tampilan antar muka.\\
   Pada tampilan antar muka aplikasi terdapat elemen ``<div>'' sebagai tempat
@@ -168,15 +339,24 @@ Berikut ini adalah daftar fungsi yang diujikan:
 \caption[Pengujian Visualisasi Rute Terdekat]{Pengujian Visualisasi Rute
 Terdekat}
 \label{fig:pu_visualrute}
-\end{figure}
+\end{figure} 
 \end{enumerate}
 
 \subsection{Pengujian Eksperimental}
-Pengujian eksperimental dilakukan dengan menggunakan tiga dokumen OSMXML yang
-berbeda. Ketiga dokumen tersebut diberi nama bandung1.xml, bandung2.xml, dan
-bandung3.xml, berikut ini adalah cakupan area dari ketiga OSMXML tersebut:
+Pengujian eksperimental terdiri dari dua tahap, yaitu pengujian pencarian rute
+dari titik asal hingga tujuan dengan beberapa pilihan rute, sehingga dapat
+dipastikan bahwa aplikasi benar-benar menunjukkan rute yang terdekat. Tahap 
+kedua, pengujian dilakukan dengan menggunakan tiga dokumen OSMXML yang berbeda, 
+hal ini dilakukan untuk menguji bahwa aplikasi tetap berjalan dengan baik 
+menggunakan dokumen OSMXML yang berbeda-beda. Ketiga dokumen tersebut diberi
+nama bandung1.xml, bandung2.xml, dan bandung3.xml. Ketiga dokumen tersebut dihitung 
+luasnya berdasarkan informasi \textit{latitude} dan \textit{longitude} secara
+manual, berikut ini adalah cakupan area dari ketiga OSMXML tersebut:
 \begin{enumerate}
-  \item Bandung 1
+  \item Bandung 1 \\
+  Dokumen bandung1.xml hanya meliputi sebagian kecil Kota Bandung dengan titik
+  pusat di sekitar Jalan.Pajajaran. Dokumen ini memiliki luas sekitar 0,3907 km
+  persegi.
   \begin{itemize}
     \item Batas Atas : -6.9044500
     
@@ -187,7 +367,9 @@ bandung3.xml, berikut ini adalah cakupan area dari ketiga OSMXML tersebut:
     \item Batas Kanan : 107.6016300
   \end{itemize}
 
-  \item Bandung 2
+  \item Bandung 2 \\
+  Dokumen bandung2.xml memiliki ukuran yang lebih besar dibandingkan dengan
+  bandung1.xml, yaitu dengan luas sekitar 3,423 km persegi.
   \begin{itemize}
     \item Batas Atas : -6.9003000
     
@@ -198,7 +380,9 @@ bandung3.xml, berikut ini adalah cakupan area dari ketiga OSMXML tersebut:
     \item Batas Kanan : 107.6149000
   \end{itemize}
   
-  \item Bandung 3
+  \item Bandung 3 \\
+  Dokumen bandung3.xml memiliki ukuran yang paling besar dan mencakup seluruh
+  wilayah Kota Bandung dengan luas sekitar 415,8616 km persegi.
   \begin{itemize}
     \item Batas Atas : -6.8194
     
@@ -212,6 +396,23 @@ bandung3.xml, berikut ini adalah cakupan area dari ketiga OSMXML tersebut:
 
 \setcounter{secnumdepth}{3}
 \setcounter{tocdepth}{3}
+\subsubsection{Pengujian Rute Terdekat}
+Pada bagian ini dijelaskan pengujian yang dilakukan untuk memastikan bahwa rute
+yang ditunjukkan oleh aplikasi adalah rute yang paling dekat. Pengujian
+dilakukan dengan memilih titik asal yang memiliki beberapa rute untuk dapat
+sampai ke titik tujuan. Dipilih titik asal pada sekitar Jl. Pasirkaliki dan
+titik tujuan di sekitar Jl. Dr Rum. Untuk mencapai titik tujuan terdapat
+beberapa rute, di antaranya melalui Jl. Dr Rajiman, Jl. Dr Rum dan Jl. Dr Cipto.
+Pada peta, dapat dilihat bahwa rute yang terdekat adalah melalui Jl. Dr Cipto dan aplikasi
+juga menunjukkan rute yang sama, hasil pengujian yang dilakukan dapat dilihat
+pada Gambar \ref{fig:pu_terdekat}.
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.45]{Gambar/pu_terdekat}
+\caption[Pengujian Rute Terdekat]{Pengujian Rute Terdekat}
+\label{fig:pu_terdekat}
+\end{figure}
+
 \subsubsection{Pengujian Eksperimental Bandung 1}
 \begin{figure}[h]
 \centering
@@ -223,7 +424,7 @@ Pengujian dilakukan dengan melihat waktu \textit{load} ``bandung1.xml''
 (ukuran \textit{file} sebesar 98Kb), hasil pengujian dapat dilihat pada Gambar
 \ref{fig:pu_bandung1}.
 Pada Gambar \ref{fig:pu_bandung1} menunjukkan total waktu yang dibutuhkan untuk 
-melakukan \textit{load} ``bandung1.xml'' adalah 7.710ms. Berikut ini
+melakukan \textit{load} ``bandung1.xml'' adalah 7,710ms. Berikut ini
 adalah aplikasi yang menggunakan dokumen ``bandung1.xml'' dapat dilihat pada
 Gambar \ref{fig:bandung1_load}.
 \begin{figure}[h]
@@ -241,7 +442,7 @@ Index Node : 192) ke titik tujuan (Id Node : 2325451571, Index Node : 198).
 \caption[Pengujian Bandung 1]{Pengujian Bandung 1}
 \label{fig:pu_bandung1_rute}
 \end{figure}
-Pada Gambar \ref{fig:pu_bandung1_rute} ditemukan \textit{bug} yaitu aplikasi
+Pada Gambar \ref{fig:pu_bandung1_rute} ditemukan kesalahan yaitu aplikasi
 menunjukkan rute terdekat (dalam kasus pengujian melalui Jl. Dr Rum) walaupun
 rute tersebut melawan arah (pada peta Google Maps menunjukkan bahwa Jl. Dr Rum
 adalah jalan satu arah). Setelah dilakukan penelitian lebih lanjut, ternyata kesalahan
@@ -261,7 +462,7 @@ ke dalam graf sebagai jalan dua arah. Berikut ini adalah potongan dokumen
 Pengujian dilakukan dengan melihat waktu \textit{load} ``bandung2.xml'' (ukuran
 \textit{file} sebesar 821Kb), hasil pengujian dapat dilihat pada Gambar
 \ref{fig:pu_bandung2}. Pada Gambar \ref{fig:pu_bandung2} menunjukkan total waktu yang dibutuhkan untuk 
-melakukan \textit{load} ``bandung2.xml'' adalah 70.460ms. 
+melakukan \textit{load} ``bandung2.xml'' adalah 70,460ms. 
 \begin{figure}[h]
 \centering
 \includegraphics[scale=0.8]{Gambar/pu_bandung2}
@@ -290,23 +491,18 @@ Hasil pengujian dapat dilihat pada Gambar \ref{fig:pu_bandung2_rute}.
 
 \subsubsection{Pengujian Eksperimental Bandung 3}
 Pengujian dilakukan dengan melihat waktu \textit{load} ``bandung3.xml'' (ukuran
-\textit{file} sebesar 17,631Kb). Dokumen ``bandung3.xml'' adalah OSMXML yang
-mencakup seluruh wilayah Kota Bandung, berdasarkan pengujian yang telah dilakukan, aplikasi tidak berhasil untuk 
-menggunakan ``bandung3.xml''. Hal ini disebabkan oleh dokumen ``bandung3.xml
-yang terlalu besar'', waktu \textit{load} yang terlalu lama sehingga browser 
-menampilkan kotak dialog yang dapat dilihat pada Gambar
-\ref{fig:pu_bandung3}.
-\begin{figure}[h]
-\centering
-\includegraphics[scale=1]{Gambar/pu_bandung3}
-\caption[Pengujian Bandung 3]{Pengujian Bandung 3}
-\label{fig:pu_bandung3}
-\end{figure}
+\textit{file} sebesar 17.631Kb). Dokumen ``bandung3.xml'' adalah OSMXML yang
+mencakup seluruh wilayah Kota Bandung, berdasarkan pengujian yang telah dilakukan, 
+aplikasi tidak berhasil untuk menggunakan ``bandung3.xml''. Hal ini disebabkan oleh 
+dokumen ``bandung3.xml'' yang terlalu besar dan waktu \textit{load} yang terlalu
+lama.
 
 \subsubsection{Hasil Pengujian}
 Berdasarkan pengujian eksperimental yang telah dilakukan, diketahui beberapa hal
 yaitu:
 \begin{enumerate}
+  \item Aplikasi telah menunjukkan rute yang benar-benar terdekat.
+  
   \item \textit{Load} dokumen OSMXML\\
   Hasil pengujian ketiga dokumen OSMXML dapat dilihat pada Tabel
   \ref{tab:doc_xml}.
@@ -317,18 +513,18 @@ yaitu:
 \begin{tabular}{|c|c|c|c|c|}
 \hline
           & Ukuran File & Waktu Load & Jumlah Node & Jumlah Edge \\ \hline
-Bandung 1 & 98 Kb       & 7.710 ms   & 208         & 141         \\ \hline
-Bandung 2 & 821 Kb      & 70.460 ms  & 2680        & 1073        \\ \hline
-Bandung 3 & 17,631 Kb   & -          & -           & -           \\ \hline
+Bandung 1 & 98 Kb       & 7,710 ms   & 208         & 141         \\ \hline
+Bandung 2 & 821 Kb      & 70,460 ms  & 2680        & 1073        \\ \hline
+Bandung 3 & 17.631 Kb   & -          & -           & -           \\ \hline
 \end{tabular}
 \end{table}
 
   Berdasarkan pengujian tersebut, ``bandung3.xml" tidak berhasil dibuka
-  karena ukurannya yang terlalu besar dan diketahui bawah semakin besar dokumen
+  karena ukurannya yang terlalu besar dan diketahui bahwa semakin besar dokumen
   OSMXML, semakin besar pula waktu \textit{load} yang diperlukan.
   
-  \item Bug\\
-  Bug ditemukan ketika pengujian berlangsung, yaitu rute terdekat yang
+  \item Kesalahan\\
+  Kesalahan ditemukan ketika pengujian berlangsung, yaitu rute terdekat yang
   ditunjukkan oleh aplikasi melawan arus jalan, hal ini disebabkan oleh dokumen
   OSMXML yang tidak memberikan informasi ``oneway''.
 \end{enumerate}

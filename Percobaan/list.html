@@ -126,6 +126,8 @@ function print(list){
 		for (nbr=list[j].adjList; nbr != null;nbr=nbr.next) {
 			document.write("---->");
 			document.write('('+nbr.vertexNum+')');
+			document.write("---->");
+			document.write('('+nbr.weight+')');
 		}
 		document.write("<br>");
 	}

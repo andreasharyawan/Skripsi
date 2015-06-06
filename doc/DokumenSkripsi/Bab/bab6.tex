@@ -8,7 +8,7 @@
   \textit{adjacency list}.
   
   \item Algoritma Dijkstra dapat mencari rute terdekat pada graf berarah.
-  Aplikasi menggunakan algoritma dijkstra pada graf berarah yang sudah
+  Aplikasi menggunakan algoritma dijkstra pada graf berarah yang sudah berhasil
   dimodelkan.
   
   \item Visualisasi graf dapat dibuat menggunakan Google Maps Javascript API.
@@ -19,9 +19,14 @@
 \end{enumerate}
 
 \section{Saran}
-OSMXML memiliki informasi selain node dan edge yaitu ``relation''.
+\begin{enumerate}
+\item OSMXML memiliki informasi selain node dan edge yaitu ``relation''.
 \textit{Relation} menyimpan informasi seperti rute angkutan, rute bus, rute
 \textit{hiking}, dan lain-lain. Untuk pengembangan aplikasi yang juga
 menggunakan data peta dari OpenStreetMap dapat menggunakan informasi tersebut,
 sehingga tidak hanya rute mengemudi saja, tetapi juga dapat mencari rute
 terdekat angkutan, bus, atau rute lainnya.
+
+\item Informasi yang didapatkan dari OSMXML dapat disimpan terlebih dahulu pada
+basis data atau file teks, sehingga kecepatan proses lebih cepat.
+\end{enumerate}

@@ -33,18 +33,18 @@ var latJakarta = -6.9167;
 var lonJakarta = 107.6000;
 
 var haversine = getDistance(latBandung,lonBandung,latJakarta,lonJakarta);
-//document.write("Jarak (Haversine) : "+haversine);
-//document.write("<br/>");
+document.write("Jarak (Haversine) : "+haversine);
+document.write("<br/>");
 
-var jakarta = new google.maps.LatLng(-6.1745,106.8227);
-var bandung = new google.maps.LatLng(-6.9167,107.6000);
+var jakarta = new google.maps.LatLng(-6.8194,107.745);
+var bandung = new google.maps.LatLng(-6.9959,107.745);
 
-var distance = google.maps.geometry.spherical.computeDistanceBetween(jakarta, bandung);
+var distance = google.maps.geometry.spherical.computeDistanceBetween(jakarta, bandung,6371000);
 
-//document.write("Jarak (GeometryLibrary) : "+distance/1000);
-var gl = distance/1000
-
-document.write(haversine-gl);
+document.write("Jarak (GeometryLibrary) : "+distance/1000);
+var gl = distance/1000;
+document.write("<br/>");
+//document.write(haversine-gl);
 </script>
 
 </body>

@@ -1,7 +1,8 @@
 \select@language {bahasa}
-\contentsline {chapter}{Daftar Isi}{ix}{section*.1}
-\contentsline {chapter}{Daftar Gambar}{xi}{section*.2}
-\contentsline {chapter}{Daftar Tabel}{xiii}{section*.3}
+\contentsline {chapter}{Kata Pengantar}{xv}{chapter*.1}
+\contentsline {chapter}{Daftar Isi}{xvii}{section*.2}
+\contentsline {chapter}{Daftar Gambar}{xix}{section*.3}
+\contentsline {chapter}{Daftar Tabel}{xxi}{section*.4}
 \contentsline {chapter}{\numberline {1}Pendahuluan}{1}{chapter.1}
 \contentsline {section}{\numberline {1.1}Latar Belakang}{1}{section.1.1}
 \contentsline {section}{\numberline {1.2}Rumusan Masalah}{2}{section.1.2}
@@ -14,50 +15,52 @@
 \contentsline {section}{\numberline {2.2}XML}{6}{section.2.2}
 \contentsline {subsection}{\numberline {2.2.1}OSMXML}{8}{subsection.2.2.1}
 \contentsline {section}{\numberline {2.3}Javascript}{11}{section.2.3}
-\contentsline {subsection}{\numberline {2.3.1}XMLHttpRequest}{13}{subsection.2.3.1}
-\contentsline {subsection}{\numberline {2.3.2}XML DOM}{14}{subsection.2.3.2}
-\contentsline {subsection}{\numberline {2.3.3}Google Maps Javascript API}{15}{subsection.2.3.3}
-\contentsline {subsubsection}{\numberline {2.3.3.1}Elemen Dasar Google Maps}{15}{subsubsection.2.3.3.1}
-\contentsline {subsubsection}{\numberline {2.3.3.2}Menggambar pada Peta}{18}{subsubsection.2.3.3.2}
-\contentsline {subsubsection}{\numberline {2.3.3.3}\textit {Geometry Library}}{21}{subsubsection.2.3.3.3}
-\contentsline {subsubsection}{\numberline {2.3.3.4}\textit {Info Window}}{22}{subsubsection.2.3.3.4}
+\contentsline {subsection}{\numberline {2.3.1}XMLHttpRequest}{14}{subsection.2.3.1}
+\contentsline {subsection}{\numberline {2.3.2}XML DOM}{15}{subsection.2.3.2}
+\contentsline {subsection}{\numberline {2.3.3}Google Maps Javascript API}{16}{subsection.2.3.3}
+\contentsline {subsubsection}{\numberline {2.3.3.1}Elemen Dasar Google Maps}{16}{subsubsection.2.3.3.1}
+\contentsline {subsubsection}{\numberline {2.3.3.2}Menggambar pada Peta}{19}{subsubsection.2.3.3.2}
+\contentsline {subsubsection}{\numberline {2.3.3.3}\textit {Geometry Library}}{22}{subsubsection.2.3.3.3}
+\contentsline {subsubsection}{\numberline {2.3.3.4}\textit {Info Window}}{23}{subsubsection.2.3.3.4}
 \contentsline {section}{\numberline {2.4}Graf}{24}{section.2.4}
 \contentsline {subsection}{\numberline {2.4.1}Graf Tidak Berarah}{24}{subsection.2.4.1}
-\contentsline {subsection}{\numberline {2.4.2}Graf Berarah}{24}{subsection.2.4.2}
+\contentsline {subsection}{\numberline {2.4.2}Graf Berarah}{25}{subsection.2.4.2}
 \contentsline {subsection}{\numberline {2.4.3}Graf Berbobot}{25}{subsection.2.4.3}
 \contentsline {subsection}{\numberline {2.4.4}Representasi Graf}{26}{subsection.2.4.4}
 \contentsline {section}{\numberline {2.5}Algoritma Dijkstra}{27}{section.2.5}
 \contentsline {section}{\numberline {2.6}Haversine \textit {Formula}}{28}{section.2.6}
-\contentsline {chapter}{\numberline {3}Analisis}{29}{chapter.3}
-\contentsline {section}{\numberline {3.1}Analisis OpenStreetMap}{29}{section.3.1}
-\contentsline {subsection}{\numberline {3.1.1}Langkah-Langkah Pengambilan Data OSMXML}{29}{subsection.3.1.1}
-\contentsline {subsection}{\numberline {3.1.2}OSMXML}{30}{subsection.3.1.2}
-\contentsline {section}{\numberline {3.2}Analisis Javascript}{32}{section.3.2}
-\contentsline {section}{\numberline {3.3}Menghitung Jarak Antara Dua Titik}{35}{section.3.3}
-\contentsline {section}{\numberline {3.4}Pemodelan OSMXML Menjadi Graf}{37}{section.3.4}
+\contentsline {chapter}{\numberline {3}Analisis}{31}{chapter.3}
+\contentsline {section}{\numberline {3.1}Analisis OpenStreetMap}{31}{section.3.1}
+\contentsline {subsection}{\numberline {3.1.1}Langkah-Langkah Pengambilan Data OSMXML}{31}{subsection.3.1.1}
+\contentsline {subsection}{\numberline {3.1.2}OSMXML}{32}{subsection.3.1.2}
+\contentsline {section}{\numberline {3.2}Analisis Javascript}{34}{section.3.2}
+\contentsline {section}{\numberline {3.3}Menghitung Jarak Antara Dua Titik}{37}{section.3.3}
+\contentsline {section}{\numberline {3.4}Pemodelan OSMXML Menjadi Graf}{39}{section.3.4}
 \contentsline {section}{\numberline {3.5}Visualisasi}{41}{section.3.5}
-\contentsline {section}{\numberline {3.6}Algoritma Dijkstra}{43}{section.3.6}
-\contentsline {section}{\numberline {3.7}Analisis Berorientasi Objek}{46}{section.3.7}
-\contentsline {subsection}{\numberline {3.7.1}Diagram \textit {Use Case}}{46}{subsection.3.7.1}
-\contentsline {subsection}{\numberline {3.7.2}Skenario}{47}{subsection.3.7.2}
-\contentsline {subsection}{\numberline {3.7.3}Diagram Kelas Sederhana}{48}{subsection.3.7.3}
+\contentsline {section}{\numberline {3.6}Algoritma Dijkstra}{44}{section.3.6}
+\contentsline {section}{\numberline {3.7}Analisis Berorientasi Objek}{45}{section.3.7}
+\contentsline {subsection}{\numberline {3.7.1}Diagram \textit {Use Case}}{45}{subsection.3.7.1}
+\contentsline {subsection}{\numberline {3.7.2}Skenario}{46}{subsection.3.7.2}
+\contentsline {subsection}{\numberline {3.7.3}Diagram Kelas Sederhana}{47}{subsection.3.7.3}
 \contentsline {chapter}{\numberline {4}Perancangan}{51}{chapter.4}
 \contentsline {section}{\numberline {4.1}Perancangan Antar Muka}{51}{section.4.1}
 \contentsline {section}{\numberline {4.2}Perancangan Kelas}{52}{section.4.2}
 \contentsline {section}{\numberline {4.3}Diagram Sekuens}{57}{section.4.3}
 \contentsline {chapter}{\numberline {5}Implementasi dan Pengujian}{61}{chapter.5}
 \contentsline {section}{\numberline {5.1}Implementasi}{61}{section.5.1}
-\contentsline {section}{\numberline {5.2}Pengujian}{61}{section.5.2}
-\contentsline {subsection}{\numberline {5.2.1}Pengujian Fungsional}{62}{subsection.5.2.1}
-\contentsline {subsection}{\numberline {5.2.2}Pengujian Eksperimental}{67}{subsection.5.2.2}
-\contentsline {subsubsection}{\numberline {5.2.2.1}Pengujian Eksperimental Bandung 1}{67}{subsubsection.5.2.2.1}
-\contentsline {subsubsection}{\numberline {5.2.2.2}Pengujian Eksperimental Bandung 2}{69}{subsubsection.5.2.2.2}
-\contentsline {subsubsection}{\numberline {5.2.2.3}Pengujian Eksperimental Bandung 3}{71}{subsubsection.5.2.2.3}
-\contentsline {subsubsection}{\numberline {5.2.2.4}Hasil Pengujian}{72}{subsubsection.5.2.2.4}
-\contentsline {chapter}{\numberline {6}Kesimpulan dan Saran}{73}{chapter.6}
-\contentsline {section}{\numberline {6.1}Kesimpulan}{73}{section.6.1}
-\contentsline {section}{\numberline {6.2}Saran}{73}{section.6.2}
-\contentsline {chapter}{Daftar Referensi}{75}{chapter*.4}
+\contentsline {section}{\numberline {5.2}Pengujian}{64}{section.5.2}
+\contentsline {subsection}{\numberline {5.2.1}Lingkungan Pengujian}{64}{subsection.5.2.1}
+\contentsline {subsection}{\numberline {5.2.2}Pengujian Fungsional}{65}{subsection.5.2.2}
+\contentsline {subsection}{\numberline {5.2.3}Pengujian Eksperimental}{68}{subsection.5.2.3}
+\contentsline {subsubsection}{\numberline {5.2.3.1}Pengujian Rute Terdekat}{70}{subsubsection.5.2.3.1}
+\contentsline {subsubsection}{\numberline {5.2.3.2}Pengujian Eksperimental Bandung 1}{70}{subsubsection.5.2.3.2}
+\contentsline {subsubsection}{\numberline {5.2.3.3}Pengujian Eksperimental Bandung 2}{71}{subsubsection.5.2.3.3}
+\contentsline {subsubsection}{\numberline {5.2.3.4}Pengujian Eksperimental Bandung 3}{76}{subsubsection.5.2.3.4}
+\contentsline {subsubsection}{\numberline {5.2.3.5}Hasil Pengujian}{76}{subsubsection.5.2.3.5}
+\contentsline {chapter}{\numberline {6}Kesimpulan dan Saran}{79}{chapter.6}
+\contentsline {section}{\numberline {6.1}Kesimpulan}{79}{section.6.1}
+\contentsline {section}{\numberline {6.2}Saran}{79}{section.6.2}
+\contentsline {chapter}{Daftar Referensi}{81}{chapter*.5}
 \renewcommand {\cftchappresnum }{\bf \scshape }
-\contentsline {chapter}{\numberline {A}Kode Program}{77}{appendix.A}
-\contentsline {chapter}{\numberline {B}Bandung 1 OSMXML}{87}{appendix.B}
+\contentsline {chapter}{\numberline {A}Kode Program}{83}{appendix.A}
+\contentsline {chapter}{\numberline {B}Bandung 1 OSMXML}{93}{appendix.B}

@@ -1,14 +1,17 @@
 %_____________________________________________________________________________
 %=============================================================================
-% data.tex v5 (10-11-2013) \ldots dibuat oleh Lionov - Informatika FTIS UNPAR
+% data.tex v6 (13-04-2015) \ldots dibuat oleh Lionov - Informatika FTIS UNPAR
 %
-% Perubahan pada versi 5 (10-11-2013)
-% - Perbaikan pada memasukkan bab : tidak perlu menuliskan apapun untuk 
-%	memasukkan seluruh bab (bagian V)
-% - Perbaikan pada memasukkan lampiran : tidak perlu menuliskan apapun untuk
-%	memasukkan seluruh lampiran atau -1 jika tidak memasukkan apapun
+% Perubahan pada versi 6 (13-04-2015)
+% - Perubahan untuk data-data ``template" menjadi lebih generik dan menggunakan
+%	tanda << dan >>
 %
 % Perubahan pada versi sebelumnya
+% 	versi 5 (10-11-2013)
+% 	- Perbaikan pada memasukkan bab : tidak perlu menuliskan apapun untuk 
+%	  memasukkan seluruh bab (bagian V)
+% 	- Perbaikan pada memasukkan lampiran : tidak perlu menuliskan apapun untuk
+%	  memasukkan seluruh lampiran atau -1 jika tidak memasukkan apapun
 %	versi 4 (21-10-2012)
 %	- Data dosen dipindah ke dosen.tex agar jika ada perubahan/update data dosen
 %   mahasiswa tidak perlu mengubah data.tex
@@ -27,6 +30,7 @@
 % Masukkan ke dalam file ini, data-data yang diperlukan oleh template ini
 % Cara memasukkan data dijelaskan di setiap bagian
 % Data yang WAJIB dan HARUS diisi dengan baik dan benar adalah SELURUHNYA !!
+% Hilangkan tanda << dan >> jika anda menemukannya
 %=============================================================================
 %_____________________________________________________________________________
 %=============================================================================
@@ -65,11 +69,11 @@
 % Jika tidak ingin mencetak daftar tabel/gambar (misalkan karena tidak ada 
 % isinya), edit manual di baris 439 dan 440 pada file main.tex
 %=============================================================================
-%\mode{kosong}
+% \mode{kosong}
 % \mode{cover}
-%\mode{sidang}
-\mode{sidang_akhir}
-%\mode{final} 
+% \mode{sidang}
+%\mode{sidang_akhir}
+\mode{final} 
 %=============================================================================
 
 %_____________________________________________________________________________
@@ -148,14 +152,17 @@
 %			  ujian akhir skripsi/tugas akhir
 % - pembimbing: isi dengan pembimbing anda, lihat daftar dosen di file dosen.tex
 %				jika pembimbing hanya 1, kosongkan parameter kedua 
-%				(e.g. \pembimbing{\JND}{  } )
+%				(e.g. \pembimbing{\JND}{  } ) , \JND adalah kode dosen
 % - penguji : isi dengan para penguji anda, lihat daftar dosen di file dosen.tex
-%				(e.g. \penguji{\JHD}{\JCD} )
+%				(e.g. \penguji{\JHD}{\JCD} ) , \JND dan \JCD adalah kode dosen
+%
 %=============================================================================
-\namanpm{Andreas Haryawan}{2010730071}
-\tanggal{20}{5}{2015}
-\pembimbing{\OSS}{  }     %Lihat singkatan pembimbing anda di file dosen.tex
-\penguji{\NIS}{\CEN} 		%Lihat singkatan penguji anda di file dosen.tex
+\namanpm{Andreas}{2010730071}	%hilangkan tanda << & >>
+\tanggal{27}{5}{2015}			%hilangkan tanda << & >>
+\pembimbing{\CEN}{}     
+%Lihat singkatan pembimbing anda di file dosen.tex, hilangkan tanda << & >>
+\penguji{\CAN}{\JNH} 		
+%Lihat singkatan penguji anda di file dosen.tex, hilangkan tanda << & >>
 %=============================================================================
 
 %_____________________________________________________________________________
@@ -169,6 +176,7 @@
 %			   bawahnya
 %			 - Gunakan \texorpdfstring{\\}{} untuk pindah ke baris baru
 %			 - Judul TIDAK ditulis dengan menggunakan huruf besar seluruhnya !!
+%			 - Gunakan perintah \texorpdfstring{\\}{} untuk baris baru
 %=============================================================================
 
 \judulINA{Aplikasi Pencarian Rute Terdekat Berbasis OpenStreetMap}
@@ -192,20 +200,28 @@ OpenStreetMap adalah portal peta terbuka yang menyediakan data dalam bentuk gamb
 peta maupun dokumen XML yang disebut dengan OSMXML. Aplikasi dapat
 digunakan oleh pengemudi untuk membantu mencari rute terdekat agar sampai ke
 tempat tujuan lebih cepat. Aplikasi menggunakan data peta dalam OSMXML dan
-algoritma dijkstra untuk pencarian rute terdekat. Aplikasi menampilkan seluruh 
+algoritma Dijkstra untuk pencarian rute terdekat. Aplikasi menampilkan seluruh 
 node dan edge yang didapatkan dari OSMXML pada peta dijital sehingga pengguna
-dapat memilih titik asal dan titik tujuan untuk mencari rute terdekat.
-}
+dapat memilih titik asal dan titik tujuan untuk mencari rute terdekat.\\
+Berdasarkan pengujian yang telah dilakukan, aplikasi telah berhasil untuk
+memodelkan OSMXML ke dalam bentuk graf dan mencari rute terdekat antara titik
+asal dan tujuan menggunakan algoritma Dijkstra. Aplikasi juga telah berhasil
+membuat visualisasi graf dan rute terdekat menggunakan Google Maps Javascript
+API.}
 
 \abstrakENG{This research aims to develop an application that can find the
 closest route, using map data provided by OpenStreetMap. OpenStreetMap is an
 opensource map portal that provides data in the form of a map image and XML
 document, namely OSMXML. The application can be used by the driver to help 
 looking for a closest route to the destination quicker. The Application uses
-data in OSMXML and dijkstra algorithm to find the closest route. The Application show
-every node and edge obtained from OSMXML on a digital map so users can choose the 
-source and destination point to find the closest route.
-} 
+data in OSMXML and Dijkstra algorithm to find the closest route. The Application
+show every node and edge obtained from OSMXML on a digital map so users can choose the 
+source and destination point to find the closest route.\\
+Based on testing has been done, the application has succeed to model OSMXML into
+the form of graph and search the closest route between the source and destination point 
+using Dijkstra algorithm. The application also has succeeded in making graph visualization 
+and closest route using Google Maps Javascript
+API.}
 
 %=============================================================================
 
@@ -228,7 +244,7 @@ source and destination point to find the closest route.
 %=============================================================================
 % Persembahan : kepada siapa anda mempersembahkan skripsi ini ...
 %=============================================================================
-\untuk{Dipersembahkan untuk diri sendiri }
+\untuk{<<kepada siapa anda mempersembahkan skripsi ini\ldots?>>}
 %=============================================================================
 
 %_____________________________________________________________________________
@@ -238,7 +254,7 @@ source and destination point to find the closest route.
 % Kata Pengantar: tempat anda menuliskan kata pengantar dan ucapan terima 
 % kasih kepada yang telah membantu anda bla bla bla ....  
 %=============================================================================
-\prakata{\lipsum}
+\prakata{\lipsum[3]}
 %=============================================================================
 
 %_____________________________________________________________________________

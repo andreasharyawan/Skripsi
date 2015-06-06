@@ -1,27 +1,27 @@
 \chapter{Analisis}
 Pada bab ini akan dipaparkan analisis yang dilakukan dalam pembuatan aplikasi
-ini. Bagaimana data XML didapatkan dari situs \url{www.openstreetmap.org}
-yang akan dibahas pada subbab \ref{ssec:analisis_osm} dan membacanya
-menggunakan beberapa fungsi javascript yang akan dibahas
-pada subbab \ref{ssec:analisis_js}. Setelah itu, data tersebut disimpan atau
-dikonversi ke dalam bentuk graf sehingga dapat diimplementasikan algoritma
-dijkstra untuk mencari rute terpendek dari satu node ke node lain. Berdasarkan 
+ini. Bagaimana data XML didapatkan dari situs
+\url{www.openstreetmap.org}, dibahas pada subbab \ref{ssec:analisis_osm}.
+Pembacaannya menggunakan beberapa fungsi javascript, dibahas pada
+subbab \ref{ssec:analisis_js}. Setelah itu, data tersebut disimpan atau dikonversi 
+ke dalam bentuk graf sehingga dapat diimplementasikan algoritma
+Dijkstra untuk mencari rute terpendek dari satu node ke node lain. Berdasarkan 
 informasi yang telah diolah, maka dapat dibuat visualisasi data atau informasi
-tersebut menggunakan Google Maps Javascript API. Pada akhir bab ini, juga akan 
-dibahas mengenai diagram \textit{use case} dan skenario untuk
-memperjelas apa saja yang dapat dilakukan oleh \textit{user} pada aplikasi ini.
+menggunakan Google Maps Javascript API. Pada akhir bab ini, juga dibahas
+mengenai diagram \textit{use case} dan skenario untuk memperjelas apa saja 
+yang dapat dilakukan oleh \textit{user} pada aplikasi ini.
 
 \section{Analisis OpenStreetMap} \label{ssec:analisis_osm}
 OpenStreetMap adalah portal peta terbuka yang menyediakan data dalam bentuk peta
-ataupun dokumen XML. Aplikasi yang dibuat akan berbasis OpenStreetMap, hal ini
-berarti aplikasi yang dibuat akan menggunakan data yang diperoleh dari situs
+ataupun dokumen XML. Aplikasi yang dibuat berbasis OpenStreetMap, hal ini
+berarti aplikasi yang dibuat menggunakan data yang diperoleh dari situs
 \url{www.openstreetmap.org}. Untuk mendapatkan data peta pada situs
 OpenStreetMap, user harus mengunjungi situs tersebut dan menggunakan fitur
 \textit{export}. Data yang digunakan adalah data peta yang berbentuk
 dokumen XML atau biasa disebut dengan OSMXML. Selanjutnya, informasi yang
-terkandung di dalam dokumen OSMXML tersebut akan diproses untuk mengetahui node dan edge
-pada peta. Informasi tersebut akan diubah ke dalam bentuk graf yang akan
-diproses lebih lanjut menggunakan algoritma dijkstra untuk mengetahui jarak
+terkandung di dalam dokumen OSMXML tersebut diproses untuk mengetahui node dan
+edge pada peta. Informasi tersebut akan diubah ke dalam bentuk graf yang akan
+diproses lebih lanjut menggunakan algoritma Dijkstra untuk mengetahui jarak
 terpendek dari satu node ke node lain.
 
 \subsection{Langkah-Langkah Pengambilan Data OSMXML}
@@ -87,25 +87,25 @@ OSMXML yang sudah diunduh dan digunakan pada proses analisis.
  ...
 </osm>
 \end{lstlisting}
-Node dan way memiliki informasi penting yang akan digunakan pada aplikasi. Pada
+Node dan way memiliki informasi penting yang digunakan pada aplikasi. Pada
 tag node terdapat atribut id yang menunjukkan id pada setiap node, kemudian
 terdapat atribut lat dan lon yang memberikan informasi titik koordinat
-(\textit{latitude} dan \textit{longitude})pada node tersebut. Informasi yang
-didapatkan akan disimpan ke dalam bentuk node pada graf. Tag way akan
-menunjukkan hubungan pada node-node yang terdapat pada dokumen, dan akan
-disimpan sebagai edge pada graf. Selain itu, tag way tidak hanya memberikan
-informasi jalan raya atau jalan besar saja, tetapi juga beberapa elemen peta
+(\textit{latitude} dan \textit{longitude}) node tersebut. Informasi yang
+didapatkan, disimpan ke dalam bentuk node pada graf. Tag way akan
+menunjukkan hubungan pada node-node yang terdapat pada dokumen, dan disimpan
+sebagai edge pada graf. Selain itu, tag way tidak hanya memberikan informasi 
+jalan raya atau jalan besar saja, tetapi juga beberapa elemen peta
 lain seperti area sekeliling bangunan atau area sekitar tempat parkir. Maka dari
 itu, diperlukan \textit{filter} pada tag way, karena hanya informasi jalan raya
 atau jalan besar saja yang diperlukan oleh aplikasi. Data atau dokumen OSMXML
-yang telah diperoleh, selanjutnya akan dibaca menggunakan javascript yang akan
-dibahas pada subbab \ref{ssec:analisis_js}.
+yang telah diperoleh, selanjutnya dibaca menggunakan javascript yang dibahas
+pada subbab \ref{ssec:analisis_js}.
 
 \section{Analisis Javascript} \label{ssec:analisis_js}
 Javascript diperlukan untuk membaca dokumen OSMXML, sehingga seluruh informasi
-yang diperlukan dapat diubah ke dalam bentuk graf yang akan diproses lebih lanjut.
-XMLHttpRequest adalah salah satu objek pada javascript yang dapat digunakan 
-untuk mendapatkan \textit{file} XML. Berikut ini adalah langkah-langkah yang
+yang diperlukan dapat diubah ke dalam bentuk graf yang dapat diproses lebih
+lanjut. XMLHttpRequest adalah salah satu objek pada javascript yang dapat
+digunakan untuk mendapatkan \textit{file} XML. Berikut ini adalah langkah-langkah yang
 dilakukan untuk membaca dokumen OSMXML menggunakan javascript:
 \begin{enumerate}
   \item Membuat Objek XMLHttpRequest. 
@@ -262,7 +262,7 @@ dan id node kedua. Informasi yang sudah didapatkan, selanjutnya akan dimodelkan
 ke dalam bentuk graf yang akan dibahas pada subbab \ref{ssec:analisis_graf}.
 
 \section{Menghitung Jarak Antara Dua Titik}
-Untuk menghitung jarak antara dua titik dapat menggunakan rumus haversine atau
+Untuk menghitung jarak antara dua titik dapat digunakan rumus haversine atau
 dikenal dengan haversine \textit{formula}. Analisis rumus haversine dilakukan
 dengan implementasi rumus tersebut dengan contoh kasus perhitungan
 jarak antara koordinat Kota Bandung (-6.9167,107.6000) dan koordinat Kota
@@ -331,13 +331,12 @@ yang sudah diketahui, graf terdiri dari node dan edge. Informasi node dan edge
 yang sudah didapatkan akan dimodelkan ke dalam bentuk graf berarah, hal ini
 karena jalan yang menghubungkan node-node tersebut memiliki arah, baik searah
 maupun dua arah, arah jalan diketahui dengan melihat informasi tag oneway. Untuk
-merepresentasikan graf tersebut akan digunakan \textit{adjacency list}.
+merepresentasikan graf tersebut, digunakan \textit{adjacency list}.
 Penggunaan \textit{adjacency list} disebabkan oleh penggunaan memori yang lebih
-kecil dibandingkan dengan \textit{adjacency matrix}. Pada \textit{adjacency
-list} memori yang digunakan adalah sebesar jumlah node yang terdapat pada
-OSMXML, sedangkan pada \textit{adjacency matrix} memori yang digunakan adalah
-nxn. Berikut ini adalah langkah-langkah yang dilakukan untuk memodelkan OSMXML
-menjadi graf:
+kecil dibandingkan dengan \textit{adjacency matrix}. Hal ini karena, setelah
+dilakukan \textit{filter} diketahui bahwa graf tersebut berjenis
+\textit{sparse}. Berikut ini adalah langkah-langkah yang dilakukan untuk
+memodelkan OSMXML menjadi graf:
 \begin{enumerate}
   \item Membuat kelas Node dan kelas Neighbor.
 \begin{verbatim}
@@ -427,49 +426,8 @@ function getLonByAtt(str){
   akan mengembalikan nilai \textit{latitude} atau \textit{longitude} dan
   mengembalikan nilai -1 jika tidak ditemukan.
 
-  \item Membaca seluruh informasi edge yang terdapat pada tag way
-\begin{verbatim}
-for (i=0;i<way.length;i++){
-  nd = way[i].getElementsByTagName("nd");
-  if(isHighway(way,i)){
-    oneway = wayDirection(way,i);
-    for (j=0;j<nd.length-1;j++){
-      //cari jarak 
-      v1 = indexForId(adjLists,nd[j].getAttribute('ref'));
-      v2 = indexForId(adjLists,nd[j+1].getAttribute('ref'));	
-      lat1 = getLatByAtt(nd[j].getAttribute('ref'));
-      lon1 = getLonByAtt(nd[j].getAttribute('ref'));
-      lat2 = getLatByAtt(nd[j+1].getAttribute('ref'));
-      lon2 = getLonByAtt(nd[j+1].getAttribute('ref'));
-      
-      point1 = new google.maps.LatLng(lat1,lon1);
-      point2 = new google.maps.LatLng(lat2,lon2);
-      distance = google.maps.geometry.spherical.
-      computeDistanceBetween(point1,point2);
-	  
-      //memasukkan informasi edge		
-      if(oneway == "yes"){
-        adjLists[v1].adjList = new Neighbor(v2,
-        adjLists[v1].adjList,distance); 
-      }else if(oneway == "no"){
-        adjLists[v1].adjList = new Neighbor(v2,
-        adjLists[v1].adjList,distance); 
-        adjLists[v2].adjList = new Neighbor(v1,
-        adjLists[v2].adjList,distance);
-      }else if(oneway == "-1"){
-        adjLists[v2].adjList = new Neighbor(v1,
-        adjLists[v2].adjList,distance); 
-      }else{
-        adjLists[v1].adjList = new Neighbor(v2,
-        adjLists[v1].adjList,distance); 
-        adjLists[v2].adjList = new Neighbor(v1,
-        adjLists[v2].adjList,distance); 
-      }	
-    }
-  }
-}
-\end{verbatim}
-  Berikut ini adalah tahap-tahap yang dilakukan:
+  \item Membaca seluruh informasi edge yang terdapat pada tag way. Berikut ini
+  adalah tahap-tahap yang dilakukan:
   \begin{enumerate}
     \item Melakukan pengulangan untuk setiap way.
     
@@ -514,14 +472,14 @@ Hasil dari kode program di atas dapat dilihat pada Gambar
 Pada Gambar \ref{fig:graf_analisis}, data pada OSMXML sudah dimodelkan ke dalam
 bentuk graf menggunakan representasi \textit{adjacency list}. Tahap
 selanjutnya, graf tersebut akan divisualisasikan menggunakan Google Maps
-Javascript API yang akan dibahas pada subbab \ref{ssec:analisis_gmap}.
+Javascript API yang dibahas pada subbab \ref{ssec:analisis_gmap}.
 
 \section{Visualisasi} \label{ssec:analisis_gmap}
-Data OSMXML yang sudah dimodelkan ke dalam bentuk graf, selanjutnya akan
-divisualisasikan menggunakan Google Maps Javascript API. Peta yang akan
-ditampilkan dalam bentuk \textit{roadmap}, karena peta jenis ini memberikan 
+Data OSMXML yang sudah dimodelkan ke dalam bentuk graf, selanjutnya
+divisualisasikan menggunakan Google Maps Javascript API. Peta ditampilkan dalam 
+bentuk \textit{roadmap}, karena peta jenis ini memberikan 
 informasi mengenai nama jalan, sehingga peta jenis ini lebih cocok untuk aplikasi 
-yang akan dibangun. Berikut ini langkah-langkah yang dilakukan untuk membuat
+yang dibangun. Berikut ini langkah-langkah yang dilakukan untuk membuat
 visualisasi graf:
 \begin{enumerate}
   \item Melakukan \textit{load} Google Maps Javascript API.
@@ -637,78 +595,13 @@ edge pada graf akan menjadi garis pada peta yang dibuat menggunakan \textit{poly
 \end{figure}
 
 \section{Algoritma Dijkstra}
-Untuk pencarian rute terdekat, aplikasi menggunakan algoritma dijkstra.
+Untuk pencarian rute terdekat, aplikasi menggunakan algoritma Dijkstra.
 Algoritma tersebut diimplementasikan pada graf yang sudah dimodelkan
-sebelumnya. Berikut ini adalah langkah-langkah algoritma dijkstra yang
-digunakan:
-\begin{enumerate}
-  \item Membuat kelas Dijkstra dan inisialisasi variabel.
-\begin{verbatim}
-function Dijkstra(){
-  var INFINITY = 1/0;
-  this.nodes = {};
-}
-\end{verbatim}
-
-  \item Membuat fungsi untuk menambahkan node. 
-\begin{verbatim}
-this.addNode = function(name,edges){
-  this.nodes[name] = edges;
-}
-\end{verbatim}
-
-  \item Implementasi algoritma dijkstra
-\begin{verbatim}
-this.shortestPath = function(asal, tujuan){
-  var PQ = new PriorityQueue();
-  var distances = {};
-  var previous = {};
-  var path = [];
-  var smallest, node, neighbor, alt;
-
-  for(node in this.nodes){
-    if(node === asal){
-      distances[node] = 0;
-      PQ.enqueue(0, node);
-    }
-    else{
-      distances[node] = INFINITY;
-      PQ.enqueue(INFINITY, node);
-    }
-    previous[node] = null;
-  }
-
-  while(!PQ.isEmpty()){
-    smallest = PQ.dequeue();
-    if(smallest === tujuan){
-      while(previous[smallest]){
-        path.push(smallest);
-        smallest = previous[smallest];
-      }
-      break;
-    }
-
-    if(!smallest || distances[smallest] === INFINITY){
-      continue;
-    }
-
-    for(neighbor in this.nodes[smallest]){
-      alt = distances[smallest] + this.nodes[smallest][neighbor];
-      if(alt < distances[neighbor]) {
-        distances[neighbor] = alt;
-        previous[neighbor] = smallest;
-        PQ.enqueue(alt, neighbor);
-      }
-    }
-  }
-  return path;
-}
-\end{verbatim}
-\end{enumerate}
-Fungsi dijkstra akan menerima \textit{input} berupa objek ``edge'' yang berisi
-informasi dari graf, selanjutnya fungsi akan mengeluarkan \textit{output}
-yaitu jalur terpendek dari satu titik ke titik lain dalam bentuk array. Contoh
-kasus yang digunakan, yaitu mencari rute terdekat dari titik asal ``16'' dan 
+sebelumnya. Fungsi dijkstra menerima \textit{input} berupa objek ``edge''
+yang berisi informasi dari graf, selanjutnya fungsi akan mengeluarkan \textit{output}
+yaitu jalur terpendek dari satu titik ke titik lain dalam bentuk array. Untuk
+hasil implementasi algoritma Dijkstra dapat dilihat pada Bab 5. Contoh kasus
+yang digunakan, yaitu mencari rute terdekat dari titik asal ``16'' dan 
 titik tujuan ``198'', output yang dihasilkan dapat dilihat pada Gambar
 \ref{fig:output_dijkstra}.
 \begin{figure}[h]
@@ -773,7 +666,6 @@ Berikut ini adalah skenario untuk setiap \textit{use case}:
   \item Skenario memilih titik asal dapat dilihat pada Tabel
   \ref{tab:titik_asal}.  
 \begin{table}[h]
-\centering
 \caption{Skenario memilih titik asal} 
 \label{tab:titik_asal}
 \begin{tabular}{|c|c|}
@@ -791,7 +683,6 @@ Eksepsi       & -                                                               
   \item Skenario memilih titik tujuan dapat dilihat pada Tabel
   \ref{tab:titik_tujuan}.
 \begin{table}[h]
-\centering
 \caption{Skenario memilih titik tujuan} 
 \label{tab:titik_tujuan}
 \begin{tabular}{|c|c|}
@@ -809,7 +700,6 @@ Eksepsi       & -                                                               
   \item Skenario cari rute terdekat dapat dilihat pada Tabel
   \ref{tab:rute_terdekat}.
 \begin{table}[h]
-\centering
 \caption{Skenario cari rute terdekat} 
 \label{tab:rute_terdekat}
 \begin{tabular}{|c|c|}

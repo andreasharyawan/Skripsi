@@ -277,8 +277,25 @@ penjelasan dari keempat \textit{value} tersebut:
 \end{itemize}
 
 \item Elemen relation menyimpan informasi node-node dan way yang bersinggungan.
-Elemen relation dapat menggambarkan suatu area seperti lapangan, taman bermain, atau
-pada contoh di atas menggambarkan rute bus.
+Elemen relation dapat menggambarkan suatu area seperti lapangan, taman
+bermain.
+\begin{lstlisting}
+<relation id="56688" user="kmvar" uid="56190" visible="true" version="28" changeset="6947637" timestamp="2011-01-12T14:23:49Z">
+  <member type="node" ref="294942404" role=""/>
+  ...
+  <member type="node" ref="364933006" role=""/>
+  <member type="way" ref="4579143" role=""/>
+  ...
+  <member type="node" ref="249673494" role=""/>
+  <tag k="name" v="Küstenbus Linie 123"/>
+  <tag k="network" v="VVW"/>
+  <tag k="operator" v="Regionalverkehr Küste"/>
+  <tag k="ref" v="123"/>
+  <tag k="route" v="bus"/>
+  <tag k="type" v="route"/>
+ </relation>
+\end{lstlisting}
+Pada contoh di atas menggambarkan rute bus.
 \end{enumerate}
 \end{itemize}
 
@@ -409,6 +426,23 @@ function distance(x1, y1, x2, y2) {
   var dy = y2 - y1;
   return Math.sqrt(dx*dx + dy*dy);
 }
+\end{verbatim}
+
+\item Kelas \\
+Pada javascript, kelas adalah objek. Cara untuk membuat kelas pada javascript
+adalah dengan membuat fungsi dan membuat objek dari fungsi tersebut menggunakan
+\textit{keyword} ``new''. Berikut ini adalah contoh pembuatan kelas pada
+javascript:
+\begin{verbatim}
+function Range(from, to) {
+// Store the start and end points (state) of this new range object.
+// These are noninherited properties that are unique to this object.
+this.from = from;
+this.to = to;
+}
+
+// Contoh pembuatan objek
+var r = new Range(1,3);
 \end{verbatim}
 \end{itemize}
 \end{enumerate}
@@ -977,20 +1011,17 @@ Berikut ini adalah penjelasan dari kelas dan fungsi yang digunakan:
 
 \section{Graf}
 Graf adalah himpunan objek yang terdiri dari node (simpul) dan edge (sisi), graf 
-digambarkan sebagai node yang dihubungkan oleh edge. Terdapat berbagai
-macam jenis graf, tetapi pada subbab ini akan dibahas beberapa jenis graf
-seperti graf tidak berarah, graf berarah, dan graf berbobot. Contoh graf dapat
-dilihat pada Gambar \ref{fig:graph}. Graf mengikuti aturan berikut \footnotemark[2]:
+digambarkan sebagai node yang dihubungkan oleh edge \footnotemark[2]. Terdapat
+berbagai macam jenis graf, tetapi pada subbab ini hanya dibahas beberapa jenis
+graf seperti graf tidak berarah, graf berarah, dan graf berbobot. Contoh graf dapat
+dilihat pada Gambar \ref{fig:graph}.
 \footnotetext[2]{http://web.cecs.pdx.edu/sheard/course/Cs163/Doc/Graphs.html}
-\begin{enumerate}
-\item Graf terdiri dari dua bagian yang disebut node dan edge.
-\item Node digambarkan berdasarkan tipenya dan nilainya mungkin terbatas atau
-tidak terbatas. 
-\item Setiap node menghubungkan dua buah edge.
-\item Node digambarkan sebagai kotak atau lingkaran dan edge digambarkan sebagai
-garis atau busur.
-\end{enumerate}
 
+\subsection{Graf Tidak Berarah}
+Graf tidak berarah adalah graf yang tidak memiliki arah pada setiap edgenya,
+sehingga setiap node tidak memiliki urutan. Graf tidak berarah digambarkan dengan garis lurus
+antara node. Contoh graf berarah dapat dilihat pada Gambar
+\ref{fig:graph}.
 \begin{figure}[h]
 \centering
 \includegraphics[scale=1]{Gambar/graph}
@@ -998,15 +1029,9 @@ garis atau busur.
 \label{fig:graph}
 \end{figure}
 Berdasarkan contoh pada Gambar \ref{fig:graph}  didapatkan informasi tipe dari
-node adalah bilangan bulat \\
-Himpunan node = {1,2,3,4,5,6} \\ 
-Himpunan edge = {(6,4),(4,5),(4,3),(3,2),(5,2),(2,1),(5,1)}
-
-\subsection{Graf Tidak Berarah}
-Graf tidak berarah adalah graf yang tidak memiliki arah pada setiap edgenya,
-sehingga setiap node tidak memiliki urutan. Graf tidak berarah digambarkan dengan garis lurus
-antara node. Contoh graf berarah dapat dilihat pada Gambar
-\ref{fig:graph}.
+node adalah bilangan bulat. \\
+Himpunan node = $\left\{ 1,2,3,4,5,6 \right\}$ \\
+Himpunan edge = $\left\{ (6,4),(4,5),(4,3),(3,2),(5,2),(2,1),(5,1) \right\}$
 
 \subsection{Graf Berarah}
 Graf berarah memiliki arah pada setiap edgenya. Pada graf berarah, edge biasanya
@@ -1020,8 +1045,8 @@ Gambar \ref{fig:direc_graph}.
 \end{figure}
 Berdasarkan contoh pada Gambar \ref{fig:direc_graph}  didapatkan informasi tipe
 dari node adalah huruf kapital. \\
-Himpunan node = {A, B, C, D, E} \\ 
-Himpunan edge = {(A, B), (B, C), (D, C), (B, D), (D, B), (E, D), (B, E)}
+Himpunan node = $\left\{ A, B, C, D, E \right\}$\\ 
+Himpunan edge = $\left\{ (A, B), (B, C), (D, C), (B, D), (D, B), (E, D), (B,E) \right\}$
 
 \subsection{Graf Berbobot}
 Graf berbobot adalah graf yang memiliki nilai pada setiap edgenya. Nilai
@@ -1036,8 +1061,9 @@ Contoh graf berbobot dapat dilihat pada Gambar \ref{fig:weight_graph}.
 \end{figure}
 Berdasarkan contoh pada Gambar \ref{fig:weight_graph}  didapatkan informasi tipe
 dari node adalah bilangan bulat dan tipe dari bobot adalah bilangan bulat. \\
-Himpunan node = {1,2,3,4,5} \\ 
-Himpunan edge = {(1,4,5) ,(4,5,58) ,(3,5,34) ,(2,4,5) ,(2,5,4) ,(3,2,14) ,(1,2,2)} 
+Himpunan node = $\left\{ 1,2,3,4,5 \right\}$ \\ 
+Himpunan edge = $\left\{ (1,4,5) ,(4,5,58) ,(3,5,34) ,(2,4,5) ,(2,5,4) ,(3,2,14)
+,(1,2,2) \right\}$
 
 \subsection{Representasi Graf}
 Terdapat dua cara untuk merepresentasikan graf yaitu dengan \textit{adjacency
@@ -1097,10 +1123,11 @@ merepresentasikan graf ke dalam bentuk matriks.
 
 \section{Algoritma Dijkstra}
 Algoritma dijkstra adalah algoritma yang dapat mencari jalur terpendek pada graf
-berarah dengan persamaan G=(V,E) untuk kasus pada setiap sisinya bernilai tidak
-negatif \cite{Cormen:2001}. Algoritma ini menggunakan prinsip greedy. Prinsip
-greedy pada algoritma dijkstra adalah memilih sisi yang memiliki bobot paling
-kecil dan memasukannya dalam himpunan solusi. Berikut ini adalah
+berarah G=(V,E) untuk kasus pada setiap sisinya bernilai tidak
+negatif \cite{Cormen:2001}. V adalah himpunan tidak kosong dari node dan E
+adalah himpunan sisi yang menghubungkan sepasang node. Algoritma ini menggunakan
+prinsip greedy, prinsip greedy pada algoritma dijkstra adalah memilih sisi yang
+memiliki bobot paling kecil dan memasukannya dalam himpunan solusi. Berikut ini adalah
 \textit{pseudocode} dari algoritma dijkstra:
 \begin{algorithm}{}\label{dijkstra}
 \caption{$Dijkstra$}
@@ -1123,6 +1150,25 @@ kecil dan memasukannya dalam himpunan solusi. Berikut ini adalah
 \Return dist
 \end{algorithmic}
 \end{algorithm}
+Langkah-langkah yang dilakukan adalah:
+\begin{enumerate}
+  \item Inisialisasi node asal dengan nilai 0, dan inisialisasi seluruh node
+  lainnya dengan nilai tak terhingga.
+  
+  \item S adalah himpunan node yang sudah dikunjungi, untuk awal inisialisasi
+  dengan himpunan kosong.
+  
+  \item Q adalah struktur data \textit{queue}, inisialisasi dengan seluruh node.
+  
+  \item Keluarkan node yang memiliki jarak paling kecil dari dalam
+  \textit{queue} dan tambahkan node tersebut ke dalam himpunan node yang sudah dikunjungi.
+  
+  \item Lakukan pengulangan untuk seluruh node tetangga dan periksa jika jarak
+  terpendek lain ditemukan tandai node tersebut.
+  
+  \item Ulangi langkah 4 dan 5 hingga seluruh node di dalam \textit{queue}
+  habis.
+\end{enumerate}
 
 \section{Haversine \textit{Formula}}
 Haversine \textit{formula} adalah persamaan yang dapat memberikan jarak antara
@@ -1133,13 +1179,13 @@ dua titik berdasarkan \textit{latitude} atau garis lintang dan
 \[d=2r\sin^{-1}(\sqrt{\sin^2(\frac{\phi_2-\phi_1}{2})+\cos(\phi_1)\cos(\phi_2)\sin^2(\frac{\psi_2-\psi_1}{2})})\]
 dimana:
 \begin{itemize}
-  \item d : jarak antara dua buah titik
+  \item d : jarak antara dua buah titik (dalam satuan km)
   
   \item r : radius bumi (6371 km)
    
-  \item $\phi_1, \phi_2$ : \textit{latitude} dari titik 1 and \textit{latitude}
+  \item $\phi_1, \phi_2$ : \textit{latitude} dari titik 1 dan \textit{latitude}
   dari titik 2
   
-  \item $\psi_1, \psi_2$ : \textit{longitude} dari titik 1 and
+  \item $\psi_1, \psi_2$ : \textit{longitude} dari titik 1 dan
   \textit{longitude} dari titik 2
 \end{itemize}
