@@ -783,7 +783,7 @@ var myLatlng = new google.maps.LatLng(-25.363882,131.044922);
 \end{verbatim}
   Pada contoh, objek google.maps.Marker yang dibuat disimpan pada variabel
   \textit{marker}, terdapat atribut \textit{position} menggunakan variabel
-  \textit{myLatlng} yang berisi koordinat (-25.363882,131.044922), atribut map
+  \textit{myLatlng} yang berisi koordinat (-25.363882, 131.044922), atribut map
   menunjukkan bahwa \textit{marker} akan ditampilkan pada objek map yang tersimpan pada variabel
   \textit{map}, dan atribut yang menunjukkan judul \textit{marker}. 
   
@@ -830,7 +830,7 @@ marker.setMap(null);
   Pada contoh, menambahkan animasi \textit{bounce} pada marker sehingga
   \textit{marker} bergerak melompat-lompat pada peta. 
   
-  \item Mengubah Ikon \\
+  \item Mengubah Ikon Konstruktor\\
   Gambar \textit{marker} pada peta dapat diubah sesuai keinginan, hanya
   memerlukan pengaturan atribut pada konstruktor google.maps.Marker. Contoh:
 \begin{verbatim}
@@ -940,7 +940,6 @@ menghitung jarak antara koordinat Kota Jakarta dan koordinat Kota Bandung:
 \begin{verbatim}
 var jakarta = new google.maps.LatLng(-6.1745,106.8227);
 var bandung = new google.maps.LatLng(-6.9167,107.6000);
-
 var distance = google.maps.geometry.spherical
 .computeDistanceBetween(jakarta, bandung);
 \end{verbatim}
@@ -1003,7 +1002,7 @@ Berikut ini adalah penjelasan dari kelas dan fungsi yang digunakan:
 \ref{fig:infowindow}.
 \begin{figure}[h]
 \centering
-\includegraphics[scale=0.6]{Gambar/infowindow}
+\includegraphics[scale=0.62]{Gambar/infowindow}
 \caption[Info Window pada Peta]{Info Window pada Peta}
 \label{fig:infowindow}
 \end{figure}
@@ -1013,8 +1012,7 @@ Berikut ini adalah penjelasan dari kelas dan fungsi yang digunakan:
 Graf adalah himpunan objek yang terdiri dari node (simpul) dan edge (sisi), graf 
 digambarkan sebagai node yang dihubungkan oleh edge \footnotemark[2]. Terdapat
 berbagai macam jenis graf, tetapi pada subbab ini hanya dibahas beberapa jenis
-graf seperti graf tidak berarah, graf berarah, dan graf berbobot. Contoh graf dapat
-dilihat pada Gambar \ref{fig:graph}.
+graf seperti graf tidak berarah, graf berarah, dan graf berbobot.
 \footnotetext[2]{http://web.cecs.pdx.edu/sheard/course/Cs163/Doc/Graphs.html}
 
 \subsection{Graf Tidak Berarah}
@@ -1024,7 +1022,7 @@ antara node. Contoh graf berarah dapat dilihat pada Gambar
 \ref{fig:graph}.
 \begin{figure}[h]
 \centering
-\includegraphics[scale=1]{Gambar/graph}
+\includegraphics[scale=0.72]{Gambar/graph}
 \caption[Contoh Graf]{Contoh Graf}
 \label{fig:graph}
 \end{figure}
@@ -1039,7 +1037,7 @@ digambarkan dengan panah sesuai arahnya. Contoh graf berarah dapat dilihat pada
 Gambar \ref{fig:direc_graph}.
 \begin{figure}[h]
 \centering
-\includegraphics[scale=1]{Gambar/direc_graph}
+\includegraphics[scale=0.72]{Gambar/direc_graph}
 \caption[Contoh Graf Berarah]{Contoh Graf Berarah}
 \label{fig:direc_graph}
 \end{figure}
@@ -1055,7 +1053,7 @@ tersebut dapat digunakan untuk menyimpan jarak dari suatu node ke node lain.
 Contoh graf berbobot dapat dilihat pada Gambar \ref{fig:weight_graph}.
 \begin{figure}[h]
 \centering
-\includegraphics[scale=1]{Gambar/weight_graph}
+\includegraphics[scale=0.95]{Gambar/weight_graph}
 \caption[Contoh Graf Berbobot]{Contoh Graf Berbobot}
 \label{fig:weight_graph}
 \end{figure}
@@ -1108,16 +1106,42 @@ merepresentasikan graf ke dalam bentuk matriks.
   
 \begin{figure}[h]
 \centering
-\includegraphics[scale=0.9]{Gambar/adjmat_undirec}
+\includegraphics[scale=1]{Gambar/adjmat_undirec}
 \caption[Contoh Adjacency Matrix]{Contoh Adjacency Matrix (Graf Tidak Berarah)}
 \label{fig:adjmat_undirec}
 \end{figure}
 
+\clearpage
 \begin{figure}[h]
 \centering
-\includegraphics[scale=0.9]{Gambar/adjmat_direc}
+\includegraphics[scale=1]{Gambar/adjmat_direc}
 \caption[Contoh Adjacency Matrix]{Contoh Adjacency Matrix (Graf Berarah)}
 \label{fig:adjmat_direc}
+\end{figure}
+
+  \item Representasi Graf Berbobot \\
+  Untuk graf berbobot dapat direpresentasikan menggunakan \textit{adjacency
+  list} maupun \textit{adjacency matrix}. Pada \textit{adjacency list},
+  bobot setiap edge ditambahkan pada list yang berasosiasi dengan masing-masing
+  node sehingga menyimpan 2 informasi yaitu node tetangga beserta bobotnya,
+  agar lebih jelas dapat dilihat pada Gambar \ref{fig:weighted_list}. Pada
+  \textit{adjacency matrix}, notasi 1 diganti dengan bobot masing-masing setiap 
+  edge, agar lebih jelas dapat dilihat pada Gambar \ref{fig:weighted_matrix}.
+  
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.9]{Gambar/weighted_list}
+\caption[Representasi Graf Berbobot (Adjacency List)]{Representasi Graf Berbobot (Adjacency List)}
+\label{fig:weighted_list}
+\end{figure}
+
+\clearpage
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.9]{Gambar/weighted_matrix}
+\caption[Representasi Graf Berbobot (Adjacency List)]{Representasi Graf Berbobot
+(Adjacency Matrix)}
+\label{fig:weighted_matrix}
 \end{figure}
 \end{itemize}
 
@@ -1128,7 +1152,7 @@ negatif \cite{Cormen:2001}. V adalah himpunan tidak kosong dari node dan E
 adalah himpunan sisi yang menghubungkan sepasang node. Algoritma ini menggunakan
 prinsip greedy, prinsip greedy pada algoritma dijkstra adalah memilih sisi yang
 memiliki bobot paling kecil dan memasukannya dalam himpunan solusi. Berikut ini adalah
-\textit{pseudocode} dari algoritma dijkstra:
+\textit{pseudocode} dari algoritma Dijkstra:
 \begin{algorithm}{}\label{dijkstra}
 \caption{$Dijkstra$}
 \begin{algorithmic}
@@ -1150,7 +1174,8 @@ memiliki bobot paling kecil dan memasukannya dalam himpunan solusi. Berikut ini 
 \Return dist
 \end{algorithmic}
 \end{algorithm}
-Langkah-langkah yang dilakukan adalah:
+
+Berikut ini adalah penjelasan dari langkah-langkah yang dilakukan:
 \begin{enumerate}
   \item Inisialisasi node asal dengan nilai 0, dan inisialisasi seluruh node
   lainnya dengan nilai tak terhingga.

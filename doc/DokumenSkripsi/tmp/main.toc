@@ -22,13 +22,13 @@
 \contentsline {subsubsection}{\numberline {2.3.3.2}Menggambar pada Peta}{19}{subsubsection.2.3.3.2}
 \contentsline {subsubsection}{\numberline {2.3.3.3}\textit {Geometry Library}}{22}{subsubsection.2.3.3.3}
 \contentsline {subsubsection}{\numberline {2.3.3.4}\textit {Info Window}}{23}{subsubsection.2.3.3.4}
-\contentsline {section}{\numberline {2.4}Graf}{24}{section.2.4}
-\contentsline {subsection}{\numberline {2.4.1}Graf Tidak Berarah}{24}{subsection.2.4.1}
+\contentsline {section}{\numberline {2.4}Graf}{25}{section.2.4}
+\contentsline {subsection}{\numberline {2.4.1}Graf Tidak Berarah}{25}{subsection.2.4.1}
 \contentsline {subsection}{\numberline {2.4.2}Graf Berarah}{25}{subsection.2.4.2}
-\contentsline {subsection}{\numberline {2.4.3}Graf Berbobot}{25}{subsection.2.4.3}
+\contentsline {subsection}{\numberline {2.4.3}Graf Berbobot}{26}{subsection.2.4.3}
 \contentsline {subsection}{\numberline {2.4.4}Representasi Graf}{26}{subsection.2.4.4}
-\contentsline {section}{\numberline {2.5}Algoritma Dijkstra}{27}{section.2.5}
-\contentsline {section}{\numberline {2.6}Haversine \textit {Formula}}{28}{section.2.6}
+\contentsline {section}{\numberline {2.5}Algoritma Dijkstra}{29}{section.2.5}
+\contentsline {section}{\numberline {2.6}Haversine \textit {Formula}}{30}{section.2.6}
 \contentsline {chapter}{\numberline {3}Analisis}{31}{chapter.3}
 \contentsline {section}{\numberline {3.1}Analisis OpenStreetMap}{31}{section.3.1}
 \contentsline {subsection}{\numberline {3.1.1}Langkah-Langkah Pengambilan Data OSMXML}{31}{subsection.3.1.1}
@@ -51,16 +51,16 @@
 \contentsline {section}{\numberline {5.2}Pengujian}{64}{section.5.2}
 \contentsline {subsection}{\numberline {5.2.1}Lingkungan Pengujian}{64}{subsection.5.2.1}
 \contentsline {subsection}{\numberline {5.2.2}Pengujian Fungsional}{65}{subsection.5.2.2}
-\contentsline {subsection}{\numberline {5.2.3}Pengujian Eksperimental}{68}{subsection.5.2.3}
-\contentsline {subsubsection}{\numberline {5.2.3.1}Pengujian Rute Terdekat}{70}{subsubsection.5.2.3.1}
-\contentsline {subsubsection}{\numberline {5.2.3.2}Pengujian Eksperimental Bandung 1}{70}{subsubsection.5.2.3.2}
-\contentsline {subsubsection}{\numberline {5.2.3.3}Pengujian Eksperimental Bandung 2}{71}{subsubsection.5.2.3.3}
-\contentsline {subsubsection}{\numberline {5.2.3.4}Pengujian Eksperimental Bandung 3}{76}{subsubsection.5.2.3.4}
-\contentsline {subsubsection}{\numberline {5.2.3.5}Hasil Pengujian}{76}{subsubsection.5.2.3.5}
-\contentsline {chapter}{\numberline {6}Kesimpulan dan Saran}{79}{chapter.6}
-\contentsline {section}{\numberline {6.1}Kesimpulan}{79}{section.6.1}
-\contentsline {section}{\numberline {6.2}Saran}{79}{section.6.2}
-\contentsline {chapter}{Daftar Referensi}{81}{chapter*.5}
+\contentsline {subsection}{\numberline {5.2.3}Pengujian Eksperimental}{70}{subsection.5.2.3}
+\contentsline {subsubsection}{\numberline {5.2.3.1}Pengujian Rute Terdekat}{71}{subsubsection.5.2.3.1}
+\contentsline {subsubsection}{\numberline {5.2.3.2}Pengujian Eksperimental Bandung 1}{71}{subsubsection.5.2.3.2}
+\contentsline {subsubsection}{\numberline {5.2.3.3}Pengujian Eksperimental Bandung 2}{74}{subsubsection.5.2.3.3}
+\contentsline {subsubsection}{\numberline {5.2.3.4}Pengujian Eksperimental Bandung 3}{75}{subsubsection.5.2.3.4}
+\contentsline {subsubsection}{\numberline {5.2.3.5}Hasil Pengujian}{75}{subsubsection.5.2.3.5}
+\contentsline {chapter}{\numberline {6}Kesimpulan dan Saran}{77}{chapter.6}
+\contentsline {section}{\numberline {6.1}Kesimpulan}{77}{section.6.1}
+\contentsline {section}{\numberline {6.2}Saran}{77}{section.6.2}
+\contentsline {chapter}{Daftar Referensi}{79}{chapter*.5}
 \renewcommand {\cftchappresnum }{\bf \scshape }
-\contentsline {chapter}{\numberline {A}Kode Program}{83}{appendix.A}
-\contentsline {chapter}{\numberline {B}Bandung 1 OSMXML}{93}{appendix.B}
+\contentsline {chapter}{\numberline {A}Kode Program}{81}{appendix.A}
+\contentsline {chapter}{\numberline {B}Bandung 1 OSMXML}{91}{appendix.B}

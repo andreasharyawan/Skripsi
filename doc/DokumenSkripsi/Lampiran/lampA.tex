@@ -142,6 +142,29 @@
             <input type="text" id="tujuan" placeholder=" Tujuan ">
         </ul>
 	</tr>
+	
+	<tr>
+		<label>Total Jarak Tempuh:</label>
+	</tr>
+	<tr>
+		<ul class="input-list style-1 clearfix">
+            <input type="text" id="jarak" placeholder="  ">
+        </ul>
+	</tr>
+	<tr>
+		<ul class="input-list style-1 clearfix">
+            <input type="text" id="kmjarak" placeholder="  ">
+        </ul>
+	</tr>
+	
+	<tr>
+		<label>Lama Pencarian:</label>
+	</tr>
+	<tr>
+		<ul class="input-list style-1 clearfix">
+            <input type="text" id="waktu" placeholder="  ">
+        </ul>
+	</tr>
 </table>
 </div>
 <br/>
@@ -176,7 +199,7 @@ function Graph(node,way){
 	var adjLists = [];
 	var nd;
 	var oneway;
-	
+
 	function wayDirection(way,index){
 		var tag = way[index].getElementsByTagName("tag");
 		for (hg=0;hg<tag.length;hg++)
@@ -401,25 +424,25 @@ function Map(){
 
 //Kelas PriorityQueue
 function PriorityQueue(){
-	this._nodes = [];
+	this.queue = [];
   
 	this.enqueue = function(priority,key){
-		this._nodes.push({key: key,priority: priority});
+		this.queue.push({key: key,priority: priority});
 		this.sort();
 	}
 	
-	this.dequeue = function () {
-		return this._nodes.shift().key;
+	this.dequeue = function(){
+		return this.queue.shift().key;
 	}
 	
 	this.sort = function(){
-		this._nodes.sort(function(a,b){
+		this.queue.sort(function(a,b){
 			return a.priority - b.priority;
 		});
 	}
   
 	this.isEmpty = function(){
-		return !this._nodes.length;
+		return !this.queue.length;
 	}
 }
 
@@ -437,18 +460,18 @@ function Dijkstra(){
 		var	distances = {};
 		var	previous = {};
 		var	path = [];
-		var	smallest, vertex, neighbor, alt;
+		var	smallest, node, neighbor, alt;
 
-		for(vertex in this.nodes){
-			if(vertex === asal){
-				distances[vertex] = 0;
-				PQ.enqueue(0, vertex);
+		for(node in this.nodes){
+			if(node === asal){
+				distances[node] = 0;
+				PQ.enqueue(0, node);
 			}
 			else{
-				distances[vertex] = INFINITY;
-				PQ.enqueue(INFINITY, vertex);
+				distances[node] = INFINITY;
+				PQ.enqueue(INFINITY, node);
 			}
-			previous[vertex] = null;
+			previous[node] = null;
 		}
 
 		while(!PQ.isEmpty()){
@@ -461,8 +484,8 @@ function Dijkstra(){
 				break;
 			}
 
-			if(!smallest || distances[smallest] === INFINITY){
-				continue;
+			if(distances[smallest] === INFINITY){
+				break;
 			}
 
 			for(neighbor in this.nodes[smallest]){
@@ -521,7 +544,16 @@ function setTujuan(id,idnode,indexNode){
 	document.getElementById('tujuan').value = "Id Node: "+ idnode;
 }
 
+function hitungJarak(rute){
+	var jarak = 0.0;
+	for (i=0; i < rute.length-1; i++){
+		jarak = list[rute[i]].adjList.weight + jarak;
+	}
+	return jarak;
+}
+
 function result(){
+	var start = new Date().getTime();
 	var cari = new Dijkstra();
 	var rute;
 	var edge;
@@ -537,6 +569,7 @@ function result(){
 	console.log("Titik Tujuan: "+indexTujuan);
 	rute = cari.shortestPath(indexAsal,indexTujuan).concat([indexAsal]).reverse();
 	console.log(rute);
+	var end = new Date().getTime();
 	if(rute.length == 1){
 		if(indexAsal == null){
 			alert("Anda belum memilih titik Asal");
@@ -546,6 +579,11 @@ function result(){
 			alert("Rute Tidak Ditemukan");
 		}
 	}else{
+		var totalJarak = hitungJarak(rute);
+		document.getElementById('jarak').value = totalJarak +" Meter";
+		document.getElementById('kmjarak').value = totalJarak/1000 +" Km";
+		var time = end - start;
+		document.getElementById('waktu').value = time +" ms";
 		peta.hasilCari(rute);
 	}
 }
