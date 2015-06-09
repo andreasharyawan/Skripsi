@@ -132,48 +132,52 @@ this.generate = function(){
   terdekat.
 \begin{lstlisting}
 this.shortestPath = function(asal, tujuan){
-  var PQ = new PriorityQueue();
-  var distances = {};
-  var previous = {};
-  var path = [];
-  var smallest, node, neighbor, alt;
+	var PQ = new PriorityQueue();
+	var	distances = {};
+	var	previous = {};
+	var	path = [];
+	var	smallest, node, neighbor, alt;
+		
+	for(node in this.nodes){
+		if(node === asal){
+			distances[node] = 0;
+			PQ.enqueue(0, node);
+		}
+		else{
+			distances[node] = INFINITY;
+			PQ.enqueue(INFINITY, node);
+		}
+		previous[node] = null;
+	}
+		
+	while(!PQ.isEmpty()){
+		try{
+			smallest = PQ.dequeue().key;
+			if(smallest === tujuan){
+				while(previous[smallest]){
+					path.push(smallest);
+					smallest = previous[smallest];
+				}
+				break;
+			}
+				
+			if(distances[smallest] === INFINITY){
+				break;
+			}
 
-  for(node in this.nodes){
-    if(node === asal){
-      distances[node] = 0;
-      PQ.enqueue(0, node);
-    }
-    else{
-      distances[node] = INFINITY;
-      PQ.enqueue(INFINITY, node);
-    }
-    previous[node] = null;
-  }
-
-  while(!PQ.isEmpty()){
-    smallest = PQ.dequeue();
-    if(smallest === tujuan){
-      while(previous[smallest]){
-        path.push(smallest);
-        smallest = previous[smallest];
-      }
-      break;
-    }
-    
-    if(distances[smallest] === INFINITY){
-      break;
-    }
-
-    for(neighbor in this.nodes[smallest]){
-      alt = distances[smallest] + this.nodes[smallest][neighbor];
-      if(alt < distances[neighbor]) {
-        distances[neighbor] = alt;
-        previous[neighbor] = smallest;
-        PQ.enqueue(alt, neighbor);
-      }
-    }
-  }
-  return path;
+			for(neighbor in this.nodes[smallest]){
+				alt = distances[smallest] + this.nodes[smallest][neighbor];
+				if(alt < distances[neighbor]) {
+					distances[neighbor] = alt;
+					previous[neighbor] = smallest;
+					PQ.enqueue(alt, neighbor);
+				}
+			}
+		}catch(err){
+			return path;
+		}
+	}
+	return path;
 }
 \end{lstlisting}
 \end{itemize}
