@@ -298,7 +298,8 @@ dilihat pada Gambar \ref{fig:analisis_haver}.
 Saat proses analisis, ternyata Google Maps Javascript API menyediakan suatu
 \textit{library} untuk mengukur jarak antara dua titik. \textit{Library}
 tersebut adalah \textit{geometry library} yang menyediakan fungsi utilitas yaitu
-google.maps.geometry.spherical. Untuk menghitung jarak antara dua titik
+google.maps.geometry.spherical. Google tidak mempublikasikan algoritma yang
+digunakan untuk perhitungan jarak tersebut. Untuk menghitung jarak antara dua titik
 digunakan fungsi computeDistanceBetween(). Sama seperti rumus haversine,
 analisis fungsi computeDistanceBetween() dilakukan dengan implementasi contoh
 kasus perhitungan jarak antara koordinat Kota Bandung dan Jakarta. Berikut ini
@@ -322,7 +323,8 @@ Geometry Library}
 Terdapat perbedaan atau selisih yang dihasilkan oleh rumus haversine dan
 fungsi computeDistanceBetween() sebesar 0.133417220015275 km. Fungsi 
 computeDistanceBetween() yang akan digunakan untuk pembuatan aplikasi, bukan
-rumus haversine. Hal ini karena fungsi tersebut lebih mudah digunakan.
+rumus haversine. Hal ini karena aplikasi menggunakan Google Maps Javascript
+API, sehingga fungsi tersebut lebih cocok untuk digunakan.
 
 \section{Pemodelan OSMXML Menjadi Graf} \label{ssec:analisis_graf}
 Pada subbab \ref{ssec:analisis_js}, dokumen OSMXML sudah dibaca dan tahap
@@ -335,8 +337,9 @@ merepresentasikan graf tersebut, digunakan \textit{adjacency list}.
 Penggunaan \textit{adjacency list} disebabkan oleh penggunaan memori yang lebih
 kecil dibandingkan dengan \textit{adjacency matrix}. Hal ini karena, setelah
 dilakukan \textit{filter} diketahui bahwa graf tersebut berjenis
-\textit{sparse}. Berikut ini adalah langkah-langkah yang dilakukan untuk
-memodelkan OSMXML menjadi graf:
+\textit{sparse} (graf yang memiliki jumlah edge dekat dengan jumlah minimum
+edge). Berikut ini adalah langkah-langkah yang dilakukan untuk memodelkan OSMXML
+menjadi graf:
 \begin{enumerate}
   \item Membuat kelas Node dan kelas Neighbor.
 \begin{verbatim}
@@ -461,18 +464,19 @@ function print(list){
   variabel adjLists. Selanjutnya dilakukan pembacaan setiap index array dan
   hasilnya ditampilkan di layar.
 \end{enumerate}
-\begin{figure}[h]
-\centering
-\includegraphics[scale=0.5]{Gambar/graf_analisis}
-\caption[Pemodelan OSMXML menjadi Graf]{Pemodelan OSMXML menjadi Graf}
-\label{fig:graf_analisis}
-\end{figure}
 Hasil dari kode program di atas dapat dilihat pada Gambar
 \ref{fig:graf_analisis}.
 Pada Gambar \ref{fig:graf_analisis}, data pada OSMXML sudah dimodelkan ke dalam
 bentuk graf menggunakan representasi \textit{adjacency list}. Tahap
 selanjutnya, graf tersebut akan divisualisasikan menggunakan Google Maps
 Javascript API yang dibahas pada subbab \ref{ssec:analisis_gmap}.
+\clearpage
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.5]{Gambar/graf_analisis}
+\caption[Pemodelan OSMXML menjadi Graf]{Pemodelan OSMXML menjadi Graf}
+\label{fig:graf_analisis}
+\end{figure}
 
 \section{Visualisasi} \label{ssec:analisis_gmap}
 Data OSMXML yang sudah dimodelkan ke dalam bentuk graf, selanjutnya
@@ -587,9 +591,10 @@ dan dua buah \textit{hyperlink} yang berfungsi untuk menjadikan marker yang
 dipilih menjadi asal atau tujuan. Contoh \textit{info window} yang ditampilkan
 pada peta dapat dilihat pada Gambar \ref{fig:visualisasi_infowindow}. Setiap
 edge pada graf akan menjadi garis pada peta yang dibuat menggunakan \textit{polyline}.
+\clearpage
 \begin{figure}[h]
 \centering
-\includegraphics[scale=0.8]{Gambar/visualisasi_infowindow}
+\includegraphics[scale=0.9]{Gambar/visualisasi_infowindow}
 \caption[Info Window]{Info Window}
 \label{fig:visualisasi_infowindow}
 \end{figure}
@@ -606,7 +611,7 @@ titik tujuan ``198'', output yang dihasilkan dapat dilihat pada Gambar
 \ref{fig:output_dijkstra}.
 \begin{figure}[h]
 \centering
-\includegraphics[scale=0.8]{Gambar/output_dijkstra}
+\includegraphics[scale=0.9]{Gambar/output_dijkstra}
 \caption[Keluaran fungsi Dijkstra]{Keluaran fungsi Dijkstra}
 \label{fig:output_dijkstra}
 \end{figure}
@@ -614,7 +619,7 @@ Visualisasi rute terdekat dapat dilihat pada Gambar
 \ref{fig:visualisasi_dijkstra}.
  \begin{figure}[h]
 \centering
-\includegraphics[scale=0.5]{Gambar/visualisasi_dijkstra}
+\includegraphics[scale=0.6]{Gambar/visualisasi_dijkstra}
 \caption[Visualisasi Rute Terdekat]{Visualisasi Rute Terdekat}
 \label{fig:visualisasi_dijkstra}
 \end{figure}
@@ -635,13 +640,6 @@ Diagram \textit{use case} adalah pemodelan yang berfungsi memperjelas interaksi
 antara aktor atau \textit{user} dengan sistem. 
 Diagram \textit{use case} aplikasi pencarian rute terdekat dapat dilihat pada
 Gambar \ref{fig:usecase}.
-\begin{figure}[h]
-\centering
-\includegraphics[scale=0.55]{Gambar/usecase}
-\caption[Diagram Use Case]{Diagram \textit{use case}}
-\label{fig:usecase}
-\end{figure}
-
 Berdasarkan analisis yang telah dilakukan, maka \textit{user} dapat melakukan
 interaksi sebagai berikut:
 \begin{enumerate}
@@ -659,6 +657,12 @@ interaksi sebagai berikut:
   \textit{User} dapat menekan tombol ``Cari'' untuk mencari rute terdekat dari
   kedua titik yang telah dipilih sebelumnya.
 \end{enumerate}
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.65]{Gambar/usecase}
+\caption[Diagram Use Case]{Diagram \textit{use case}}
+\label{fig:usecase}
+\end{figure}
 
 \subsection{Skenario}
 Berikut ini adalah skenario untuk setiap \textit{use case}:

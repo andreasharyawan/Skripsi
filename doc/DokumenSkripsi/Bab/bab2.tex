@@ -278,7 +278,7 @@ penjelasan dari keempat \textit{value} tersebut:
 
 \item Elemen relation menyimpan informasi node-node dan way yang bersinggungan.
 Elemen relation dapat menggambarkan suatu area seperti lapangan, taman
-bermain.
+bermain, dan rute bus.
 \begin{lstlisting}
 <relation id="56688" user="kmvar" uid="56190" visible="true" version="28" changeset="6947637" timestamp="2011-01-12T14:23:49Z">
   <member type="node" ref="294942404" role=""/>
@@ -295,7 +295,7 @@ bermain.
   <tag k="type" v="route"/>
  </relation>
 \end{lstlisting}
-Pada contoh di atas menggambarkan rute bus.
+Pada contoh di atas dapat dilihat elemen relation yang menggambarkan rute bus.
 \end{enumerate}
 \end{itemize}
 
@@ -1183,16 +1183,19 @@ Berikut ini adalah penjelasan dari langkah-langkah yang dilakukan:
   \item S adalah himpunan node yang sudah dikunjungi, untuk awal inisialisasi
   dengan himpunan kosong.
   
-  \item Q adalah struktur data \textit{queue}, inisialisasi dengan seluruh node.
+  \item Q adalah struktur data \textit{priority queue}, inisialisasi dengan
+  seluruh node.
   
   \item Keluarkan node yang memiliki jarak paling kecil dari dalam
-  \textit{queue} dan tambahkan node tersebut ke dalam himpunan node yang sudah dikunjungi.
+  \textit{priority queue} dan tambahkan node tersebut ke dalam himpunan node
+  yang sudah dikunjungi.
   
-  \item Lakukan pengulangan untuk seluruh node tetangga dan periksa jika jarak
-  terpendek lain ditemukan tandai node tersebut.
+  \item Lakukan pengulangan untuk seluruh node tetangga lalu periksa jika jarak
+  terpendek lain ditemukan tandai node dan perbaharui bobot pada node
+  tersebut.
   
-  \item Ulangi langkah 4 dan 5 hingga seluruh node di dalam \textit{queue}
-  habis.
+  \item Ulangi langkah 4 dan 5 hingga seluruh node di dalam
+  \textit{priority queue} habis.
 \end{enumerate}
 
 \section{Haversine \textit{Formula}}

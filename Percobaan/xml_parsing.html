@@ -14,7 +14,7 @@ th, td {
 <body>
 <script>
 xmlhttp=new XMLHttpRequest();
-xmlhttp.open("GET","bandung2.xml",false);
+xmlhttp.open("GET","bandung1.xml",false);
 xmlhttp.send();
 xmlDoc=xmlhttp.responseXML;
 
@@ -35,25 +35,6 @@ function getDistance(lat1,lon1,lat2,lon2) {
 function deg2rad(deg) {
   return deg * (Math.PI/180)
 }
-
-document.write("<div style='float: left'>");
-document.write("<table><tr><th>Node</th><th>Id</th><th>Latitude</th><th>Longitude</th></tr>");
-document.write("<caption>Node</caption>");
-var node=xmlDoc.getElementsByTagName("node");
-for (ct=0;ct<node.length;ct++)
-  {
-  document.write("<tr><td>");
-  document.write(ct);
-  document.write("</td><td>");
-  document.write(node[ct].getAttribute('id'));
-  document.write("</td><td>");
-  document.write(node[ct].getAttribute('lat'));
-  document.write("</td><td>");
-  document.write(node[ct].getAttribute('lon'));
-  document.write("</td></tr>");
-  }
-document.write("</table>");
-document.write("</div>");
 
 function isHighway(way,index){
 	var tag = way[index].getElementsByTagName("tag");
@@ -89,10 +70,59 @@ function getLonByAtt(str)
 	return -1;
 }
 
+document.write("<div style='float: left'>");
+document.write("<table><tr><th>Node</th><th>Id</th><th>Latitude</th><th>Longitude</th></tr>");
+document.write("<caption>Node</caption>");
+var node=xmlDoc.getElementsByTagName("node");
+var way = xmlDoc.getElementsByTagName("way");
+
+var check = [];
+var count = 0; 
+for (i=0;i<way.length;i++){
+	nd = way[i].getElementsByTagName("nd");
+	if(isHighway(way,i)){
+		for (ct=0;ct<nd.length;ct++){
+		  document.write("<tr><td>");
+		  count++;
+		  document.write(count);
+		  document.write("</td><td>");
+		  document.write(nd[ct].getAttribute('ref'));
+		  check.push(nd[ct].getAttribute('ref'));
+		  document.write("</td><td>");
+		  document.write(getLatByAtt(nd[ct].getAttribute('ref')));
+		  document.write("</td><td>");
+		  document.write(getLonByAtt(nd[ct].getAttribute('ref')));
+		  document.write("</td></tr>");
+		  
+		}
+	}
+}
+document.write("</table>");
+document.write("</div>");
+
+function eliminateDuplicates(arr) {
+  var i,
+      len=arr.length,
+      out=[],
+      obj={};
+
+  for (i=0;i<len;i++) {
+    obj[arr[i]]=0;
+  }
+  for (i in obj) {
+    out.push(i);
+  }
+  return out;
+}
+
+var dupe = eliminateDuplicates(check);
+console.log(dupe);
+console.log(dupe.length);
+
 document.write("<div style='margin-left: 20px;float: left'>");
 document.write("<table><tr><th>Way</th><th>Id Way</th><th>Edge</th><th>Id Node 1</th><th>Id Node 2</th><th>Jarak dalam meter</th></tr>");
 document.write("<caption>Edge</caption>");
-var way = xmlDoc.getElementsByTagName("way");
+
 var nd;
 var lat1;
 var lon1;

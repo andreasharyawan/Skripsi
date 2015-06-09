@@ -162,7 +162,7 @@
 <script>
 //Load XML
 xmlhttp=new XMLHttpRequest();
-xmlhttp.open("GET","bandung2.xml",false);
+xmlhttp.open("GET","bandung1.xml",false);
 xmlhttp.send();
 xmlDoc=xmlhttp.responseXML;
 
@@ -411,6 +411,32 @@ function Map(){
 //Kelas PriorityQueue
 function PriorityQueue(){
 	this.queue = [];
+	var min = 0.0;
+	var idx = -1;
+ 
+	this.enqueue = function(priority,key){
+		this.queue.push({key: key,priority: priority});
+	}
+	
+	this.dequeue = function(){
+		min = this.queue[0].priority;
+		for (i=1;i<this.queue.length;i++) {
+			if (this.queue[i].priority < min) {
+				min = this.queue[i].priority;
+				idx = i;
+			}
+		}
+		return this.queue.splice(idx, 1)[0].key;
+	}
+  
+	this.isEmpty = function(){
+		return !this.queue.length;
+	}
+}
+
+/*
+function PriorityQueue(){
+	this.queue = [];
   
 	this.enqueue = function(priority,key){
 		this.queue.push({key: key,priority: priority});
@@ -430,7 +456,7 @@ function PriorityQueue(){
 	this.isEmpty = function(){
 		return !this.queue.length;
 	}
-}
+}*/
 
 //Kelas Dijkstra
 function Dijkstra(){
@@ -459,7 +485,7 @@ function Dijkstra(){
 			}
 			previous[node] = null;
 		}
-
+		
 		while(!PQ.isEmpty()){
 			smallest = PQ.dequeue();
 			if(smallest === tujuan){
@@ -482,6 +508,7 @@ function Dijkstra(){
 					PQ.enqueue(alt, neighbor);
 				}
 			}
+			console.log(smallest);
 		}
 		return path;
 	}
